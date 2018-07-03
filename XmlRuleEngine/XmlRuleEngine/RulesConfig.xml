@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rules>
+  <rule name="Rule1">
+    <path>/salesorder/sales_order_header/order_number</path>
+    <validations>
+      <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances">
+        <length>10</length>
+        <message>Length of suburban field lenth is greater than 10 characters.</message>
+      </validation>
+    </validations>
+    <actions>
+      <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failue">
+        <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
+        <from>noreply@startrack.com.au</from>
+        <subject>$value of the $field is exceeding limit</subject>
+        <successMessage>Email alert sent successfully</successMessage>
+        <failureMessage>Email sending failed for the $field</failureMessage>
+      </action>
+    </actions>
+  </rule>
+</rules>

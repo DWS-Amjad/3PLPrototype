@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ConfigurationStore" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="ConfigurationStore" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Config">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="rules" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="rule" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="xpath" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                          <xs:element name="path" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                          <xs:element name="validations" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="validation" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="length" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                      <xs:element name="message" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" />
+                                    <xs:attribute name="type" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="actions" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="action" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="to" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                      <xs:element name="from" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                                      <xs:element name="subject" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+                                      <xs:element name="successMessage" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+                                      <xs:element name="failureMessage" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" />
+                                    <xs:attribute name="type" type="xs:string" />
+                                    <xs:attribute name="executeOn" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" />
+            <xs:attribute name="xsd_file_path" type="xs:string" />
+            <xs:attribute name="source_file_path" type="xs:string" />
+            <xs:attribute name="success_folder_path" type="xs:string" />
+            <xs:attribute name="failed_folder_path" type="xs:string" />
+            <xs:attribute name="enabled" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

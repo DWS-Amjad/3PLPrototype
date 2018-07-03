@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+         <xs:element name="sales_orders">
+               <xs:complexType>
+                     <xs:sequence>
+                           <xs:element name="sales_order_header" maxOccurs="unbounded">
+                                 <xs:complexType>
+                                       <xs:sequence>
+                                             <xs:element name="action" type="xs:string" />
+                                             <xs:element name="client_code" type="xs:string" />
+                                             <xs:element name="company_code" type="xs:string" />
+                                             <xs:element name="order_number" type="xs:int" />
+                                             <xs:element name="orig_order_number" type="xs:int" />
+                                             <xs:element name="purchase_order_number" type="xs:int" />
+                                             <xs:element name="client_edi_address" type="xs:int" />
+                                             <xs:element name="retailer_edi_address" type="xs:int" />
+                                             <xs:element name="vendor_number" type="xs:int" />
+                                             <xs:element name="order_type" type="xs:string" />
+                                             <xs:element name="customer_order_date" type="xs:dateTime" />
+                                             <xs:element name="delivery_date" type="xs:date" />
+                                             <xs:element name="eta_date" type="xs:date" />
+                                             <xs:element name="earliest_delivery_date" type="xs:date" />
+                                             <xs:element name="latest_delivery_date" type="xs:date" />
+                                             <xs:element name="ship_to_code" type="xs:string" />
+                                             <xs:element name="deliver_to_code" type="xs:string" />
+                                             <xs:element name="department_number" />
+                                             <xs:element name="reference_field1" type="xs:int" />
+                                             <xs:element name="gst_total" type="xs:double" />
+                                             <xs:element name="sub_total" type="xs:double"/>
+                                             <xs:element name="invoice_total" type="xs:double"/>
+                                             <xs:element name="origin" type="xs:string"/>
+                                             <xs:element name="order_details">
+                                                   <xs:complexType>
+                                                         <xs:sequence>
+                                                               <xs:element name="order_detail" maxOccurs="unbounded">
+                                                                     <xs:complexType>
+                                                                           <xs:sequence>
+                                                                                 <xs:element name="line_number" type="xs:int"/>
+                                                                                 <xs:element name="product_code" type="xs:string"/>
+                                                                                 <xs:element name="upc_code" type="xs:int"/>
+                                                                                 <xs:element name="quantity_ordered" type="xs:int"/>
+                                                                                 <xs:element name="unit_of_measure" type="xs:string"/>
+                                                                                 <xs:element name="unit_price_exc_tax" type="xs:double"/>
+                                                                                 <xs:element name="unit_price_inc_tax" type="xs:double"/>
+                                                                                 <xs:element name="tax_amount" type="xs:double"/>
+                                                                                 <xs:element name="gst" type="xs:int"/>
+                                                                                 <xs:element name="extended_exc_tax" type="xs:double"/>
+                                                                                 <xs:element name="extended_inc_tax" type="xs:double"/>
+                                                                                 <xs:element name="discount" type="xs:int"/>
+                                                                                 <xs:element name="buyer_product_id" type="xs:int"/>
+                                                                           </xs:sequence>
+                                                                     </xs:complexType>
+                                                               </xs:element>
+                                                         </xs:sequence>
+                                                   </xs:complexType>
+                                             </xs:element>
+                                       </xs:sequence>
+                                 </xs:complexType>
+                           </xs:element>
+                     </xs:sequence>
+                     <xs:attribute name="xmlns:tns" type="xs:string" />
+               </xs:complexType>
+         </xs:element>
+   </xs:schema>

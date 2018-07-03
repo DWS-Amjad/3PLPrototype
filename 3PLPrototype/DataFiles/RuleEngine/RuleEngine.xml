@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ConfigurationStore>
+  <Config name="sales_order" xsd_ns="" xsd_file_path="../../DataFiles/SalesOrder/SalesOrder.xsd" 
+          source_file_path="../../DataFiles/SalesOrder/Sample_SO[8303].xml" success_folder_path="../../DataFiles/SalesOrder/succeed" 
+          failed_folder_path="../../DataFiles/SalesOrder/failed" enabled="true" custom_validation_enabled="false" xsd_validation_enabled="true">
+    <rules>
+      <rule name="Rule1">
+        <path>/salesorder/sales_order_header/order_number</path>
+        <validations>
+          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances">
+            <length>10</length>
+            <message>Length of suburban field lenth is greater than 10 characters.</message>
+          </validation>
+        </validations>
+        <actions>
+          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failue">
+            <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
+            <from>noreply@startrack.com.au</from>
+            <subject>$value of the $field is exceeding limit</subject>
+            <successMessage>Email alert sent successfully</successMessage>
+            <failureMessage>Email sending failed for the $field</failureMessage>
+          </action>
+        </actions>
+      </rule>
+    </rules>
+  </Config>
+  <Config name="purchase_order" xsd_file_path="../../DataFiles/PurchaseOrder/SalesOrder.xsd"
+          source_file_path="../../DataFiles/PurchaseOrder/source" success_folder_path="../../DataFiles/PurchaseOrder/succeed"
+          failed_folder_path="../../DataFiles/PurchaseOrder/failed" enabled="false"  custom_validation_enabled="true" xsd_validation_enabled="true">
+    <rules>
+      <rule name="Rule1">
+        <xpath>/salesorder/sales_order_header/order_number</xpath>
+        <validations>
+          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances">
+            <length>10</length>
+            <message>Length of suburban field lenth is greater than 10 characters.</message>
+          </validation>
+        </validations>
+        <actions>
+          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failue">
+            <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
+            <from>noreply@startrack.com.au</from>
+            <subject>$value of the $field is exceeding limit</subject>
+            <successMessage>Email alert sent successfully</successMessage>
+            <failureMessage>Email sending failed for the $field</failureMessage>
+          </action>
+        </actions>
+      </rule>
+    </rules>
+  </Config>
+</ConfigurationStore>
