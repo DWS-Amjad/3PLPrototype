@@ -1,0 +1,7 @@
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.exe.config
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\XMLFile1.xml
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.exe
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.pdb
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.exe
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.pdb
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleXml1.xml

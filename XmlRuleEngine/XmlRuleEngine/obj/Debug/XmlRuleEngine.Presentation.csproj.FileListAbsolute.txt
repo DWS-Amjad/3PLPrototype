@@ -1,0 +1,40 @@
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.exe.config
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleXml1.xml
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\RulesConfig.xml
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.exe
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.pdb
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.exe
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.pdb
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.csprojResolveAssemblyReference.cache
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\ValidationRuleEngine.dll
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\ValidationRuleEngine.pdb
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleInstances.dll
+C:\Parag\Dev\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleInstances.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleXml1.xml
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\RulesConfig.xml
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.exe.config
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.exe
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleInstances.dll
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\ValidationRuleEngine.dll
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleInstances.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\bin\Debug\ValidationRuleEngine.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.csprojResolveAssemblyReference.cache
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.exe
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleXml1.xml
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\RulesConfig.xml
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.exe.config
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.exe
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\XmlRuleEngine.Presentation.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleInstances.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\SampleInstances.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.csprojResolveAssemblyReference.cache
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.exe
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\obj\Debug\XmlRuleEngine.Presentation.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\DAL.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\DAL.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\XmlRuleEngine\bin\Debug\DAL.dll.config

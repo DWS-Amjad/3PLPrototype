@@ -1,0 +1,30 @@
+C:\Parag\Dev\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.dll
+C:\Parag\Dev\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.pdb
+C:\Parag\Dev\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.csprojResolveAssemblyReference.cache
+C:\Parag\Dev\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.dll
+C:\Parag\Dev\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.pdb
+C:\Parag\Dev\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll
+C:\Parag\Dev\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.dll
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.csprojResolveAssemblyReference.cache
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.dll
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.csprojResolveAssemblyReference.cache
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.csprojResolveAssemblyReference.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.pdb

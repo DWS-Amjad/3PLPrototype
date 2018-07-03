@@ -1,0 +1,27 @@
+C:\Parag\Dev\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.dll
+C:\Parag\Dev\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.pdb
+C:\Parag\Dev\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.dll
+C:\Parag\Dev\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.dll
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.pdb
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.csprojResolveAssemblyReference.cache
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.dll
+H:\Documents\Visual Studio 2012\Projects\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.csprojResolveAssemblyReference.cache
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\bin\Debug\DAL.dll
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\bin\Debug\DAL.pdb
+D:\DWS\AusPost-StarTrack\XmlRuleEngine\ValidationRuleEngine\bin\Debug\DAL.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\DAL.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\DAL.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\DAL.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.csprojResolveAssemblyReference.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.pdb
