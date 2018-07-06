@@ -9,7 +9,7 @@ namespace DAL.Repository
     // SelectAll; SelectAllActive; Insert, Update, Delete, SelectById  =>ErrorXmlRepository
     public sealed class ErrorXmlRepository : IDisposable
     {
-        private ErrorXmlRepository(STEInterfacesEntities context)
+        public ErrorXmlRepository(STEInterfacesEntities context)
         {
             try
             {

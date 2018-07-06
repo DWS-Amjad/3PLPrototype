@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
-using ValidationRuleEngine.Rules;
-
-namespace ValidationRuleEngine
+﻿namespace ValidationRuleEngine
 {
     public interface IEngine
     {

@@ -32,13 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="CustomValidatorEngine.cs" />
     <Compile Include="DataFiles\Examples\books.cs">
       <DependentUpon>books.xsd</DependentUpon>
@@ -93,6 +96,7 @@
     <Content Include="DataFiles\SalesOrder\Sample_SO[8303].xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="DataFiles\Examples\books.xsc">
       <DependentUpon>books.xsd</DependentUpon>
     </None>
@@ -129,6 +133,7 @@
     <None Include="DataFiles\SalesOrder\SalesOrder.xss">
       <DependentUpon>SalesOrder.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataFiles\PurchaseOrder\failed\" />

@@ -28,3 +28,7 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\Sa
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.csproj.CoreCompileInputs.cache
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.dll
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\SampleInstances.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll.config
