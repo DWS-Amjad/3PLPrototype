@@ -1,5 +1,6 @@
 ﻿using System;
-using ValidationRuleEngine;
+using ValidationRuleEngine.Implementations;
+using ValidationRuleEngine.Interfaces;
 
 namespace _3PLPrototype
 {

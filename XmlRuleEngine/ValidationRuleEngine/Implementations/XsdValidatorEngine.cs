@@ -6,8 +6,9 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using DAL.Repository;
 using DAL.Models;
+using ValidationRuleEngine.Interfaces;
 
-namespace ValidationRuleEngine
+namespace ValidationRuleEngine.Implementations
 {
     public class XsdValidatorEngine : IEngine
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ValidationRuleEngine
+﻿namespace ValidationRuleEngine
 {
     public static class Constants
     {

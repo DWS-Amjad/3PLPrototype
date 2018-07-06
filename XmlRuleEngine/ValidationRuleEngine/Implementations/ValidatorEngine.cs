@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using ValidationRuleEngine.Interfaces;
 
-namespace ValidationRuleEngine
+namespace ValidationRuleEngine.Implementations
 {
     public class ValidatorEngine : IEngine
     {

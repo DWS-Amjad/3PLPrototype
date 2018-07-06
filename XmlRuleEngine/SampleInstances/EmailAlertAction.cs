@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using ValidationRuleEngine;
-using ValidationRuleEngine.Rules;
+using ValidationRuleEngine.Interfaces;
 
 namespace SampleInstances
 {

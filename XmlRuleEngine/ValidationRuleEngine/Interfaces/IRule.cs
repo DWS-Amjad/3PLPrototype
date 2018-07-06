@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ValidationRuleEngine.Rules
+namespace ValidationRuleEngine.Interfaces
 {
     public interface IRule
     {

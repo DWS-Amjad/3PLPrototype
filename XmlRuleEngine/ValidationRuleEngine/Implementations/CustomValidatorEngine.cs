@@ -5,9 +5,9 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
-using ValidationRuleEngine.Rules;
+using ValidationRuleEngine.Interfaces;
 
-namespace ValidationRuleEngine
+namespace ValidationRuleEngine.Implementations
 {
     public class CustomValidatorEngine : IEngine
     {        
@@ -49,7 +49,7 @@ namespace ValidationRuleEngine
 
             foreach (var rulesElement in ruleElements)
             {
-                var newRule = new ValidationRuleEngine.Rules.Rule(rulesElement.Attribute(XName.Get("name")).Value, rulesElement.Element(XName.Get("path")).Value);
+                var newRule = new ValidationRuleEngine.Implementations.Rule(rulesElement.Attribute(XName.Get("name")).Value, rulesElement.Element(XName.Get("path")).Value);
                 var validationElements = rulesElement.Element(XName.Get("validations")).Elements(XName.Get("validation"));
                 if (validationElements != null && validationElements.Any())
                 {

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace ValidationRuleEngine
+namespace ValidationRuleEngine.Interfaces
 {
     public interface IValidationContext
     {

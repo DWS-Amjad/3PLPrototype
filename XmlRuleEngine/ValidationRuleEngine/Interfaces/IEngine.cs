@@ -1,4 +1,4 @@
-﻿namespace ValidationRuleEngine
+﻿namespace ValidationRuleEngine.Interfaces
 {
     public interface IEngine
     {

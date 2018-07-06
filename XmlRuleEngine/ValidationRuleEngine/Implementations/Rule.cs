@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using ValidationRuleEngine.Interfaces;
 
-namespace ValidationRuleEngine.Rules
+namespace ValidationRuleEngine.Implementations
 {
     internal class Rule : IRule
     {
