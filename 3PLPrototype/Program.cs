@@ -44,21 +44,21 @@ namespace _3PLPrototype
 
 
 
-            //Console.WriteLine("Configuring CustomValidatorEngine....");
+            //Console.WriteLine("Configuring CustomValidatorEngineObsolete....");
             //ruleEngine.Configure();
-            //Console.WriteLine("CustomValidatorEngine Configurtion finished.");
+            //Console.WriteLine("CustomValidatorEngineObsolete Configurtion finished.");
 
             //// read sample xml to validate
             //var sampleXml = XDocument.Load("SampleXml1.xml");
 
-            //Console.WriteLine("Starting CustomValidatorEngine....");
+            //Console.WriteLine("Starting CustomValidatorEngineObsolete....");
             //ruleEngine.Start(sampleXml);
-            //Console.WriteLine("CustomValidatorEngine start finished.");
+            //Console.WriteLine("CustomValidatorEngineObsolete start finished.");
 
-            //Console.WriteLine("Stopping CustomValidatorEngine....");
+            //Console.WriteLine("Stopping CustomValidatorEngineObsolete....");
             //ruleEngine.Stop();
 
-            //Console.WriteLine("CustomValidatorEngine stopped.");
+            //Console.WriteLine("CustomValidatorEngineObsolete stopped.");
             //Console.ReadLine();
         }
         
@@ -115,7 +115,7 @@ namespace _3PLPrototype
 
 
 
-            //XSD_Based_Validation(@"..\..\DataFiles\books.xsd", @"..\..\DataFiles\books.xml", booksSettingsValidationEventHandler);
+            //StartXsdValidator(@"..\..\DataFiles\books.xsd", @"..\..\DataFiles\books.xml", booksSettingsValidationEventHandler);
             //bookstore xmlObject;
             //XmlDocument xmlDocument;
             //XMLHelper<bookstore>.Instance.UnMarshalingFromXML(@"..\..\DataFiles\books.xml", out xmlObject);

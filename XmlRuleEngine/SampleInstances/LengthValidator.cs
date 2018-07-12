@@ -11,18 +11,23 @@ namespace SampleInstances
         [XmlAttribute("name")]
         public string Name { get; set; }
 
-        #region Custome Properties
+        [XmlAttribute("validator_type")]
+        public string validator_type { get; set; }
         
+        #region Custom Properties
+
         [XmlElement("length")]
         public string Length { get; set; }
 
         [XmlElement("message")]
         public string Message { get; set; }
+        //string IValidation.Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         #endregion
 
-        public bool Validate(IValidationContext context)
+        public bool Validate(Object obj)
         {
+            IValidationContext context = (IValidationContext)obj;
             if (context.CurrentElement.Value.Length.Equals(Int32.Parse(Length)))
             {
                 Console.WriteLine("value of the field {0} is correct length.", context.CurrentElement.Name.ToString());
@@ -31,6 +36,6 @@ namespace SampleInstances
             Console.WriteLine(Message.Replace("$Field", context.CurrentElement.Name.ToString()).Replace("$Value", context.CurrentElement.Value));
             return false;
 
-        }
+        }        
     }
 }

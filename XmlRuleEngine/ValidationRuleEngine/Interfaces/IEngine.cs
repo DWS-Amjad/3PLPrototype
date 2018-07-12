@@ -2,7 +2,7 @@
 {
     public interface IEngine
     {
-        //XDocument ConfigXml { get; }
+        //XDocument ConfigXmlDocument { get; }
 
         //IEnumerable<IRule> Rules { get; }
 

@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using System.Xml.Serialization;
+using ValidationRuleEngine.Interfaces;
 
 namespace ValidationRuleEngine.DataFiles.RuleEngine
 {
@@ -53,20 +54,11 @@ public partial class Config {
     private Rule[] rulesField;
     
     private string nameField;
-    
-    private string xsd_file_pathField;
-    
-    private string source_file_pathField;
-    
-    private string success_folder_pathField;
-    
-    private string failed_folder_pathField;
-    
+        
+    private string source_file_pathField;   
+        
     private bool enabledField;
-
-    private bool customValidationEnabledField;
-
-    private bool xsdValidationEnabledField;
+    
     
     /// <remarks/>
     [XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -90,18 +82,7 @@ public partial class Config {
             this.nameField = value;
         }
     }
-    
-    /// <remarks/>
-    [XmlAttributeAttribute()]
-    public string xsd_file_path {
-        get {
-            return this.xsd_file_pathField;
-        }
-        set {
-            this.xsd_file_pathField = value;
-        }
-    }
-    
+        
     /// <remarks/>
     [XmlAttributeAttribute()]
     public string source_file_path {
@@ -112,29 +93,7 @@ public partial class Config {
             this.source_file_pathField = value;
         }
     }
-    
-    /// <remarks/>
-    [XmlAttributeAttribute()]
-    public string success_folder_path {
-        get {
-            return this.success_folder_pathField;
-        }
-        set {
-            this.success_folder_pathField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [XmlAttributeAttribute()]
-    public string failed_folder_path {
-        get {
-            return this.failed_folder_pathField;
-        }
-        set {
-            this.failed_folder_pathField = value;
-        }
-    }
-    
+     
     /// <remarks/>
     [XmlAttributeAttribute()]
     public bool enabled {
@@ -143,29 +102,6 @@ public partial class Config {
         }
         set {
             this.enabledField = value;
-        }
-    }
-
-    [XmlAttributeAttribute()]
-    public bool custom_validation_enabled
-    {
-        get {
-            return customValidationEnabledField;
-        }
-
-        set {
-            customValidationEnabledField = value;
-        }
-    }
-
-    [XmlAttributeAttribute()]
-    public bool xsd_validation_enabled
-    {
-        get {
-            return this.xsdValidationEnabledField;
-        }
-        set {
-            this.xsdValidationEnabledField = value;
         }
     }
 }
@@ -304,7 +240,7 @@ public partial class Validation {
         set {
             this.typeField = value;
         }
-    }
+    }    
 }
 
 /// <remarks/>

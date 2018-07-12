@@ -5,7 +5,10 @@ namespace ValidationRuleEngine.Interfaces
     public interface IRule
     {
         string Name { get; }
+
         string Xpath { get; }
+
+        bool Enabled { get; }
 
         IEnumerable<IValidation> Validations { get; set; }
 

@@ -29,6 +29,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ConfigFilePath" Type="nvarchar" MaxLength="255" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -44,9 +45,9 @@
     <Property Name="DataType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DataKey" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DataValue" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="DataPath" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="SysErrorMsg" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="CustomErrorMsg" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DataPath" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SysErrorMsg" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CustomErrorMsg" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="IsRectifiable" Type="bit" Nullable="false" />
     <Property Name="ErrorXmlId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="TimeStamp" Type="datetime" Nullable="false" />

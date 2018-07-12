@@ -1,8 +1,13 @@
-﻿namespace ValidationRuleEngine.Interfaces
+﻿using System;
+
+namespace ValidationRuleEngine.Interfaces
 {
     public interface IAction
     {
         string Name { get; set; }
-        bool Execute(IValidationContext context);
+
+        string executeOn { get; set; }
+
+        bool Execute(Object obj);
     }
 }

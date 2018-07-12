@@ -32,3 +32,5 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DA
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.dll.config
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\AutoMapper.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.dll.config

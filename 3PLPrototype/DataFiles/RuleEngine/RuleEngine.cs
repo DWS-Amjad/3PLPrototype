@@ -61,16 +61,8 @@ public partial class Config {
     private string xsd_file_pathField;
     
     private string source_file_pathField;
-    
-    private string success_folder_pathField;
-    
-    private string failed_folder_pathField;
-    
+        
     private bool enabledField;
-
-    private bool customValidationEnabledField;
-
-    private bool xsdValidationEnabledField;
     
     /// <remarks/>
     [XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -117,27 +109,6 @@ public partial class Config {
         }
     }
     
-    /// <remarks/>
-    [XmlAttributeAttribute()]
-    public string success_folder_path {
-        get {
-            return this.success_folder_pathField;
-        }
-        set {
-            this.success_folder_pathField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [XmlAttributeAttribute()]
-    public string failed_folder_path {
-        get {
-            return this.failed_folder_pathField;
-        }
-        set {
-            this.failed_folder_pathField = value;
-        }
-    }
     
     /// <remarks/>
     [XmlAttributeAttribute()]
@@ -147,29 +118,6 @@ public partial class Config {
         }
         set {
             this.enabledField = value;
-        }
-    }
-
-    [XmlAttributeAttribute()]
-    public bool custom_validation_enabled
-    {
-        get {
-            return customValidationEnabledField;
-        }
-
-        set {
-            customValidationEnabledField = value;
-        }
-    }
-
-    [XmlAttributeAttribute()]
-    public bool xsd_validation_enabled
-    {
-        get {
-            return this.xsdValidationEnabledField;
-        }
-        set {
-            this.xsdValidationEnabledField = value;
         }
     }
 }
@@ -191,6 +139,8 @@ public partial class Rule {
     private Action[] actionsField;
     
     private string nameField;
+
+    private bool enabledField;
     
     /// <remarks/>
     [XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -248,6 +198,19 @@ public partial class Rule {
             this.nameField = value;
         }
     }
+
+    [XmlAttributeAttribute()]
+    public bool enabled
+    {
+        get
+        {
+            return this.enabledField;
+        }
+        set
+        {
+            this.enabledField = value;
+        }
+    }
 }
 
 /// <remarks/>
@@ -265,6 +228,10 @@ public partial class Validation {
     private string nameField;
     
     private string typeField;
+
+    private string xsdNSField;
+
+    private string xsdFilePathField;
     
     /// <remarks/>
     [XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -307,6 +274,28 @@ public partial class Validation {
         }
         set {
             this.typeField = value;
+        }
+    }
+
+    public string xsd_ns {
+        get
+        {
+            return this.xsdNSField;
+        }
+        set
+        {
+            this.xsdNSField = value;
+        }
+    }
+
+    public string xsd_file_path {
+        get
+        {
+            return this.xsdFilePathField;
+        }
+        set
+        {
+            this.xsdFilePathField = value;
         }
     }
 }

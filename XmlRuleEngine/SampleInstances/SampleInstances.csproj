@@ -32,7 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -42,12 +44,21 @@
     <Compile Include="LengthValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmailAlertAction.cs" />
+    <Compile Include="XsdValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DAL\DAL.csproj">
+      <Project>{35D3BD13-0C1D-493B-BC4E-4F52D5274329}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ValidationRuleEngine\ValidationRuleEngine.csproj">
       <Project>{58626204-fde9-4ddf-bcc8-e9510f3d79d1}</Project>
       <Name>ValidationRuleEngine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

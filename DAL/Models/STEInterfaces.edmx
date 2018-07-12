@@ -34,6 +34,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ConfigFilePath" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -49,9 +50,9 @@
           <Property Name="DataType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DataKey" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DataValue" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DataPath" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SysErrorMsg" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CustomErrorMsg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataPath" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SysErrorMsg" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomErrorMsg" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="IsRectifiable" Type="bit" Nullable="false" />
           <Property Name="ErrorXmlId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TimeStamp" Type="datetime" Nullable="false" />
@@ -188,6 +189,7 @@
           <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ApplicationLogs" Relationship="Self.FK_ApplicationLog_ApplicationMaster" FromRole="ApplicationMaster" ToRole="ApplicationLog" />
+          <Property Name="ConfigFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ErrorInboundData">
           <Key>
@@ -198,9 +200,9 @@
           <Property Name="DataType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DataKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DataValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataPath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SysErrorMsg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CustomErrorMsg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SysErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsRectifiable" Type="Boolean" Nullable="false" />
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ErrorXml" Relationship="Self.FK_ErrorInboundData_ErrorXml" FromRole="ErrorInboundData" ToRole="ErrorXml" />
@@ -299,6 +301,7 @@
           <EntitySetMapping Name="ApplicationMasters">
             <EntityTypeMapping TypeName="STEInterfacesModel.ApplicationMaster">
               <MappingFragment StoreEntitySet="ApplicationMaster">
+                <ScalarProperty Name="ConfigFilePath" ColumnName="ConfigFilePath" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />

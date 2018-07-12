@@ -1,0 +1,208 @@
+﻿using DAL.Models;
+using DAL.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+using ValidationRuleEngine;
+using ValidationRuleEngine.Interfaces;
+
+namespace SampleInstances
+{
+    [Serializable]
+    [XmlRoot(ElementName = "validation")]
+    public class XsdValidator : IValidation
+    {
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("validator_type")]
+        public string validator_type { get; set; }
+        
+        #region Custom Properties
+            [XmlElement("xsd_ns")]
+            public string xsd_ns { get; set; }
+
+            [XmlElement("xsd_file_path")]
+            public string xsd_file_path { get; set; }
+        #endregion
+
+        #region privateMembers
+        private string inProcessXML;
+            private ErrorXml currentErrorXml;
+            private bool errorDetected = false;
+            private Stack<string> xpath = new Stack<string>();
+        #endregion
+
+        #region RepositoryObjectDeclaration
+            private STEInterfacesEntities entities = new STEInterfacesEntities();
+            private ApplicationLogRepository repoAppLog;
+            private ApplicationEventMasterRepository repoEventMaster;
+            private ApplicationMasterRepository repoApplicationMaster;
+            private ErrorInboundDataRepository repoErrInbound;
+            private ErrorXmlRepository repoErrorXml;
+            private ErrorSuggestionRepository repoErrSuggestion;
+        #endregion
+
+        void Initialize()
+        {
+            repoAppLog = new ApplicationLogRepository(entities);
+            repoEventMaster = new ApplicationEventMasterRepository(entities);
+            repoApplicationMaster = new ApplicationMasterRepository(entities);
+            repoErrInbound = new ErrorInboundDataRepository(entities);
+            repoErrorXml = new ErrorXmlRepository(entities);
+            repoErrSuggestion = new ErrorSuggestionRepository(entities);
+        }
+
+        public XsdValidator()
+        {
+            Initialize();
+        }
+
+        bool IValidation.Validate(Object obj)
+        {         
+            string xmlFilePath = ((string)obj);
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.Schemas.Add(xsd_ns, xsd_file_path);
+            settings.ValidationType = ValidationType.Schema;
+            settings.ValidationEventHandler += new ValidationEventHandler(ValidationEventHandler);
+
+            XmlReader reader = XmlReader.Create(xmlFilePath, settings);
+            XDocument doc = XDocument.Load(xmlFilePath);
+
+            //inProcessXML = doc.Declaration.ToString() + doc.ToString(SaveOptions.DisableFormatting);
+            inProcessXML = doc.ToString();
+
+            #region ApplicationLogEntries DB Entry
+                ApplicationLog objApplicationLog = new ApplicationLog();
+                objApplicationLog.Id = Guid.NewGuid();
+                objApplicationLog.Message = "LoremIpsumMessage";
+                objApplicationLog.TimeStamp = DateTime.Now;
+                objApplicationLog.UserId = "amjad.leghari";
+                objApplicationLog.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
+                objApplicationLog.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Standard_Xml_Validation_Started);
+                repoAppLog.Create(objApplicationLog);
+                repoAppLog.Save();
+            #endregion
+
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Element)
+                {
+                    xpath.Push(reader.Name);
+                }
+                if (reader.NodeType == XmlNodeType.EndElement ||
+                    (reader.NodeType == XmlNodeType.Element && reader.IsEmptyElement))
+                {
+                    xpath.Pop();
+                }
+
+            }
+
+            if (!errorDetected)
+            {
+                #region ApplicationLogEntries DB Entry
+                ApplicationLog obj1 = new ApplicationLog();
+
+                obj1.Id = Guid.NewGuid();
+                obj1.Message = "LoremIpsumMessage";
+                obj1.TimeStamp = DateTime.Now;
+                obj1.UserId = "amjad.leghari";
+                obj1.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
+                obj1.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Standard_Xml_Validation_Succeeded);
+                repoAppLog.Create(objApplicationLog);
+                repoAppLog.Save();
+                #endregion
+            }
+            currentErrorXml = null;
+            return errorDetected;
+        }
+
+        private void ValidationEventHandler(object sender, ValidationEventArgs e)
+        {
+            if (e.Severity == XmlSeverityType.Warning)
+            {
+                Console.Write("WARNING: ");
+                Console.WriteLine(e.Message);
+            }
+            else if (e.Severity == XmlSeverityType.Error)
+            {
+                if (!errorDetected)
+                {
+                    this.errorDetected = true;
+                    #region ApplicationLogEntries DB Entry
+                        ApplicationLog objAppLog = new ApplicationLog();
+                        objAppLog.Id = Guid.NewGuid();
+                        objAppLog.Message = "LoremIpsumMessage";
+                        objAppLog.TimeStamp = DateTime.Now;
+                        objAppLog.UserId = "amjad.leghari";
+                        objAppLog.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
+                        objAppLog.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Standard_Xml_Validation_Failed);
+                        repoAppLog.Create(objAppLog);
+                        repoAppLog.Save();
+                    #endregion
+                }
+
+                Console.Write("ERROR: ");
+                Console.WriteLine(e.Message);
+                Console.Write("DataKey: ");
+                var obj = sender as XmlReader;
+                Console.WriteLine(obj.Name);
+                Console.Write("DataValue: ");
+                Console.WriteLine(obj.Value);
+
+                if (obj.SchemaInfo.SchemaElement != null)
+                {
+                    Console.Write("DataType: ");
+                    Console.WriteLine(obj.SchemaInfo.SchemaElement.ElementSchemaType.Datatype.TypeCode);
+                }
+
+                Console.Write("XPath: ");
+                Console.WriteLine(xpath.Reverse().Aggregate(string.Empty, (x, y) => x + "/" + y));
+
+                #region ErrorXml DB Entry
+                    if (currentErrorXml == null)
+                    {
+                        currentErrorXml = new ErrorXml();
+                        currentErrorXml.Id = Guid.NewGuid();
+                        currentErrorXml.TimeStamp = DateTime.Now;
+                        currentErrorXml.Warehouse_Code = "dummyWHCode";
+                        currentErrorXml.XmlContent = inProcessXML;
+                        currentErrorXml.Client_Code = "dummyClientCode";
+                        currentErrorXml.DocumentUniqueId = "dummyId";
+                        repoErrorXml.Create(currentErrorXml);
+                        repoErrorXml.Save();
+                    }
+                #endregion
+
+                #region ErrorInboundData DB Entry
+                ErrorInboundData objErrInbound = new ErrorInboundData();
+                    objErrInbound.Id = Guid.NewGuid();
+                    objErrInbound.IsRectifiable = false;
+                    objErrInbound.SysErrorMsg = e.Message;
+                    objErrInbound.CustomErrorMsg = "not available";
+                    objErrInbound.TimeStamp = DateTime.Now;
+                    objErrInbound.DataKey = obj.Name;
+                    objErrInbound.DataValue = obj.Value;
+                    objErrInbound.DataPath = xpath.Reverse().Aggregate(string.Empty, (x, y) => x + "/" + y);
+                    objErrInbound.DataType = "not available";
+                    objErrInbound.ErrorType = "not available";
+                    objErrInbound.ErrorXml = repoErrorXml.SelectById(currentErrorXml.Id);
+
+                    repoErrInbound.Create(objErrInbound);
+                    repoErrInbound.Save();
+                #endregion
+            }
+
+            //if (sender is XObject)
+            {
+                //Console.WriteLine(((XObject)sender).GetXPath());
+            }            
+        }
+
+    }
+}

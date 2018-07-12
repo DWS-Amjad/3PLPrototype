@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=1.1.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.1.1.2\lib\net35\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -42,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Implementations\CustomValidatorEngine.cs" />
     <Compile Include="DataFiles\Examples\books.cs">
       <DependentUpon>books.xsd</DependentUpon>
     </Compile>
@@ -68,6 +70,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Helper\XMLSerializer.cs" />
+    <Compile Include="Implementations\ValidatorEngine.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IValidationContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +79,6 @@
     <Compile Include="Interfaces\IValidation.cs" />
     <Compile Include="Implementations\Rule.cs" />
     <Compile Include="Implementations\ValidationContext.cs" />
-    <Compile Include="Implementations\ValidatorEngine.cs" />
-    <Compile Include="Implementations\XsdValidatorEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DAL\DAL.csproj">
