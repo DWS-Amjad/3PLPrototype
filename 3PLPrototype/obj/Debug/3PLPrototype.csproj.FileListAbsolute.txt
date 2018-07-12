@@ -13,5 +13,4 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\ValidationRuleEngin
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\SampleInstances.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\ValidationRuleEngine.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\ValidationRuleEngine.dll.config
-D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\AutoMapper.dll
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\SampleInstances.dll.config
