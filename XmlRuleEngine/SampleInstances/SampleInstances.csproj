@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccelosLookupValidator.cs" />
+    <Compile Include="AddressValidator.cs" />
     <Compile Include="LengthValidator.cs" />
+    <Compile Include="PostCodeValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmailAlertAction.cs" />
     <Compile Include="XsdValidator.cs" />

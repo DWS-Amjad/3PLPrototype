@@ -13,7 +13,10 @@ namespace SampleInstances
 
         [XmlAttribute("validator_type")]
         public string validator_type { get; set; }
-        
+
+        [XmlAttribute("enabled")]
+        public bool enabled { get; set; }
+
         #region Custom Properties
 
         [XmlElement("length")]
@@ -35,7 +38,6 @@ namespace SampleInstances
             }
             Console.WriteLine(Message.Replace("$Field", context.CurrentElement.Name.ToString()).Replace("$Value", context.CurrentElement.Value));
             return false;
-
         }        
     }
 }

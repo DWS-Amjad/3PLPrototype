@@ -22,9 +22,12 @@ namespace SampleInstances
 
         [XmlAttribute("validator_type")]
         public string validator_type { get; set; }
-        
+
+        [XmlAttribute("enabled")]
+        public bool enabled { get; set; }
+
         #region Custom Properties
-            [XmlElement("xsd_ns")]
+        [XmlElement("xsd_ns")]
             public string xsd_ns { get; set; }
 
             [XmlElement("xsd_file_path")]
@@ -94,13 +97,14 @@ namespace SampleInstances
                 if (reader.NodeType == XmlNodeType.Element)
                 {
                     xpath.Push(reader.Name);
+                    //Console.WriteLine("Push ==> " + reader.Name);
                 }
                 if (reader.NodeType == XmlNodeType.EndElement ||
                     (reader.NodeType == XmlNodeType.Element && reader.IsEmptyElement))
                 {
                     xpath.Pop();
+                    //Console.WriteLine("Pop ==> " + reader.Name);
                 }
-
             }
 
             if (!errorDetected)
@@ -119,7 +123,7 @@ namespace SampleInstances
                 #endregion
             }
             currentErrorXml = null;
-            return errorDetected;
+            return !errorDetected;
         }
 
         private void ValidationEventHandler(object sender, ValidationEventArgs e)
@@ -160,9 +164,11 @@ namespace SampleInstances
                     Console.Write("DataType: ");
                     Console.WriteLine(obj.SchemaInfo.SchemaElement.ElementSchemaType.Datatype.TypeCode);
                 }
-
+                var xPath = xpath.Reverse().Aggregate(string.Empty, (x, y) => x + "/" + y);
+                if (!xPath.Contains(obj.Name))
+                    xPath += String.Format("/{0}", obj.Name);
                 Console.Write("XPath: ");
-                Console.WriteLine(xpath.Reverse().Aggregate(string.Empty, (x, y) => x + "/" + y));
+                Console.WriteLine(xPath);
 
                 #region ErrorXml DB Entry
                     if (currentErrorXml == null)

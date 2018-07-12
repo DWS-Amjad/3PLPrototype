@@ -8,6 +8,8 @@ namespace ValidationRuleEngine.Interfaces
 
         string validator_type { get; set; }
 
+        bool enabled { get; set; }
+
         bool Validate(Object obj);
         //bool Validate(IValidationContext context);
     }

@@ -85,7 +85,7 @@ namespace ValidationRuleEngine.Implementations
                 var newRule = new ValidationRuleEngine.Implementations.Rule(
                     (rulesElement.Attribute(XName.Get("name")) != null) ? rulesElement.Attribute(XName.Get("name")).Value : null,
                     (rulesElement.Element(XName.Get("path")) != null) ? rulesElement.Element(XName.Get("path")).Value : null,
-                    String.IsNullOrEmpty(rulesElement.Attribute(XName.Get("enabled")).Value) ? false : bool.Parse(rulesElement.Attribute(XName.Get("enabled")).Value));
+                    (rulesElement.Attribute(XName.Get("enabled")) != null) ? false : Convert.ToBoolean(rulesElement.Attribute(XName.Get("enabled")).Value));
 
                 var validationElements = rulesElement.Element(XName.Get("validations")).Elements(XName.Get("validation"));
                 if (validationElements != null && validationElements.Any())
@@ -93,7 +93,13 @@ namespace ValidationRuleEngine.Implementations
                     var validationList = new List<IValidation>();
                     foreach (var validationElement in validationElements)
                     {
-                        validationList.Add(this.GetInstance<IValidation>(validationElement));
+                        //if(validationElement.Attribute(XName.Get("enabled")) != null)
+                        {
+                          //  if (Convert.ToBoolean(validationElement.Attribute(XName.Get("enabled")).Value))
+                            {
+                                validationList.Add(this.GetInstance<IValidation>(validationElement));
+                            }
+                        }
                     }
 
                     newRule.Validations = validationList;
@@ -208,7 +214,8 @@ namespace ValidationRuleEngine.Implementations
                             //TODO: check the execution of failed validation and failed actions
                             //TODO: check the thread safty for validations should be executed on saperate threads
                             var context = this.GetContext(this.CurrentXmlDocument/*xmlDocument*/, currentXElement);
-                            if (rule.Validations.All(val => val.Validate(context).Equals(true)))
+                            if (rule.Validations.Where(val => val.enabled)
+                                .All(val => val.Validate(context).Equals(true)))
                             {
                                 Console.WriteLine("All configured validation rules succeed. Now executing actions");
                                 rule.Actions.All(act => act.Execute(context).Equals(true));

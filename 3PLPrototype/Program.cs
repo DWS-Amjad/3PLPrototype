@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 using ValidationRuleEngine.Implementations;
 using ValidationRuleEngine.Interfaces;
 
@@ -25,7 +26,7 @@ namespace _3PLPrototype
             ////once you have the path you get the directory with:
             //var directory = System.IO.Path.GetDirectoryName(path);
             //directory = System.IO.Path.GetDirectoryName(path1);
-
+            //SendEmail();
             IEngine validatorEngine = new ValidatorEngine();
             validatorEngine.Configure();
             validatorEngine.Start();
@@ -39,7 +40,7 @@ namespace _3PLPrototype
             //}
             //var configXml = XDocument.Load(configFilePath);
 
-            
+
 
 
 
@@ -61,7 +62,37 @@ namespace _3PLPrototype
             //Console.WriteLine("CustomValidatorEngineObsolete stopped.");
             //Console.ReadLine();
         }
-        
+        static public bool SendEmail()
+        {
+            bool retVal = true;
+            try
+            {
+                String userName = "Amjad.Leghari@ncat.nsw.gov.au";//"Amjad.Leghari@startrack.com.au";
+                String password = "June2018";//"Welcome34452";
+                MailMessage msg = new MailMessage("Amjad.Leghari@ncat.nsw.gov.au", "amjadleghari@hotmail.com");
+                msg.Subject = "test email";
+                msg.IsBodyHtml = true;
+                msg.Body = "Hello World";
+
+                SmtpClient SmtpClient = new SmtpClient();
+                SmtpClient.UseDefaultCredentials = false;
+                SmtpClient.Credentials = new System.Net.NetworkCredential(userName, password);
+                SmtpClient.Host = "smtp.office365.com";
+                SmtpClient.Port = 587;
+
+                SmtpClient.EnableSsl = true;
+
+                SmtpClient.Send(msg);
+            }
+            catch (Exception)
+            {
+                retVal = false;
+                throw;
+                //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
+            }
+            return retVal;
+        }
+
         /*static void Main()
         {
             Console.WriteLine("Hello World");
@@ -133,8 +164,8 @@ namespace _3PLPrototype
             Console.ReadKey();
         }
         */
-        
-        
+
+
     }
 }
 

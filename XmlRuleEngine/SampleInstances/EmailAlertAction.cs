@@ -66,10 +66,13 @@ namespace SampleInstances
                     : this.FailureMessage/*setting.body*/;
 
                 SmtpClient SmtpClient = new SmtpClient();
+                SmtpClient.UseDefaultCredentials = false;
                 SmtpClient.Credentials = new System.Net.NetworkCredential(userName, password);
                 SmtpClient.Host = this.smtp_host/*setting.SMTP_Host*/;
                 SmtpClient.Port = this.smtp_port/*setting.SMTP_Port*/;
+                
                 SmtpClient.EnableSsl = true;
+                
                 SmtpClient.Send(msg);
             }
             catch (Exception)

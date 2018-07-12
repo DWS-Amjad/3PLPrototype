@@ -3,16 +3,22 @@
   <Config name="sales_order" source_file_path="../../DataFiles/SalesOrder/Sample_SO[8303].xml"
           enabled="true">
     <rules>
-      <rule name="Rule1" enabled="false">
+      <rule name="Rule1" enabled="true">
         <path>/salesorder/sales_order_header/order_number</path>
         <validations>
-          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances" validator_type="xpath">
+          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances" validator_type="xpath" enabled="true">
             <length>10</length>
             <message>Length of suburban field lenth is greater than 10 characters.</message>
           </validation>
+          <validation name="AccelosLookup" type="SampleInstances.AccelosLookupValidator, SampleInstances" validator_type="xpath" enabled="true">            
+          </validation>
+          <validation name="PostCode" type="SampleInstances.PostCodeValidator, SampleInstances" validator_type="xpath" enabled="true">
+          </validation>
+          <validation name="AddressValidator" type="SampleInstances.AddressValidator, SampleInstances" validator_type="xpath" enabled="true">
+          </validation>
         </validations>
         <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failue">
+          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success">
             <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
             <from>noreply@startrack.com.au</from>
             <subject>$value of the $field is exceeding limit</subject>
@@ -21,47 +27,23 @@
           </action>
         </actions>
       </rule>
-      <rule name="Rule2" enabled="true">
+      <rule name="Rule2" enabled="false">
         <validations>
-          <validation name="XsdValidator" type="SampleInstances.XsdValidator, SampleInstances" validator_type="xsd">
+          <validation name="XsdValidator" type="SampleInstances.XsdValidator, SampleInstances" validator_type="xsd" enabled="true">
             <xsd_ns></xsd_ns>
             <xsd_file_path>../../DataFiles/SalesOrder/SalesOrder.xsd</xsd_file_path>
           </validation>
         </validations>
         <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failure">
+          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="failure">
             <to>amjadleghari@hotmail.com</to>
             <from>Amjad.Leghari@startrack.com.au</from>
             <from_password>Welcome34452</from_password>
             <subject>$value of the $field is exceeding limit</subject>
             <successMessage>Email alert sent successfully</successMessage>
             <failureMessage>Email sending failed for the $field</failureMessage>
-            <smtp_host>SMTP_Host</smtp_host>
-            <smtp_port>SMTP_Port</smtp_port>
-          </action>
-        </actions>
-      </rule>
-    </rules>
-  </Config>
-  <Config name="purchase_order" xsd_file_path="../../DataFiles/PurchaseOrder/SalesOrder.xsd"
-          source_file_path="../../DataFiles/PurchaseOrder/source" success_folder_path="../../DataFiles/PurchaseOrder/succeed"
-          failed_folder_path="../../DataFiles/PurchaseOrder/failed" enabled="false"  custom_validation_enabled="true" xsd_validation_enabled="true">
-    <rules>
-      <rule name="Rule1">
-        <xpath>/salesorder/sales_order_header/order_number</xpath>
-        <validations>
-          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances">
-            <length>10</length>
-            <message>Length of suburban field lenth is greater than 10 characters.</message>
-          </validation>
-        </validations>
-        <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failue">
-            <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
-            <from>noreply@startrack.com.au</from>
-            <subject>$value of the $field is exceeding limit</subject>
-            <successMessage>Email alert sent successfully</successMessage>
-            <failureMessage>Email sending failed for the $field</failureMessage>
+            <smtp_host>smtp.office365.com</smtp_host>
+            <smtp_port>587</smtp_port>
           </action>
         </actions>
       </rule>
