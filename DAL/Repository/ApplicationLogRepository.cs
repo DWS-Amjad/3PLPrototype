@@ -8,7 +8,7 @@ namespace DAL.Repository
     //CRUD
     // SelectAll; SelectAllActive; Insert, Update, Delete, SelectById
     public sealed class ApplicationLogRepository : IDisposable
-    {
+    {        
         public ApplicationLogRepository(STEInterfacesEntities context)
         {
             try
@@ -44,7 +44,6 @@ namespace DAL.Repository
             try
             {
                 retVal = this.db.ApplicationLogs.ToList<ApplicationLog>();
-                //retVal = this.db.ApplicationEventMasters.ToList<ApplicationEventMaster>();
             }
             catch (Exception)
             {
@@ -57,7 +56,7 @@ namespace DAL.Repository
         {
             try
             {
-                db.AddToApplicationLogs(obj);
+                db.ApplicationLogs.Add(obj);
             }
             catch (Exception)
             {

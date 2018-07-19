@@ -58,7 +58,7 @@ namespace DAL.Repository
         {
             try
             {
-                db.AddToApplicationMasters(obj);
+                db.ApplicationMasters.Add(obj);
             }
             catch (Exception)
             {

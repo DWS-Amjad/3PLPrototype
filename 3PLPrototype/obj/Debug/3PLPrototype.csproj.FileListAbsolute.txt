@@ -14,3 +14,7 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\SampleInstances.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\ValidationRuleEngine.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\ValidationRuleEngine.dll.config
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\SampleInstances.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\EntityFramework.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\EntityFramework.SqlServer.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\EntityFramework.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\EntityFramework.SqlServer.xml

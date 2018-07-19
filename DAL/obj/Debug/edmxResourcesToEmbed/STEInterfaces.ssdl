@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="STEInterfacesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+<Schema Namespace="STEInterfacesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="ApplicationEventMaster">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EventName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -29,6 +29,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ConfigFilePath" Type="nvarchar" MaxLength="255" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -44,9 +45,9 @@
     <Property Name="DataType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DataKey" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DataValue" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="DataPath" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="SysErrorMsg" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="CustomErrorMsg" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DataPath" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SysErrorMsg" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CustomErrorMsg" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="IsRectifiable" Type="bit" Nullable="false" />
     <Property Name="ErrorXmlId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="TimeStamp" Type="datetime" Nullable="false" />
@@ -70,6 +71,26 @@
     <Property Name="XmlContent" Type="xml" Nullable="false" />
     <Property Name="DocumentUniqueId" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location_SYD">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="60" />
+    <Property Name="postcode" Type="varchar" MaxLength="4" />
+    <Property Name="state" Type="varchar" MaxLength="4" />
+    <Property Name="nearest_depot" Type="varchar" MaxLength="3" />
+    <Property Name="servicing_city" Type="varchar" MaxLength="3" />
+    <Property Name="direct_zone" Type="varchar" MaxLength="3" />
+    <Property Name="onforwarding_zone" Type="varchar" MaxLength="3" />
+    <Property Name="alt_servicing_city" Type="varchar" MaxLength="3" />
+    <Property Name="alt_onforwarding_zone" Type="varchar" MaxLength="3" />
+    <Property Name="alt_route_states" Type="varchar" MaxLength="7" />
+    <Property Name="lead_days_EXP" Type="smallint" />
+    <Property Name="lead_days_PAC" Type="smallint" />
+    <Property Name="lead_days_1KN" Type="smallint" />
+    <Property Name="lead_days_1PN" Type="smallint" />
   </EntityType>
   <Association Name="FK_ApplicationLog_ApplicationEventMaster">
     <End Role="ApplicationEventMaster" Type="Self.ApplicationEventMaster" Multiplicity="1" />
@@ -126,6 +147,7 @@
     <EntitySet Name="ErrorInboundData" EntityType="Self.ErrorInboundData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ErrorSuggestion" EntityType="Self.ErrorSuggestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ErrorXml" EntityType="Self.ErrorXml" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location_SYD" EntityType="Self.Location_SYD" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ApplicationLog_ApplicationEventMaster" Association="Self.FK_ApplicationLog_ApplicationEventMaster">
       <End Role="ApplicationEventMaster" EntitySet="ApplicationEventMaster" />
       <End Role="ApplicationLog" EntitySet="ApplicationLog" />

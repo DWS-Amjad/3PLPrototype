@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Schema;
 using DAL.Repository;
 using DAL.Models;
 using ValidationRuleEngine.Interfaces;
@@ -36,32 +34,34 @@ namespace ValidationRuleEngine.Implementations
         }
 
         #region RepositoryObjectDeclaration
-            private STEInterfacesEntities entities = new STEInterfacesEntities();
-            private ApplicationLogRepository repoAppLog;
-            private ApplicationEventMasterRepository repoEventMaster;
-            private ApplicationMasterRepository repoApplicationMaster;
-            private ErrorInboundDataRepository repoErrInbound;
-            private ErrorXmlRepository repoErrorXml;
-            private ErrorSuggestionRepository repoErrSuggestion;
+            private IGenericRepository<ApplicationLog> repoAppLog;
+            private IGenericRepository<ApplicationEventMaster> repoEventMaster;
+            private IGenericRepository<ApplicationMaster> repoApplicationMaster;
+            private IGenericRepository<ErrorInboundData> repoErrInbound;
+            private IGenericRepository<ErrorXml> repoErrorXml;
+            private IGenericRepository<ErrorSuggestion> repoErrSuggestion;
         #endregion
 
         public ValidatorEngine()
         {
             /*To Be Deleted Later*/
-            STEInterfacesEntities entities = new STEInterfacesEntities();
-            repoApplicationMaster = new ApplicationMasterRepository(entities);
-            ApplicationMaster objApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
+            //STEInterfacesEntities entities = new STEInterfacesEntities();
+            //IGenericRepository<ApplicationMaster> appMasterRepo = new GenericRepository<ApplicationMaster>();
+            //IEnumerable<Location_SYD> locations = locationRepository.SelectAll();
+            //repoApplicationMaster = new ApplicationMasterRepository(entities);
+            repoApplicationMaster = new GenericRepository<ApplicationMaster>();
+            ApplicationMaster objApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
             Helper.XMLHelper<ConfigurationStore>.Instance.UnMarshalingFromXML(objApplicationMaster.ConfigFilePath, out configurationStore);
             /*--------------------*/
 
             this.ConfigXmlDocument = XDocument.Load(objApplicationMaster.ConfigFilePath);
             this.config = configurationStore.Items[0];
-            repoAppLog = new ApplicationLogRepository(entities);
-            repoEventMaster = new ApplicationEventMasterRepository(entities);
-            repoApplicationMaster = new ApplicationMasterRepository(entities);
-            repoErrInbound = new ErrorInboundDataRepository(entities);
-            repoErrorXml = new ErrorXmlRepository(entities);
-            repoErrSuggestion = new ErrorSuggestionRepository(entities);
+            repoAppLog = new GenericRepository<ApplicationLog>();
+            repoEventMaster = new GenericRepository<ApplicationEventMaster>();
+            repoApplicationMaster = new GenericRepository<ApplicationMaster>();
+            repoErrInbound = new GenericRepository<ErrorInboundData>();
+            repoErrorXml = new GenericRepository<ErrorXml>();
+            repoErrSuggestion = new GenericRepository<ErrorSuggestion>();
         }
 
         private void configureValidator()
@@ -85,7 +85,7 @@ namespace ValidationRuleEngine.Implementations
                 var newRule = new ValidationRuleEngine.Implementations.Rule(
                     (rulesElement.Attribute(XName.Get("name")) != null) ? rulesElement.Attribute(XName.Get("name")).Value : null,
                     (rulesElement.Element(XName.Get("path")) != null) ? rulesElement.Element(XName.Get("path")).Value : null,
-                    (rulesElement.Attribute(XName.Get("enabled")) != null) ? false : Convert.ToBoolean(rulesElement.Attribute(XName.Get("enabled")).Value));
+                    (rulesElement.Attribute(XName.Get("enabled")) == null) ? false : Convert.ToBoolean(rulesElement.Attribute(XName.Get("enabled")).Value));
 
                 var validationElements = rulesElement.Element(XName.Get("validations")).Elements(XName.Get("validation"));
                 if (validationElements != null && validationElements.Any())
@@ -157,9 +157,9 @@ namespace ValidationRuleEngine.Implementations
                 objApplicationLog.Message = "LoremIpsumMessage";
                 objApplicationLog.TimeStamp = DateTime.Now;
                 objApplicationLog.UserId = "amjad.leghari";
-                objApplicationLog.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
-                objApplicationLog.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Validation_Engine_Configured);
-                repoAppLog.Create(objApplicationLog);
+                objApplicationLog.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
+                objApplicationLog.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Validation_Engine_Configured);
+                repoAppLog.Insert(objApplicationLog);
                 repoAppLog.Save();
             #endregion
         }
@@ -176,9 +176,9 @@ namespace ValidationRuleEngine.Implementations
                 obj.Message = "LoremIpsumMessage";
                 obj.TimeStamp = DateTime.Now;
                 obj.UserId = "amjad.leghari";
-                obj.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
-                obj.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Validation_Engine_Started);
-                repoAppLog.Create(obj);
+                obj.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
+                obj.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Validation_Engine_Started);
+                repoAppLog.Insert(obj);
                 repoAppLog.Save();
             #endregion
 
@@ -252,9 +252,9 @@ namespace ValidationRuleEngine.Implementations
                 obj.Message = "LoremIpsumMessage";
                 obj.TimeStamp = DateTime.Now;
                 obj.UserId = "amjad.leghari";
-                obj.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
-                obj.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Validation_Engine_Stopped);
-                repoAppLog.Create(obj);
+                obj.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
+                obj.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Validation_Engine_Stopped);
+                repoAppLog.Insert(obj);
                 repoAppLog.Save();
             #endregion
             this.Rules = null;

@@ -28,13 +28,9 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
         
         private OrderDetailDataTable tableOrderDetail;
         
-        private customerProductCodeDataTable tablecustomerProductCode;
-        
         private OrderLotSerialDataTable tableOrderLotSerial;
         
         private global::System.Data.DataRelation relationOrderHeader_OrderDetail;
-        
-        private global::System.Data.DataRelation relationOrderDetail_customerProductCode;
         
         private global::System.Data.DataRelation relationOrderDetail_OrderLotSerial;
         
@@ -71,9 +67,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 }
                 if ((ds.Tables["OrderDetail"] != null)) {
                     base.Tables.Add(new OrderDetailDataTable(ds.Tables["OrderDetail"]));
-                }
-                if ((ds.Tables["customerProductCode"] != null)) {
-                    base.Tables.Add(new customerProductCodeDataTable(ds.Tables["customerProductCode"]));
                 }
                 if ((ds.Tables["OrderLotSerial"] != null)) {
                     base.Tables.Add(new OrderLotSerialDataTable(ds.Tables["OrderLotSerial"]));
@@ -113,16 +106,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
         public OrderDetailDataTable OrderDetail {
             get {
                 return this.tableOrderDetail;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public customerProductCodeDataTable customerProductCode {
-            get {
-                return this.tablecustomerProductCode;
             }
         }
         
@@ -209,9 +192,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 if ((ds.Tables["OrderDetail"] != null)) {
                     base.Tables.Add(new OrderDetailDataTable(ds.Tables["OrderDetail"]));
                 }
-                if ((ds.Tables["customerProductCode"] != null)) {
-                    base.Tables.Add(new customerProductCodeDataTable(ds.Tables["customerProductCode"]));
-                }
                 if ((ds.Tables["OrderLotSerial"] != null)) {
                     base.Tables.Add(new OrderLotSerialDataTable(ds.Tables["OrderLotSerial"]));
                 }
@@ -260,12 +240,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                     this.tableOrderDetail.InitVars();
                 }
             }
-            this.tablecustomerProductCode = ((customerProductCodeDataTable)(base.Tables["customerProductCode"]));
-            if ((initTable == true)) {
-                if ((this.tablecustomerProductCode != null)) {
-                    this.tablecustomerProductCode.InitVars();
-                }
-            }
             this.tableOrderLotSerial = ((OrderLotSerialDataTable)(base.Tables["OrderLotSerial"]));
             if ((initTable == true)) {
                 if ((this.tableOrderLotSerial != null)) {
@@ -273,7 +247,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 }
             }
             this.relationOrderHeader_OrderDetail = this.Relations["OrderHeader_OrderDetail"];
-            this.relationOrderDetail_customerProductCode = this.Relations["OrderDetail_customerProductCode"];
             this.relationOrderDetail_OrderLotSerial = this.Relations["OrderDetail_OrderLotSerial"];
         }
         
@@ -288,8 +261,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             base.Tables.Add(this.tableOrderHeader);
             this.tableOrderDetail = new OrderDetailDataTable();
             base.Tables.Add(this.tableOrderDetail);
-            this.tablecustomerProductCode = new customerProductCodeDataTable();
-            base.Tables.Add(this.tablecustomerProductCode);
             this.tableOrderLotSerial = new OrderLotSerialDataTable();
             base.Tables.Add(this.tableOrderLotSerial);
             global::System.Data.ForeignKeyConstraint fkc;
@@ -297,13 +268,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         this.tableOrderHeader.OrderHeader_IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableOrderDetail.OrderHeader_IdColumn});
             this.tableOrderDetail.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("OrderDetail_customerProductCode", new global::System.Data.DataColumn[] {
-                        this.tableOrderDetail.OrderDetail_IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tablecustomerProductCode.OrderDetail_IdColumn});
-            this.tablecustomerProductCode.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
@@ -319,11 +283,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         this.tableOrderDetail.OrderHeader_IdColumn}, false);
             this.relationOrderHeader_OrderDetail.Nested = true;
             this.Relations.Add(this.relationOrderHeader_OrderDetail);
-            this.relationOrderDetail_customerProductCode = new global::System.Data.DataRelation("OrderDetail_customerProductCode", new global::System.Data.DataColumn[] {
-                        this.tableOrderDetail.OrderDetail_IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tablecustomerProductCode.OrderDetail_IdColumn}, false);
-            this.relationOrderDetail_customerProductCode.Nested = true;
-            this.Relations.Add(this.relationOrderDetail_customerProductCode);
             this.relationOrderDetail_OrderLotSerial = new global::System.Data.DataRelation("OrderDetail_OrderLotSerial", new global::System.Data.DataColumn[] {
                         this.tableOrderDetail.OrderDetail_IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableOrderLotSerial.OrderDetail_IdColumn}, false);
@@ -340,12 +299,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeOrderDetail() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializecustomerProductCode() {
             return false;
         }
         
@@ -417,9 +370,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
         public delegate void OrderDetailRowChangeEventHandler(object sender, OrderDetailRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void customerProductCodeRowChangeEventHandler(object sender, customerProductCodeRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void OrderLotSerialRowChangeEventHandler(object sender, OrderLotSerialRowChangeEvent e);
         
         /// <summary>
@@ -430,6 +380,8 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
         public partial class OrderHeaderDataTable : global::System.Data.TypedTableBase<OrderHeaderRow> {
             
             private global::System.Data.DataColumn columnhostID;
+            
+            private global::System.Data.DataColumn columnage;
             
             private global::System.Data.DataColumn columncompanyCode;
             
@@ -759,6 +711,14 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             public global::System.Data.DataColumn hostIDColumn {
                 get {
                     return this.columnhostID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ageColumn {
+                get {
+                    return this.columnage;
                 }
             }
             
@@ -1961,12 +1921,13 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public OrderHeaderRow AddOrderHeaderRow(
                         string hostID, 
+                        long age, 
                         string companyCode, 
                         string clientCode, 
                         string warehouseCode, 
                         string orderNumber, 
                         string origOrderNumber, 
-                        string accellosOrderNumber, 
+                        long accellosOrderNumber, 
                         string purchaseOrderNumber, 
                         string customerReference, 
                         string clientASNNumber, 
@@ -1976,30 +1937,30 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         string retailerNumber, 
                         string promotionNumber, 
                         string vendorNumber, 
-                        string invoiceRequired, 
-                        string asnRequired, 
-                        string packSlipRequired, 
-                        string priceTicketRequired, 
-                        string salesOrderAcknowledgementRequired, 
-                        string pickConfirmationAcknowledgementRequired, 
-                        string asnAcknowledgementRequired, 
-                        string orderConfirmed, 
-                        string despatchEmailNotificationRequired, 
+                        bool invoiceRequired, 
+                        bool asnRequired, 
+                        bool packSlipRequired, 
+                        bool priceTicketRequired, 
+                        bool salesOrderAcknowledgementRequired, 
+                        bool pickConfirmationAcknowledgementRequired, 
+                        bool asnAcknowledgementRequired, 
+                        bool orderConfirmed, 
+                        bool despatchEmailNotificationRequired, 
                         string orderType, 
                         string orderClass, 
-                        string orderDate, 
-                        string customerOrderDate, 
-                        string deliveryDate, 
-                        string requestedArrivalDate, 
-                        string deliveryDateBefore, 
-                        string deliveryDateAfter, 
-                        string despatchDate, 
-                        string shipDate, 
-                        string earliestShipDate, 
-                        string latestShipDate, 
-                        string releaseDate, 
-                        string cancellationDate, 
-                        string etaDate, 
+                        System.DateTime orderDate, 
+                        System.DateTime customerOrderDate, 
+                        System.DateTime deliveryDate, 
+                        System.DateTime requestedArrivalDate, 
+                        System.DateTime deliveryDateBefore, 
+                        System.DateTime deliveryDateAfter, 
+                        System.DateTime despatchDate, 
+                        System.DateTime shipDate, 
+                        System.DateTime earliestShipDate, 
+                        System.DateTime latestShipDate, 
+                        System.DateTime releaseDate, 
+                        System.DateTime cancellationDate, 
+                        System.DateTime etaDate, 
                         string cutOffTime, 
                         string shipToCode, 
                         string shipToDepartment, 
@@ -2068,27 +2029,27 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         string advertisedDate, 
                         string abn, 
                         string invoiceNumber, 
-                        string invoiceDate, 
-                        string invoiceDueDate, 
+                        System.DateTime invoiceDate, 
+                        System.DateTime invoiceDueDate, 
                         string invoiceHeaderText, 
                         string invoiceTerms, 
                         string freightDescription, 
-                        string freightTotal, 
-                        string surchargeTotal, 
-                        string miscellaneousTotal1, 
-                        string miscellaneousTotal2, 
-                        string gstTotal, 
-                        string subTotal, 
-                        string invoiceTotal, 
+                        float freightTotal, 
+                        float surchargeTotal, 
+                        float miscellaneousTotal1, 
+                        float miscellaneousTotal2, 
+                        float gstTotal, 
+                        float subTotal, 
+                        float invoiceTotal, 
                         string currencyCode, 
-                        string totalWeight, 
-                        string totalVolume, 
-                        string totalQuantity, 
-                        string totalCartons, 
+                        float totalWeight, 
+                        float totalVolume, 
+                        float totalQuantity, 
+                        float totalCartons, 
                         string serviceCode, 
                         string carrierAbbreviation, 
-                        string useAlternateDespatchID, 
-                        string specialServiceFlag, 
+                        bool useAlternateDespatchID, 
+                        bool specialServiceFlag, 
                         string payerType, 
                         string payerName1, 
                         string payerName2, 
@@ -2108,6 +2069,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 OrderHeaderRow rowOrderHeaderRow = ((OrderHeaderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         hostID,
+                        age,
                         companyCode,
                         clientCode,
                         warehouseCode,
@@ -2276,6 +2238,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnhostID = base.Columns["hostID"];
+                this.columnage = base.Columns["age"];
                 this.columncompanyCode = base.Columns["companyCode"];
                 this.columnclientCode = base.Columns["clientCode"];
                 this.columnwarehouseCode = base.Columns["warehouseCode"];
@@ -2428,6 +2391,8 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             private void InitClass() {
                 this.columnhostID = new global::System.Data.DataColumn("hostID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnhostID);
+                this.columnage = new global::System.Data.DataColumn("age", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnage);
                 this.columncompanyCode = new global::System.Data.DataColumn("companyCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncompanyCode);
                 this.columnclientCode = new global::System.Data.DataColumn("clientCode", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2438,7 +2403,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnorderNumber);
                 this.columnorigOrderNumber = new global::System.Data.DataColumn("origOrderNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnorigOrderNumber);
-                this.columnaccellosOrderNumber = new global::System.Data.DataColumn("accellosOrderNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnaccellosOrderNumber = new global::System.Data.DataColumn("accellosOrderNumber", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnaccellosOrderNumber);
                 this.columnpurchaseOrderNumber = new global::System.Data.DataColumn("purchaseOrderNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpurchaseOrderNumber);
@@ -2458,53 +2423,53 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnpromotionNumber);
                 this.columnvendorNumber = new global::System.Data.DataColumn("vendorNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvendorNumber);
-                this.columninvoiceRequired = new global::System.Data.DataColumn("invoiceRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columninvoiceRequired = new global::System.Data.DataColumn("invoiceRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninvoiceRequired);
-                this.columnasnRequired = new global::System.Data.DataColumn("asnRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnasnRequired = new global::System.Data.DataColumn("asnRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnasnRequired);
-                this.columnpackSlipRequired = new global::System.Data.DataColumn("packSlipRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnpackSlipRequired = new global::System.Data.DataColumn("packSlipRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpackSlipRequired);
-                this.columnpriceTicketRequired = new global::System.Data.DataColumn("priceTicketRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnpriceTicketRequired = new global::System.Data.DataColumn("priceTicketRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpriceTicketRequired);
-                this.columnsalesOrderAcknowledgementRequired = new global::System.Data.DataColumn("salesOrderAcknowledgementRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnsalesOrderAcknowledgementRequired = new global::System.Data.DataColumn("salesOrderAcknowledgementRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsalesOrderAcknowledgementRequired);
-                this.columnpickConfirmationAcknowledgementRequired = new global::System.Data.DataColumn("pickConfirmationAcknowledgementRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnpickConfirmationAcknowledgementRequired = new global::System.Data.DataColumn("pickConfirmationAcknowledgementRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpickConfirmationAcknowledgementRequired);
-                this.columnasnAcknowledgementRequired = new global::System.Data.DataColumn("asnAcknowledgementRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnasnAcknowledgementRequired = new global::System.Data.DataColumn("asnAcknowledgementRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnasnAcknowledgementRequired);
-                this.columnorderConfirmed = new global::System.Data.DataColumn("orderConfirmed", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnorderConfirmed = new global::System.Data.DataColumn("orderConfirmed", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnorderConfirmed);
-                this.columndespatchEmailNotificationRequired = new global::System.Data.DataColumn("despatchEmailNotificationRequired", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndespatchEmailNotificationRequired = new global::System.Data.DataColumn("despatchEmailNotificationRequired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndespatchEmailNotificationRequired);
                 this.columnorderType = new global::System.Data.DataColumn("orderType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnorderType);
                 this.columnorderClass = new global::System.Data.DataColumn("orderClass", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnorderClass);
-                this.columnorderDate = new global::System.Data.DataColumn("orderDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnorderDate = new global::System.Data.DataColumn("orderDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnorderDate);
-                this.columncustomerOrderDate = new global::System.Data.DataColumn("customerOrderDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columncustomerOrderDate = new global::System.Data.DataColumn("customerOrderDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncustomerOrderDate);
-                this.columndeliveryDate = new global::System.Data.DataColumn("deliveryDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndeliveryDate = new global::System.Data.DataColumn("deliveryDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndeliveryDate);
-                this.columnrequestedArrivalDate = new global::System.Data.DataColumn("requestedArrivalDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnrequestedArrivalDate = new global::System.Data.DataColumn("requestedArrivalDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrequestedArrivalDate);
-                this.columndeliveryDateBefore = new global::System.Data.DataColumn("deliveryDateBefore", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndeliveryDateBefore = new global::System.Data.DataColumn("deliveryDateBefore", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndeliveryDateBefore);
-                this.columndeliveryDateAfter = new global::System.Data.DataColumn("deliveryDateAfter", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndeliveryDateAfter = new global::System.Data.DataColumn("deliveryDateAfter", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndeliveryDateAfter);
-                this.columndespatchDate = new global::System.Data.DataColumn("despatchDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndespatchDate = new global::System.Data.DataColumn("despatchDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndespatchDate);
-                this.columnshipDate = new global::System.Data.DataColumn("shipDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnshipDate = new global::System.Data.DataColumn("shipDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnshipDate);
-                this.columnearliestShipDate = new global::System.Data.DataColumn("earliestShipDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnearliestShipDate = new global::System.Data.DataColumn("earliestShipDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnearliestShipDate);
-                this.columnlatestShipDate = new global::System.Data.DataColumn("latestShipDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnlatestShipDate = new global::System.Data.DataColumn("latestShipDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlatestShipDate);
-                this.columnreleaseDate = new global::System.Data.DataColumn("releaseDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnreleaseDate = new global::System.Data.DataColumn("releaseDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreleaseDate);
-                this.columncancellationDate = new global::System.Data.DataColumn("cancellationDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columncancellationDate = new global::System.Data.DataColumn("cancellationDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncancellationDate);
-                this.columnetaDate = new global::System.Data.DataColumn("etaDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnetaDate = new global::System.Data.DataColumn("etaDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnetaDate);
                 this.columncutOffTime = new global::System.Data.DataColumn("cutOffTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncutOffTime);
@@ -2642,9 +2607,9 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnabn);
                 this.columninvoiceNumber = new global::System.Data.DataColumn("invoiceNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninvoiceNumber);
-                this.columninvoiceDate = new global::System.Data.DataColumn("invoiceDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columninvoiceDate = new global::System.Data.DataColumn("invoiceDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninvoiceDate);
-                this.columninvoiceDueDate = new global::System.Data.DataColumn("invoiceDueDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columninvoiceDueDate = new global::System.Data.DataColumn("invoiceDueDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninvoiceDueDate);
                 this.columninvoiceHeaderText = new global::System.Data.DataColumn("invoiceHeaderText", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninvoiceHeaderText);
@@ -2652,37 +2617,37 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columninvoiceTerms);
                 this.columnfreightDescription = new global::System.Data.DataColumn("freightDescription", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfreightDescription);
-                this.columnfreightTotal = new global::System.Data.DataColumn("freightTotal", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnfreightTotal = new global::System.Data.DataColumn("freightTotal", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfreightTotal);
-                this.columnsurchargeTotal = new global::System.Data.DataColumn("surchargeTotal", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnsurchargeTotal = new global::System.Data.DataColumn("surchargeTotal", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsurchargeTotal);
-                this.columnmiscellaneousTotal1 = new global::System.Data.DataColumn("miscellaneousTotal1", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnmiscellaneousTotal1 = new global::System.Data.DataColumn("miscellaneousTotal1", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmiscellaneousTotal1);
-                this.columnmiscellaneousTotal2 = new global::System.Data.DataColumn("miscellaneousTotal2", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnmiscellaneousTotal2 = new global::System.Data.DataColumn("miscellaneousTotal2", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmiscellaneousTotal2);
-                this.columngstTotal = new global::System.Data.DataColumn("gstTotal", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columngstTotal = new global::System.Data.DataColumn("gstTotal", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columngstTotal);
-                this.columnsubTotal = new global::System.Data.DataColumn("subTotal", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnsubTotal = new global::System.Data.DataColumn("subTotal", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsubTotal);
-                this.columninvoiceTotal = new global::System.Data.DataColumn("invoiceTotal", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columninvoiceTotal = new global::System.Data.DataColumn("invoiceTotal", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninvoiceTotal);
                 this.columncurrencyCode = new global::System.Data.DataColumn("currencyCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncurrencyCode);
-                this.columntotalWeight = new global::System.Data.DataColumn("totalWeight", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columntotalWeight = new global::System.Data.DataColumn("totalWeight", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntotalWeight);
-                this.columntotalVolume = new global::System.Data.DataColumn("totalVolume", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columntotalVolume = new global::System.Data.DataColumn("totalVolume", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntotalVolume);
-                this.columntotalQuantity = new global::System.Data.DataColumn("totalQuantity", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columntotalQuantity = new global::System.Data.DataColumn("totalQuantity", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntotalQuantity);
-                this.columntotalCartons = new global::System.Data.DataColumn("totalCartons", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columntotalCartons = new global::System.Data.DataColumn("totalCartons", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntotalCartons);
                 this.columnserviceCode = new global::System.Data.DataColumn("serviceCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnserviceCode);
                 this.columncarrierAbbreviation = new global::System.Data.DataColumn("carrierAbbreviation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncarrierAbbreviation);
-                this.columnuseAlternateDespatchID = new global::System.Data.DataColumn("useAlternateDespatchID", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnuseAlternateDespatchID = new global::System.Data.DataColumn("useAlternateDespatchID", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnuseAlternateDespatchID);
-                this.columnspecialServiceFlag = new global::System.Data.DataColumn("specialServiceFlag", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnspecialServiceFlag = new global::System.Data.DataColumn("specialServiceFlag", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnspecialServiceFlag);
                 this.columnpayerType = new global::System.Data.DataColumn("payerType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpayerType);
@@ -2720,6 +2685,116 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnOrderHeader_Id);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnOrderHeader_Id}, true));
+                this.columncompanyCode.MaxLength = 2;
+                this.columnclientCode.MaxLength = 5;
+                this.columnwarehouseCode.MaxLength = 5;
+                this.columnorderNumber.AllowDBNull = false;
+                this.columnorderNumber.MaxLength = 20;
+                this.columnorigOrderNumber.MaxLength = 20;
+                this.columnpurchaseOrderNumber.MaxLength = 40;
+                this.columncustomerReference.MaxLength = 40;
+                this.columnclientASNNumber.MaxLength = 20;
+                this.columnclientEDIAddress.MaxLength = 20;
+                this.columnretailerEDIAddress.MaxLength = 20;
+                this.columnretailerNumber.MaxLength = 20;
+                this.columnpromotionNumber.MaxLength = 20;
+                this.columnvendorNumber.MaxLength = 20;
+                this.columnorderType.MaxLength = 10;
+                this.columnorderClass.MaxLength = 20;
+                this.columnshipToCode.MaxLength = 15;
+                this.columnshipToDepartment.MaxLength = 10;
+                this.columnshipToName1.AllowDBNull = false;
+                this.columnshipToName1.MaxLength = 60;
+                this.columnshipToName2.MaxLength = 60;
+                this.columnshipToAddress1.AllowDBNull = false;
+                this.columnshipToAddress1.MaxLength = 60;
+                this.columnshipToAddress2.MaxLength = 60;
+                this.columnshipToAddress3.MaxLength = 60;
+                this.columnshipToLocation.AllowDBNull = false;
+                this.columnshipToLocation.MaxLength = 60;
+                this.columnshipToPostcode.AllowDBNull = false;
+                this.columnshipToPostcode.MaxLength = 10;
+                this.columnshipToState.AllowDBNull = false;
+                this.columnshipToState.MaxLength = 4;
+                this.columnshipToCountryCode.MaxLength = 10;
+                this.columnshipToCountryName.MaxLength = 30;
+                this.columnshipToPhoneNumber.MaxLength = 20;
+                this.columnshipToAccountNumber.MaxLength = 10;
+                this.columnshipToEmailAddress.MaxLength = 60;
+                this.columnshipToEmailSalutation.MaxLength = 60;
+                this.columnshipToDepot.MaxLength = 3;
+                this.columndeliverToCode.MaxLength = 15;
+                this.columndeliverToName1.MaxLength = 60;
+                this.columndeliverToName2.MaxLength = 60;
+                this.columndeliverToAddress1.MaxLength = 60;
+                this.columndeliverToAddress2.MaxLength = 60;
+                this.columndeliverToAddress3.MaxLength = 60;
+                this.columndeliverToLocation.MaxLength = 60;
+                this.columndeliverToPostcode.MaxLength = 10;
+                this.columndeliverToState.MaxLength = 4;
+                this.columndeliverToCountryCode.MaxLength = 10;
+                this.columndeliverToCountryName.MaxLength = 30;
+                this.columndeliverToPhoneNumber.MaxLength = 20;
+                this.columndeliverToAccountNumber.MaxLength = 10;
+                this.columndeliverToEmailAddress.MaxLength = 60;
+                this.columndeliverToEmailSalutation.MaxLength = 60;
+                this.columnbillToCode.MaxLength = 15;
+                this.columnbillToName1.MaxLength = 60;
+                this.columnbillToName2.MaxLength = 60;
+                this.columnbillToAddress1.MaxLength = 60;
+                this.columnbillToAddress2.MaxLength = 60;
+                this.columnbillToAddress3.MaxLength = 60;
+                this.columnbillToLocation.MaxLength = 60;
+                this.columnbillToPostcode.MaxLength = 10;
+                this.columnbillToState.MaxLength = 4;
+                this.columnbillToCountryCode.MaxLength = 10;
+                this.columnbillToCountryName.MaxLength = 30;
+                this.columnbillToPhoneNumber.MaxLength = 20;
+                this.columnbillToAccountNumber.MaxLength = 10;
+                this.columnbillToEmailAddress.MaxLength = 60;
+                this.columnbillToEmailSalutation.MaxLength = 60;
+                this.columndepartmentNumber.MaxLength = 10;
+                this.columndepartmentName.MaxLength = 20;
+                this.columnspecialInstructions1.MaxLength = 100;
+                this.columnspecialInstructions2.MaxLength = 100;
+                this.columnspecialInstructions3.MaxLength = 100;
+                this.columnwarehouseInstructions1.MaxLength = 250;
+                this.columnwarehouseInstructions2.MaxLength = 250;
+                this.columnreferenceField1.MaxLength = 30;
+                this.columnreferenceField2.MaxLength = 30;
+                this.columnreferenceField3.MaxLength = 30;
+                this.columnreferenceField4.MaxLength = 30;
+                this.columnreferenceField5.MaxLength = 30;
+                this.columnlabelText1.MaxLength = 30;
+                this.columnlabelText2.MaxLength = 30;
+                this.columnlabelText3.MaxLength = 30;
+                this.columnsendersReference.MaxLength = 20;
+                this.columnlabelCode.MaxLength = 5;
+                this.columnadvertisedDate.MaxLength = 5;
+                this.columnabn.MaxLength = 20;
+                this.columninvoiceNumber.MaxLength = 20;
+                this.columninvoiceHeaderText.MaxLength = 225;
+                this.columninvoiceTerms.MaxLength = 225;
+                this.columnfreightDescription.MaxLength = 30;
+                this.columncurrencyCode.MaxLength = 3;
+                this.columnserviceCode.MaxLength = 10;
+                this.columncarrierAbbreviation.MaxLength = 10;
+                this.columnpayerType.MaxLength = 20;
+                this.columnpayerName1.MaxLength = 30;
+                this.columnpayerName2.MaxLength = 30;
+                this.columnpayerAccountNumber.MaxLength = 20;
+                this.columnuserDefinedField1.MaxLength = 500;
+                this.columnuserDefinedField2.MaxLength = 500;
+                this.columnuserDefinedField3.MaxLength = 500;
+                this.columnuserDefinedField4.MaxLength = 500;
+                this.columnuserDefinedField5.MaxLength = 500;
+                this.columnuserDefinedField6.MaxLength = 500;
+                this.columnuserDefinedField7.MaxLength = 500;
+                this.columnuserDefinedField8.MaxLength = 500;
+                this.columnuserDefinedField9.MaxLength = 500;
+                this.columnuserDefinedField10.MaxLength = 500;
+                this.columnconnoteNumber.MaxLength = 20;
+                this.columnoriginCode.MaxLength = 1;
                 this.columnOrderHeader_Id.AutoIncrement = true;
                 this.columnOrderHeader_Id.AllowDBNull = false;
                 this.columnOrderHeader_Id.Unique = true;
@@ -2863,6 +2938,8 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             private global::System.Data.DataColumn columnparentLineNumber;
             
             private global::System.Data.DataColumn columnproductCode;
+            
+            private global::System.Data.DataColumn columncustomerProductCode;
             
             private global::System.Data.DataColumn columnupcCode;
             
@@ -3026,6 +3103,14 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             public global::System.Data.DataColumn productCodeColumn {
                 get {
                     return this.columnproductCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn customerProductCodeColumn {
+                get {
+                    return this.columncustomerProductCode;
                 }
             }
             
@@ -3471,6 +3556,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         string customerLineNumber, 
                         string parentLineNumber, 
                         string productCode, 
+                        string customerProductCode, 
                         string upcCode, 
                         string productDescription, 
                         string size, 
@@ -3482,30 +3568,30 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         string category4, 
                         string ageCode, 
                         string seasonCode, 
-                        string packingQuantity, 
-                        string quantityOrdered, 
-                        string quantityShipped, 
-                        string quantityBackOrdered, 
-                        string originalQuantityOrdered, 
-                        string originalQuantityBackOrdered, 
+                        float packingQuantity, 
+                        float quantityOrdered, 
+                        float quantityShipped, 
+                        float quantityBackOrdered, 
+                        float originalQuantityOrdered, 
+                        float originalQuantityBackOrdered, 
                         string unitOfMeasure, 
                         string serialNumber, 
                         string lotNumber, 
-                        string expiryDate, 
-                        string unitPriceExTax, 
-                        string unitPriceIncTax, 
-                        string taxAmount, 
-                        string gst, 
-                        string extendedExTax, 
-                        string extendedIncTax, 
-                        string miscellaneousCharge1, 
-                        string miscellaneousCharge2, 
-                        string discount, 
-                        string lineTotalExcTax, 
-                        string lineTotalIncTax, 
-                        string recommendedRetailPrice, 
-                        string weight, 
-                        string volume, 
+                        System.DateTime expiryDate, 
+                        float unitPriceExTax, 
+                        float unitPriceIncTax, 
+                        float taxAmount, 
+                        float gst, 
+                        float extendedExTax, 
+                        float extendedIncTax, 
+                        float miscellaneousCharge1, 
+                        float miscellaneousCharge2, 
+                        float discount, 
+                        float lineTotalExcTax, 
+                        float lineTotalIncTax, 
+                        float recommendedRetailPrice, 
+                        float weight, 
+                        float volume, 
                         string userDefinedField1, 
                         string userDefinedField2, 
                         string userDefinedField3, 
@@ -3516,9 +3602,9 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         string userDefinedField8, 
                         string userDefinedField9, 
                         string userDefinedField10, 
-                        string nonStockItem, 
+                        bool nonStockItem, 
                         string holdCode, 
-                        string kitFlag, 
+                        bool kitFlag, 
                         OrderHeaderRow parentOrderHeaderRowByOrderHeader_OrderDetail) {
                 OrderDetailRow rowOrderDetailRow = ((OrderDetailRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -3526,6 +3612,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         customerLineNumber,
                         parentLineNumber,
                         productCode,
+                        customerProductCode,
                         upcCode,
                         productDescription,
                         size,
@@ -3577,7 +3664,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                         null,
                         null};
                 if ((parentOrderHeaderRowByOrderHeader_OrderDetail != null)) {
-                    columnValuesArray[53] = parentOrderHeaderRowByOrderHeader_OrderDetail[145];
+                    columnValuesArray[54] = parentOrderHeaderRowByOrderHeader_OrderDetail[146];
                 }
                 rowOrderDetailRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOrderDetailRow);
@@ -3605,6 +3692,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 this.columncustomerLineNumber = base.Columns["customerLineNumber"];
                 this.columnparentLineNumber = base.Columns["parentLineNumber"];
                 this.columnproductCode = base.Columns["productCode"];
+                this.columncustomerProductCode = base.Columns["customerProductCode"];
                 this.columnupcCode = base.Columns["upcCode"];
                 this.columnproductDescription = base.Columns["productDescription"];
                 this.columnsize = base.Columns["size"];
@@ -3668,6 +3756,8 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnparentLineNumber);
                 this.columnproductCode = new global::System.Data.DataColumn("productCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnproductCode);
+                this.columncustomerProductCode = new global::System.Data.DataColumn("customerProductCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncustomerProductCode);
                 this.columnupcCode = new global::System.Data.DataColumn("upcCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnupcCode);
                 this.columnproductDescription = new global::System.Data.DataColumn("productDescription", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3690,17 +3780,17 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnageCode);
                 this.columnseasonCode = new global::System.Data.DataColumn("seasonCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnseasonCode);
-                this.columnpackingQuantity = new global::System.Data.DataColumn("packingQuantity", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnpackingQuantity = new global::System.Data.DataColumn("packingQuantity", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpackingQuantity);
-                this.columnquantityOrdered = new global::System.Data.DataColumn("quantityOrdered", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnquantityOrdered = new global::System.Data.DataColumn("quantityOrdered", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnquantityOrdered);
-                this.columnquantityShipped = new global::System.Data.DataColumn("quantityShipped", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnquantityShipped = new global::System.Data.DataColumn("quantityShipped", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnquantityShipped);
-                this.columnquantityBackOrdered = new global::System.Data.DataColumn("quantityBackOrdered", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnquantityBackOrdered = new global::System.Data.DataColumn("quantityBackOrdered", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnquantityBackOrdered);
-                this.columnoriginalQuantityOrdered = new global::System.Data.DataColumn("originalQuantityOrdered", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnoriginalQuantityOrdered = new global::System.Data.DataColumn("originalQuantityOrdered", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnoriginalQuantityOrdered);
-                this.columnoriginalQuantityBackOrdered = new global::System.Data.DataColumn("originalQuantityBackOrdered", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnoriginalQuantityBackOrdered = new global::System.Data.DataColumn("originalQuantityBackOrdered", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnoriginalQuantityBackOrdered);
                 this.columnunitOfMeasure = new global::System.Data.DataColumn("unitOfMeasure", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnunitOfMeasure);
@@ -3708,35 +3798,35 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnserialNumber);
                 this.columnlotNumber = new global::System.Data.DataColumn("lotNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlotNumber);
-                this.columnexpiryDate = new global::System.Data.DataColumn("expiryDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnexpiryDate = new global::System.Data.DataColumn("expiryDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnexpiryDate);
-                this.columnunitPriceExTax = new global::System.Data.DataColumn("unitPriceExTax", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnunitPriceExTax = new global::System.Data.DataColumn("unitPriceExTax", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnunitPriceExTax);
-                this.columnunitPriceIncTax = new global::System.Data.DataColumn("unitPriceIncTax", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnunitPriceIncTax = new global::System.Data.DataColumn("unitPriceIncTax", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnunitPriceIncTax);
-                this.columntaxAmount = new global::System.Data.DataColumn("taxAmount", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columntaxAmount = new global::System.Data.DataColumn("taxAmount", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntaxAmount);
-                this.columngst = new global::System.Data.DataColumn("gst", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columngst = new global::System.Data.DataColumn("gst", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columngst);
-                this.columnextendedExTax = new global::System.Data.DataColumn("extendedExTax", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnextendedExTax = new global::System.Data.DataColumn("extendedExTax", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnextendedExTax);
-                this.columnextendedIncTax = new global::System.Data.DataColumn("extendedIncTax", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnextendedIncTax = new global::System.Data.DataColumn("extendedIncTax", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnextendedIncTax);
-                this.columnmiscellaneousCharge1 = new global::System.Data.DataColumn("miscellaneousCharge1", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnmiscellaneousCharge1 = new global::System.Data.DataColumn("miscellaneousCharge1", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmiscellaneousCharge1);
-                this.columnmiscellaneousCharge2 = new global::System.Data.DataColumn("miscellaneousCharge2", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnmiscellaneousCharge2 = new global::System.Data.DataColumn("miscellaneousCharge2", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmiscellaneousCharge2);
-                this.columndiscount = new global::System.Data.DataColumn("discount", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndiscount = new global::System.Data.DataColumn("discount", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndiscount);
-                this.columnlineTotalExcTax = new global::System.Data.DataColumn("lineTotalExcTax", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnlineTotalExcTax = new global::System.Data.DataColumn("lineTotalExcTax", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlineTotalExcTax);
-                this.columnlineTotalIncTax = new global::System.Data.DataColumn("lineTotalIncTax", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnlineTotalIncTax = new global::System.Data.DataColumn("lineTotalIncTax", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlineTotalIncTax);
-                this.columnrecommendedRetailPrice = new global::System.Data.DataColumn("recommendedRetailPrice", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnrecommendedRetailPrice = new global::System.Data.DataColumn("recommendedRetailPrice", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrecommendedRetailPrice);
-                this.columnweight = new global::System.Data.DataColumn("weight", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnweight = new global::System.Data.DataColumn("weight", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnweight);
-                this.columnvolume = new global::System.Data.DataColumn("volume", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnvolume = new global::System.Data.DataColumn("volume", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvolume);
                 this.columnuserDefinedField1 = new global::System.Data.DataColumn("userDefinedField1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnuserDefinedField1);
@@ -3758,11 +3848,11 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnuserDefinedField9);
                 this.columnuserDefinedField10 = new global::System.Data.DataColumn("userDefinedField10", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnuserDefinedField10);
-                this.columnnonStockItem = new global::System.Data.DataColumn("nonStockItem", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnnonStockItem = new global::System.Data.DataColumn("nonStockItem", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnonStockItem);
                 this.columnholdCode = new global::System.Data.DataColumn("holdCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnholdCode);
-                this.columnkitFlag = new global::System.Data.DataColumn("kitFlag", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnkitFlag = new global::System.Data.DataColumn("kitFlag", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnkitFlag);
                 this.columnOrderDetail_Id = new global::System.Data.DataColumn("OrderDetail_Id", typeof(int), null, global::System.Data.MappingType.Hidden);
                 base.Columns.Add(this.columnOrderDetail_Id);
@@ -3770,6 +3860,39 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 base.Columns.Add(this.columnOrderHeader_Id);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnOrderDetail_Id}, true));
+                this.columnlineNumber.AllowDBNull = false;
+                this.columnlineNumber.MaxLength = 12;
+                this.columncustomerLineNumber.MaxLength = 12;
+                this.columnparentLineNumber.MaxLength = 12;
+                this.columnproductCode.AllowDBNull = false;
+                this.columnproductCode.MaxLength = 30;
+                this.columncustomerProductCode.MaxLength = 30;
+                this.columnupcCode.MaxLength = 40;
+                this.columnproductDescription.MaxLength = 60;
+                this.columnsize.MaxLength = 30;
+                this.columnstyle.MaxLength = 30;
+                this.columncolor.MaxLength = 30;
+                this.columncategory1.MaxLength = 30;
+                this.columncategory2.MaxLength = 30;
+                this.columncategory3.MaxLength = 30;
+                this.columncategory4.MaxLength = 30;
+                this.columnageCode.MaxLength = 2;
+                this.columnseasonCode.MaxLength = 3;
+                this.columnquantityOrdered.AllowDBNull = false;
+                this.columnunitOfMeasure.MaxLength = 10;
+                this.columnserialNumber.MaxLength = 30;
+                this.columnlotNumber.MaxLength = 30;
+                this.columnuserDefinedField1.MaxLength = 500;
+                this.columnuserDefinedField2.MaxLength = 500;
+                this.columnuserDefinedField3.MaxLength = 500;
+                this.columnuserDefinedField4.MaxLength = 500;
+                this.columnuserDefinedField5.MaxLength = 500;
+                this.columnuserDefinedField6.MaxLength = 500;
+                this.columnuserDefinedField7.MaxLength = 500;
+                this.columnuserDefinedField8.MaxLength = 500;
+                this.columnuserDefinedField9.MaxLength = 500;
+                this.columnuserDefinedField10.MaxLength = 500;
+                this.columnholdCode.MaxLength = 4;
                 this.columnOrderDetail_Id.AutoIncrement = true;
                 this.columnOrderDetail_Id.AllowDBNull = false;
                 this.columnOrderDetail_Id.Unique = true;
@@ -3859,256 +3982,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "OrderDetailDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class customerProductCodeDataTable : global::System.Data.TypedTableBase<customerProductCodeRow> {
-            
-            private global::System.Data.DataColumn columnOrderDetail_Id;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public customerProductCodeDataTable() {
-                this.TableName = "customerProductCode";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal customerProductCodeDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected customerProductCodeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn OrderDetail_IdColumn {
-                get {
-                    return this.columnOrderDetail_Id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public customerProductCodeRow this[int index] {
-                get {
-                    return ((customerProductCodeRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event customerProductCodeRowChangeEventHandler customerProductCodeRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event customerProductCodeRowChangeEventHandler customerProductCodeRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event customerProductCodeRowChangeEventHandler customerProductCodeRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event customerProductCodeRowChangeEventHandler customerProductCodeRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddcustomerProductCodeRow(customerProductCodeRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public customerProductCodeRow AddcustomerProductCodeRow(OrderDetailRow parentOrderDetailRowByOrderDetail_customerProductCode) {
-                customerProductCodeRow rowcustomerProductCodeRow = ((customerProductCodeRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null};
-                if ((parentOrderDetailRowByOrderDetail_customerProductCode != null)) {
-                    columnValuesArray[0] = parentOrderDetailRowByOrderDetail_customerProductCode[52];
-                }
-                rowcustomerProductCodeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowcustomerProductCodeRow);
-                return rowcustomerProductCodeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                customerProductCodeDataTable cln = ((customerProductCodeDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new customerProductCodeDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnOrderDetail_Id = base.Columns["OrderDetail_Id"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnOrderDetail_Id = new global::System.Data.DataColumn("OrderDetail_Id", typeof(int), null, global::System.Data.MappingType.Hidden);
-                base.Columns.Add(this.columnOrderDetail_Id);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public customerProductCodeRow NewcustomerProductCodeRow() {
-                return ((customerProductCodeRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new customerProductCodeRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(customerProductCodeRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.customerProductCodeRowChanged != null)) {
-                    this.customerProductCodeRowChanged(this, new customerProductCodeRowChangeEvent(((customerProductCodeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.customerProductCodeRowChanging != null)) {
-                    this.customerProductCodeRowChanging(this, new customerProductCodeRowChangeEvent(((customerProductCodeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.customerProductCodeRowDeleted != null)) {
-                    this.customerProductCodeRowDeleted(this, new customerProductCodeRowChangeEvent(((customerProductCodeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.customerProductCodeRowDeleting != null)) {
-                    this.customerProductCodeRowDeleting(this, new customerProductCodeRowChangeEvent(((customerProductCodeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovecustomerProductCodeRow(customerProductCodeRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesOrders ds = new SalesOrders();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "customerProductCodeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4256,14 +4129,14 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public OrderLotSerialRow AddOrderLotSerialRow(string lotSerialNumber, string quantityOrdered, OrderDetailRow parentOrderDetailRowByOrderDetail_OrderLotSerial) {
+            public OrderLotSerialRow AddOrderLotSerialRow(string lotSerialNumber, bool quantityOrdered, OrderDetailRow parentOrderDetailRowByOrderDetail_OrderLotSerial) {
                 OrderLotSerialRow rowOrderLotSerialRow = ((OrderLotSerialRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         lotSerialNumber,
                         quantityOrdered,
                         null};
                 if ((parentOrderDetailRowByOrderDetail_OrderLotSerial != null)) {
-                    columnValuesArray[2] = parentOrderDetailRowByOrderDetail_OrderLotSerial[52];
+                    columnValuesArray[2] = parentOrderDetailRowByOrderDetail_OrderLotSerial[53];
                 }
                 rowOrderLotSerialRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOrderLotSerialRow);
@@ -4297,10 +4170,11 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             private void InitClass() {
                 this.columnlotSerialNumber = new global::System.Data.DataColumn("lotSerialNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlotSerialNumber);
-                this.columnquantityOrdered = new global::System.Data.DataColumn("quantityOrdered", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnquantityOrdered = new global::System.Data.DataColumn("quantityOrdered", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnquantityOrdered);
                 this.columnOrderDetail_Id = new global::System.Data.DataColumn("OrderDetail_Id", typeof(int), null, global::System.Data.MappingType.Hidden);
                 base.Columns.Add(this.columnOrderDetail_Id);
+                this.columnlotSerialNumber.MaxLength = 500;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4459,6 +4333,22 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long age {
+                get {
+                    try {
+                        return ((long)(this[this.tableOrderHeader.ageColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'age\' in table \'OrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrderHeader.ageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string companyCode {
                 get {
                     try {
@@ -4509,12 +4399,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string orderNumber {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderHeader.orderNumberColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'orderNumber\' in table \'OrderHeader\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderHeader.orderNumberColumn]));
                 }
                 set {
                     this[this.tableOrderHeader.orderNumberColumn] = value;
@@ -4539,10 +4424,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string accellosOrderNumber {
+            public long accellosOrderNumber {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.accellosOrderNumberColumn]));
+                        return ((long)(this[this.tableOrderHeader.accellosOrderNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'accellosOrderNumber\' in table \'OrderHeader\' is DBNull.", e);
@@ -4699,10 +4584,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string invoiceRequired {
+            public bool invoiceRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.invoiceRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.invoiceRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'invoiceRequired\' in table \'OrderHeader\' is DBNull.", e);
@@ -4715,10 +4600,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string asnRequired {
+            public bool asnRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.asnRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.asnRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'asnRequired\' in table \'OrderHeader\' is DBNull.", e);
@@ -4731,10 +4616,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string packSlipRequired {
+            public bool packSlipRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.packSlipRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.packSlipRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'packSlipRequired\' in table \'OrderHeader\' is DBNull.", e);
@@ -4747,10 +4632,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string priceTicketRequired {
+            public bool priceTicketRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.priceTicketRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.priceTicketRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'priceTicketRequired\' in table \'OrderHeader\' is DBNull.", e);
@@ -4763,10 +4648,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string salesOrderAcknowledgementRequired {
+            public bool salesOrderAcknowledgementRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.salesOrderAcknowledgementRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.salesOrderAcknowledgementRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'salesOrderAcknowledgementRequired\' in table \'OrderHeader\' i" +
@@ -4780,10 +4665,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string pickConfirmationAcknowledgementRequired {
+            public bool pickConfirmationAcknowledgementRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.pickConfirmationAcknowledgementRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.pickConfirmationAcknowledgementRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'pickConfirmationAcknowledgementRequired\' in table \'OrderHea" +
@@ -4797,10 +4682,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string asnAcknowledgementRequired {
+            public bool asnAcknowledgementRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.asnAcknowledgementRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.asnAcknowledgementRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'asnAcknowledgementRequired\' in table \'OrderHeader\' is DBNul" +
@@ -4814,10 +4699,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string orderConfirmed {
+            public bool orderConfirmed {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.orderConfirmedColumn]));
+                        return ((bool)(this[this.tableOrderHeader.orderConfirmedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'orderConfirmed\' in table \'OrderHeader\' is DBNull.", e);
@@ -4830,10 +4715,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string despatchEmailNotificationRequired {
+            public bool despatchEmailNotificationRequired {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.despatchEmailNotificationRequiredColumn]));
+                        return ((bool)(this[this.tableOrderHeader.despatchEmailNotificationRequiredColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'despatchEmailNotificationRequired\' in table \'OrderHeader\' i" +
@@ -4879,10 +4764,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string orderDate {
+            public System.DateTime orderDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.orderDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.orderDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'orderDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -4895,10 +4780,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string customerOrderDate {
+            public System.DateTime customerOrderDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.customerOrderDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.customerOrderDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'customerOrderDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -4911,10 +4796,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string deliveryDate {
+            public System.DateTime deliveryDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.deliveryDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.deliveryDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'deliveryDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -4927,10 +4812,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string requestedArrivalDate {
+            public System.DateTime requestedArrivalDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.requestedArrivalDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.requestedArrivalDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'requestedArrivalDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -4943,10 +4828,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string deliveryDateBefore {
+            public System.DateTime deliveryDateBefore {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.deliveryDateBeforeColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.deliveryDateBeforeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'deliveryDateBefore\' in table \'OrderHeader\' is DBNull.", e);
@@ -4959,10 +4844,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string deliveryDateAfter {
+            public System.DateTime deliveryDateAfter {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.deliveryDateAfterColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.deliveryDateAfterColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'deliveryDateAfter\' in table \'OrderHeader\' is DBNull.", e);
@@ -4975,10 +4860,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string despatchDate {
+            public System.DateTime despatchDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.despatchDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.despatchDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'despatchDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -4991,10 +4876,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string shipDate {
+            public System.DateTime shipDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.shipDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.shipDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'shipDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -5007,10 +4892,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string earliestShipDate {
+            public System.DateTime earliestShipDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.earliestShipDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.earliestShipDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'earliestShipDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -5023,10 +4908,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string latestShipDate {
+            public System.DateTime latestShipDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.latestShipDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.latestShipDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'latestShipDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -5039,10 +4924,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string releaseDate {
+            public System.DateTime releaseDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.releaseDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.releaseDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'releaseDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -5055,10 +4940,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string cancellationDate {
+            public System.DateTime cancellationDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.cancellationDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.cancellationDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'cancellationDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -5071,10 +4956,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string etaDate {
+            public System.DateTime etaDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.etaDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.etaDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'etaDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -5137,12 +5022,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string shipToName1 {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderHeader.shipToName1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'shipToName1\' in table \'OrderHeader\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderHeader.shipToName1Column]));
                 }
                 set {
                     this[this.tableOrderHeader.shipToName1Column] = value;
@@ -5169,12 +5049,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string shipToAddress1 {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderHeader.shipToAddress1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'shipToAddress1\' in table \'OrderHeader\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderHeader.shipToAddress1Column]));
                 }
                 set {
                     this[this.tableOrderHeader.shipToAddress1Column] = value;
@@ -5217,12 +5092,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string shipToLocation {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderHeader.shipToLocationColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'shipToLocation\' in table \'OrderHeader\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderHeader.shipToLocationColumn]));
                 }
                 set {
                     this[this.tableOrderHeader.shipToLocationColumn] = value;
@@ -5233,12 +5103,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string shipToPostcode {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderHeader.shipToPostcodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'shipToPostcode\' in table \'OrderHeader\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderHeader.shipToPostcodeColumn]));
                 }
                 set {
                     this[this.tableOrderHeader.shipToPostcodeColumn] = value;
@@ -5249,12 +5114,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string shipToState {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderHeader.shipToStateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'shipToState\' in table \'OrderHeader\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderHeader.shipToStateColumn]));
                 }
                 set {
                     this[this.tableOrderHeader.shipToStateColumn] = value;
@@ -6176,10 +6036,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string invoiceDate {
+            public System.DateTime invoiceDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.invoiceDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.invoiceDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'invoiceDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -6192,10 +6052,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string invoiceDueDate {
+            public System.DateTime invoiceDueDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.invoiceDueDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderHeader.invoiceDueDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'invoiceDueDate\' in table \'OrderHeader\' is DBNull.", e);
@@ -6256,10 +6116,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string freightTotal {
+            public float freightTotal {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.freightTotalColumn]));
+                        return ((float)(this[this.tableOrderHeader.freightTotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'freightTotal\' in table \'OrderHeader\' is DBNull.", e);
@@ -6272,10 +6132,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string surchargeTotal {
+            public float surchargeTotal {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.surchargeTotalColumn]));
+                        return ((float)(this[this.tableOrderHeader.surchargeTotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'surchargeTotal\' in table \'OrderHeader\' is DBNull.", e);
@@ -6288,10 +6148,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string miscellaneousTotal1 {
+            public float miscellaneousTotal1 {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.miscellaneousTotal1Column]));
+                        return ((float)(this[this.tableOrderHeader.miscellaneousTotal1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'miscellaneousTotal1\' in table \'OrderHeader\' is DBNull.", e);
@@ -6304,10 +6164,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string miscellaneousTotal2 {
+            public float miscellaneousTotal2 {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.miscellaneousTotal2Column]));
+                        return ((float)(this[this.tableOrderHeader.miscellaneousTotal2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'miscellaneousTotal2\' in table \'OrderHeader\' is DBNull.", e);
@@ -6320,10 +6180,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string gstTotal {
+            public float gstTotal {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.gstTotalColumn]));
+                        return ((float)(this[this.tableOrderHeader.gstTotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'gstTotal\' in table \'OrderHeader\' is DBNull.", e);
@@ -6336,10 +6196,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string subTotal {
+            public float subTotal {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.subTotalColumn]));
+                        return ((float)(this[this.tableOrderHeader.subTotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'subTotal\' in table \'OrderHeader\' is DBNull.", e);
@@ -6352,10 +6212,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string invoiceTotal {
+            public float invoiceTotal {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.invoiceTotalColumn]));
+                        return ((float)(this[this.tableOrderHeader.invoiceTotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'invoiceTotal\' in table \'OrderHeader\' is DBNull.", e);
@@ -6384,10 +6244,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string totalWeight {
+            public float totalWeight {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.totalWeightColumn]));
+                        return ((float)(this[this.tableOrderHeader.totalWeightColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'totalWeight\' in table \'OrderHeader\' is DBNull.", e);
@@ -6400,10 +6260,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string totalVolume {
+            public float totalVolume {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.totalVolumeColumn]));
+                        return ((float)(this[this.tableOrderHeader.totalVolumeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'totalVolume\' in table \'OrderHeader\' is DBNull.", e);
@@ -6416,10 +6276,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string totalQuantity {
+            public float totalQuantity {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.totalQuantityColumn]));
+                        return ((float)(this[this.tableOrderHeader.totalQuantityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'totalQuantity\' in table \'OrderHeader\' is DBNull.", e);
@@ -6432,10 +6292,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string totalCartons {
+            public float totalCartons {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.totalCartonsColumn]));
+                        return ((float)(this[this.tableOrderHeader.totalCartonsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'totalCartons\' in table \'OrderHeader\' is DBNull.", e);
@@ -6480,10 +6340,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string useAlternateDespatchID {
+            public bool useAlternateDespatchID {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.useAlternateDespatchIDColumn]));
+                        return ((bool)(this[this.tableOrderHeader.useAlternateDespatchIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'useAlternateDespatchID\' in table \'OrderHeader\' is DBNull.", e);
@@ -6496,10 +6356,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string specialServiceFlag {
+            public bool specialServiceFlag {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderHeader.specialServiceFlagColumn]));
+                        return ((bool)(this[this.tableOrderHeader.specialServiceFlagColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'specialServiceFlag\' in table \'OrderHeader\' is DBNull.", e);
@@ -6791,6 +6651,18 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsageNull() {
+                return this.IsNull(this.tableOrderHeader.ageColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetageNull() {
+                this[this.tableOrderHeader.ageColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IscompanyCodeNull() {
                 return this.IsNull(this.tableOrderHeader.companyCodeColumn);
             }
@@ -6823,18 +6695,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetwarehouseCodeNull() {
                 this[this.tableOrderHeader.warehouseCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsorderNumberNull() {
-                return this.IsNull(this.tableOrderHeader.orderNumberColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetorderNumberNull() {
-                this[this.tableOrderHeader.orderNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7295,18 +7155,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsshipToName1Null() {
-                return this.IsNull(this.tableOrderHeader.shipToName1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetshipToName1Null() {
-                this[this.tableOrderHeader.shipToName1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsshipToName2Null() {
                 return this.IsNull(this.tableOrderHeader.shipToName2Column);
             }
@@ -7315,18 +7163,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetshipToName2Null() {
                 this[this.tableOrderHeader.shipToName2Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsshipToAddress1Null() {
-                return this.IsNull(this.tableOrderHeader.shipToAddress1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetshipToAddress1Null() {
-                this[this.tableOrderHeader.shipToAddress1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7351,42 +7187,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetshipToAddress3Null() {
                 this[this.tableOrderHeader.shipToAddress3Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsshipToLocationNull() {
-                return this.IsNull(this.tableOrderHeader.shipToLocationColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetshipToLocationNull() {
-                this[this.tableOrderHeader.shipToLocationColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsshipToPostcodeNull() {
-                return this.IsNull(this.tableOrderHeader.shipToPostcodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetshipToPostcodeNull() {
-                this[this.tableOrderHeader.shipToPostcodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsshipToStateNull() {
-                return this.IsNull(this.tableOrderHeader.shipToStateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetshipToStateNull() {
-                this[this.tableOrderHeader.shipToStateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8547,12 +8347,7 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string lineNumber {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderDetail.lineNumberColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'lineNumber\' in table \'OrderDetail\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderDetail.lineNumberColumn]));
                 }
                 set {
                     this[this.tableOrderDetail.lineNumberColumn] = value;
@@ -8595,15 +8390,26 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string productCode {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderDetail.productCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'productCode\' in table \'OrderDetail\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableOrderDetail.productCodeColumn]));
                 }
                 set {
                     this[this.tableOrderDetail.productCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string customerProductCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrderDetail.customerProductCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'customerProductCode\' in table \'OrderDetail\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrderDetail.customerProductCodeColumn] = value;
                 }
             }
             
@@ -8785,10 +8591,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string packingQuantity {
+            public float packingQuantity {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.packingQuantityColumn]));
+                        return ((float)(this[this.tableOrderDetail.packingQuantityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'packingQuantity\' in table \'OrderDetail\' is DBNull.", e);
@@ -8801,14 +8607,9 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string quantityOrdered {
+            public float quantityOrdered {
                 get {
-                    try {
-                        return ((string)(this[this.tableOrderDetail.quantityOrderedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'quantityOrdered\' in table \'OrderDetail\' is DBNull.", e);
-                    }
+                    return ((float)(this[this.tableOrderDetail.quantityOrderedColumn]));
                 }
                 set {
                     this[this.tableOrderDetail.quantityOrderedColumn] = value;
@@ -8817,10 +8618,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string quantityShipped {
+            public float quantityShipped {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.quantityShippedColumn]));
+                        return ((float)(this[this.tableOrderDetail.quantityShippedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'quantityShipped\' in table \'OrderDetail\' is DBNull.", e);
@@ -8833,10 +8634,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string quantityBackOrdered {
+            public float quantityBackOrdered {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.quantityBackOrderedColumn]));
+                        return ((float)(this[this.tableOrderDetail.quantityBackOrderedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'quantityBackOrdered\' in table \'OrderDetail\' is DBNull.", e);
@@ -8849,10 +8650,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string originalQuantityOrdered {
+            public float originalQuantityOrdered {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.originalQuantityOrderedColumn]));
+                        return ((float)(this[this.tableOrderDetail.originalQuantityOrderedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'originalQuantityOrdered\' in table \'OrderDetail\' is DBNull.", e);
@@ -8865,10 +8666,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string originalQuantityBackOrdered {
+            public float originalQuantityBackOrdered {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.originalQuantityBackOrderedColumn]));
+                        return ((float)(this[this.tableOrderDetail.originalQuantityBackOrderedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'originalQuantityBackOrdered\' in table \'OrderDetail\' is DBNu" +
@@ -8930,10 +8731,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string expiryDate {
+            public System.DateTime expiryDate {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.expiryDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableOrderDetail.expiryDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'expiryDate\' in table \'OrderDetail\' is DBNull.", e);
@@ -8946,10 +8747,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string unitPriceExTax {
+            public float unitPriceExTax {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.unitPriceExTaxColumn]));
+                        return ((float)(this[this.tableOrderDetail.unitPriceExTaxColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'unitPriceExTax\' in table \'OrderDetail\' is DBNull.", e);
@@ -8962,10 +8763,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string unitPriceIncTax {
+            public float unitPriceIncTax {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.unitPriceIncTaxColumn]));
+                        return ((float)(this[this.tableOrderDetail.unitPriceIncTaxColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'unitPriceIncTax\' in table \'OrderDetail\' is DBNull.", e);
@@ -8978,10 +8779,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string taxAmount {
+            public float taxAmount {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.taxAmountColumn]));
+                        return ((float)(this[this.tableOrderDetail.taxAmountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'taxAmount\' in table \'OrderDetail\' is DBNull.", e);
@@ -8994,10 +8795,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string gst {
+            public float gst {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.gstColumn]));
+                        return ((float)(this[this.tableOrderDetail.gstColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'gst\' in table \'OrderDetail\' is DBNull.", e);
@@ -9010,10 +8811,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string extendedExTax {
+            public float extendedExTax {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.extendedExTaxColumn]));
+                        return ((float)(this[this.tableOrderDetail.extendedExTaxColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'extendedExTax\' in table \'OrderDetail\' is DBNull.", e);
@@ -9026,10 +8827,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string extendedIncTax {
+            public float extendedIncTax {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.extendedIncTaxColumn]));
+                        return ((float)(this[this.tableOrderDetail.extendedIncTaxColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'extendedIncTax\' in table \'OrderDetail\' is DBNull.", e);
@@ -9042,10 +8843,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string miscellaneousCharge1 {
+            public float miscellaneousCharge1 {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.miscellaneousCharge1Column]));
+                        return ((float)(this[this.tableOrderDetail.miscellaneousCharge1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'miscellaneousCharge1\' in table \'OrderDetail\' is DBNull.", e);
@@ -9058,10 +8859,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string miscellaneousCharge2 {
+            public float miscellaneousCharge2 {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.miscellaneousCharge2Column]));
+                        return ((float)(this[this.tableOrderDetail.miscellaneousCharge2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'miscellaneousCharge2\' in table \'OrderDetail\' is DBNull.", e);
@@ -9074,10 +8875,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string discount {
+            public float discount {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.discountColumn]));
+                        return ((float)(this[this.tableOrderDetail.discountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'discount\' in table \'OrderDetail\' is DBNull.", e);
@@ -9090,10 +8891,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string lineTotalExcTax {
+            public float lineTotalExcTax {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.lineTotalExcTaxColumn]));
+                        return ((float)(this[this.tableOrderDetail.lineTotalExcTaxColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'lineTotalExcTax\' in table \'OrderDetail\' is DBNull.", e);
@@ -9106,10 +8907,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string lineTotalIncTax {
+            public float lineTotalIncTax {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.lineTotalIncTaxColumn]));
+                        return ((float)(this[this.tableOrderDetail.lineTotalIncTaxColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'lineTotalIncTax\' in table \'OrderDetail\' is DBNull.", e);
@@ -9122,10 +8923,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string recommendedRetailPrice {
+            public float recommendedRetailPrice {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.recommendedRetailPriceColumn]));
+                        return ((float)(this[this.tableOrderDetail.recommendedRetailPriceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'recommendedRetailPrice\' in table \'OrderDetail\' is DBNull.", e);
@@ -9138,10 +8939,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string weight {
+            public float weight {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.weightColumn]));
+                        return ((float)(this[this.tableOrderDetail.weightColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'weight\' in table \'OrderDetail\' is DBNull.", e);
@@ -9154,10 +8955,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string volume {
+            public float volume {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.volumeColumn]));
+                        return ((float)(this[this.tableOrderDetail.volumeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'volume\' in table \'OrderDetail\' is DBNull.", e);
@@ -9330,10 +9131,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string nonStockItem {
+            public bool nonStockItem {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.nonStockItemColumn]));
+                        return ((bool)(this[this.tableOrderDetail.nonStockItemColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'nonStockItem\' in table \'OrderDetail\' is DBNull.", e);
@@ -9362,10 +9163,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string kitFlag {
+            public bool kitFlag {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderDetail.kitFlagColumn]));
+                        return ((bool)(this[this.tableOrderDetail.kitFlagColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'kitFlag\' in table \'OrderDetail\' is DBNull.", e);
@@ -9416,18 +9217,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IslineNumberNull() {
-                return this.IsNull(this.tableOrderDetail.lineNumberColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetlineNumberNull() {
-                this[this.tableOrderDetail.lineNumberColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IscustomerLineNumberNull() {
                 return this.IsNull(this.tableOrderDetail.customerLineNumberColumn);
             }
@@ -9452,14 +9241,14 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsproductCodeNull() {
-                return this.IsNull(this.tableOrderDetail.productCodeColumn);
+            public bool IscustomerProductCodeNull() {
+                return this.IsNull(this.tableOrderDetail.customerProductCodeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetproductCodeNull() {
-                this[this.tableOrderDetail.productCodeColumn] = global::System.Convert.DBNull;
+            public void SetcustomerProductCodeNull() {
+                this[this.tableOrderDetail.customerProductCodeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9604,18 +9393,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetpackingQuantityNull() {
                 this[this.tableOrderDetail.packingQuantityColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsquantityOrderedNull() {
-                return this.IsNull(this.tableOrderDetail.quantityOrderedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetquantityOrderedNull() {
-                this[this.tableOrderDetail.quantityOrderedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10052,17 +9829,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public customerProductCodeRow[] GetcustomerProductCodeRows() {
-                if ((this.Table.ChildRelations["OrderDetail_customerProductCode"] == null)) {
-                    return new customerProductCodeRow[0];
-                }
-                else {
-                    return ((customerProductCodeRow[])(base.GetChildRows(this.Table.ChildRelations["OrderDetail_customerProductCode"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public OrderLotSerialRow[] GetOrderLotSerialRows() {
                 if ((this.Table.ChildRelations["OrderDetail_OrderLotSerial"] == null)) {
                     return new OrderLotSerialRow[0];
@@ -10070,60 +9836,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
                 else {
                     return ((OrderLotSerialRow[])(base.GetChildRows(this.Table.ChildRelations["OrderDetail_OrderLotSerial"])));
                 }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class customerProductCodeRow : global::System.Data.DataRow {
-            
-            private customerProductCodeDataTable tablecustomerProductCode;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal customerProductCodeRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablecustomerProductCode = ((customerProductCodeDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int OrderDetail_Id {
-                get {
-                    try {
-                        return ((int)(this[this.tablecustomerProductCode.OrderDetail_IdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OrderDetail_Id\' in table \'customerProductCode\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablecustomerProductCode.OrderDetail_IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public OrderDetailRow OrderDetailRow {
-                get {
-                    return ((OrderDetailRow)(this.GetParentRow(this.Table.ParentRelations["OrderDetail_customerProductCode"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["OrderDetail_customerProductCode"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsOrderDetail_IdNull() {
-                return this.IsNull(this.tablecustomerProductCode.OrderDetail_IdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetOrderDetail_IdNull() {
-                this[this.tablecustomerProductCode.OrderDetail_IdColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10159,10 +9871,10 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string quantityOrdered {
+            public bool quantityOrdered {
                 get {
                     try {
-                        return ((string)(this[this.tableOrderLotSerial.quantityOrderedColumn]));
+                        return ((bool)(this[this.tableOrderLotSerial.quantityOrderedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'quantityOrdered\' in table \'OrderLotSerial\' is DBNull.", e);
@@ -10291,40 +10003,6 @@ namespace _3PLPrototype.DataFiles.SalesOrder {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public OrderDetailRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class customerProductCodeRowChangeEvent : global::System.EventArgs {
-            
-            private customerProductCodeRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public customerProductCodeRowChangeEvent(customerProductCodeRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public customerProductCodeRow Row {
                 get {
                     return this.eventRow;
                 }

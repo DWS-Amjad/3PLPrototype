@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="STEInterfacesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+      <Schema Namespace="STEInterfacesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApplicationEventMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -77,6 +77,26 @@
           <Property Name="DocumentUniqueId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TimeStamp" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Location_SYD">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="60" />
+          <Property Name="postcode" Type="varchar" MaxLength="4" />
+          <Property Name="state" Type="varchar" MaxLength="4" />
+          <Property Name="nearest_depot" Type="varchar" MaxLength="3" />
+          <Property Name="servicing_city" Type="varchar" MaxLength="3" />
+          <Property Name="direct_zone" Type="varchar" MaxLength="3" />
+          <Property Name="onforwarding_zone" Type="varchar" MaxLength="3" />
+          <Property Name="alt_servicing_city" Type="varchar" MaxLength="3" />
+          <Property Name="alt_onforwarding_zone" Type="varchar" MaxLength="3" />
+          <Property Name="alt_route_states" Type="varchar" MaxLength="7" />
+          <Property Name="lead_days_EXP" Type="smallint" />
+          <Property Name="lead_days_PAC" Type="smallint" />
+          <Property Name="lead_days_1KN" Type="smallint" />
+          <Property Name="lead_days_1PN" Type="smallint" />
+        </EntityType>
         <Association Name="FK_ApplicationLog_ApplicationEventMaster">
           <End Role="ApplicationEventMaster" Type="Self.ApplicationEventMaster" Multiplicity="1" />
           <End Role="ApplicationLog" Type="Self.ApplicationLog" Multiplicity="*" />
@@ -132,6 +152,7 @@
           <EntitySet Name="ErrorInboundData" EntityType="Self.ErrorInboundData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorSuggestion" EntityType="Self.ErrorSuggestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorXml" EntityType="Self.ErrorXml" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location_SYD" EntityType="Self.Location_SYD" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ApplicationLog_ApplicationEventMaster" Association="Self.FK_ApplicationLog_ApplicationEventMaster">
             <End Role="ApplicationEventMaster" EntitySet="ApplicationEventMaster" />
             <End Role="ApplicationLog" EntitySet="ApplicationLog" />
@@ -149,15 +170,16 @@
             <End Role="ErrorSuggestion" EntitySet="ErrorSuggestion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="STEInterfacesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="STEInterfacesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ApplicationEventMaster">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -172,6 +194,8 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationEventId" Type="Int32" Nullable="false" />
           <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ApplicationEventMaster" Relationship="Self.FK_ApplicationLog_ApplicationEventMaster" FromRole="ApplicationLog" ToRole="ApplicationEventMaster" />
@@ -183,13 +207,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConfigFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ApplicationLogs" Relationship="Self.FK_ApplicationLog_ApplicationMaster" FromRole="ApplicationMaster" ToRole="ApplicationLog" />
-          <Property Name="ConfigFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ErrorInboundData">
           <Key>
@@ -204,6 +228,7 @@
           <Property Name="SysErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsRectifiable" Type="Boolean" Nullable="false" />
+          <Property Name="ErrorXmlId" Type="Guid" Nullable="false" />
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ErrorXml" Relationship="Self.FK_ErrorInboundData_ErrorXml" FromRole="ErrorInboundData" ToRole="ErrorXml" />
           <NavigationProperty Name="ErrorSuggestions" Relationship="Self.FK_ErrorSuggestion_ErrorInboundData" FromRole="ErrorInboundData" ToRole="ErrorSuggestion" />
@@ -213,6 +238,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ErrorInboundDataId" Type="Guid" Nullable="false" />
           <Property Name="Suggestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ErrorInboundData" Relationship="Self.FK_ErrorSuggestion_ErrorInboundData" FromRole="ErrorSuggestion" ToRole="ErrorInboundData" />
@@ -229,29 +255,82 @@
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ErrorInboundDatas" Relationship="Self.FK_ErrorInboundData_ErrorXml" FromRole="ErrorXml" ToRole="ErrorInboundData" />
         </EntityType>
+        <EntityType Name="Location_SYD">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="nearest_depot" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="servicing_city" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="direct_zone" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="onforwarding_zone" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="alt_servicing_city" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="alt_onforwarding_zone" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="alt_route_states" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="lead_days_EXP" Type="Int16" />
+          <Property Name="lead_days_PAC" Type="Int16" />
+          <Property Name="lead_days_1KN" Type="Int16" />
+          <Property Name="lead_days_1PN" Type="Int16" />
+        </EntityType>
         <Association Name="FK_ApplicationLog_ApplicationEventMaster">
           <End Role="ApplicationEventMaster" Type="Self.ApplicationEventMaster" Multiplicity="1" />
           <End Role="ApplicationLog" Type="Self.ApplicationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationEventMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationLog">
+              <PropertyRef Name="ApplicationEventId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_ApplicationLog_ApplicationMaster">
           <End Role="ApplicationMaster" Type="Self.ApplicationMaster" Multiplicity="1" />
           <End Role="ApplicationLog" Type="Self.ApplicationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationLog">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_ErrorInboundData_ErrorXml">
           <End Role="ErrorXml" Type="Self.ErrorXml" Multiplicity="1" />
           <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ErrorXml">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ErrorInboundData">
+              <PropertyRef Name="ErrorXmlId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_ErrorSuggestion_ErrorInboundData">
           <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="1" />
           <End Role="ErrorSuggestion" Type="Self.ErrorSuggestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ErrorInboundData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ErrorSuggestion">
+              <PropertyRef Name="ErrorInboundDataId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="STEInterfacesEntities">
+        <EntityContainer Name="STEInterfacesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ApplicationEventMasters" EntityType="Self.ApplicationEventMaster" />
           <EntitySet Name="ApplicationLogs" EntityType="Self.ApplicationLog" />
           <EntitySet Name="ApplicationMasters" EntityType="Self.ApplicationMaster" />
           <EntitySet Name="ErrorInboundDatas" EntityType="Self.ErrorInboundData" />
           <EntitySet Name="ErrorSuggestions" EntityType="Self.ErrorSuggestion" />
           <EntitySet Name="ErrorXmls" EntityType="Self.ErrorXml" />
+          <EntitySet Name="Location_SYD" EntityType="Self.Location_SYD" />
           <AssociationSet Name="FK_ApplicationLog_ApplicationEventMaster" Association="Self.FK_ApplicationLog_ApplicationEventMaster">
             <End Role="ApplicationEventMaster" EntitySet="ApplicationEventMasters" />
             <End Role="ApplicationLog" EntitySet="ApplicationLogs" />
@@ -273,7 +352,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="STEInterfacesModelStoreContainer" CdmEntityContainer="STEInterfacesEntities">
           <EntitySetMapping Name="ApplicationEventMasters">
             <EntityTypeMapping TypeName="STEInterfacesModel.ApplicationEventMaster">
@@ -293,6 +372,8 @@
               <MappingFragment StoreEntitySet="ApplicationLog">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="ApplicationEventId" ColumnName="ApplicationEventId" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
               </MappingFragment>
@@ -301,9 +382,9 @@
           <EntitySetMapping Name="ApplicationMasters">
             <EntityTypeMapping TypeName="STEInterfacesModel.ApplicationMaster">
               <MappingFragment StoreEntitySet="ApplicationMaster">
-                <ScalarProperty Name="ConfigFilePath" ColumnName="ConfigFilePath" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ConfigFilePath" ColumnName="ConfigFilePath" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
@@ -324,6 +405,7 @@
                 <ScalarProperty Name="SysErrorMsg" ColumnName="SysErrorMsg" />
                 <ScalarProperty Name="CustomErrorMsg" ColumnName="CustomErrorMsg" />
                 <ScalarProperty Name="IsRectifiable" ColumnName="IsRectifiable" />
+                <ScalarProperty Name="ErrorXmlId" ColumnName="ErrorXmlId" />
                 <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -332,6 +414,7 @@
             <EntityTypeMapping TypeName="STEInterfacesModel.ErrorSuggestion">
               <MappingFragment StoreEntitySet="ErrorSuggestion">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ErrorInboundDataId" ColumnName="ErrorInboundDataId" />
                 <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
                 <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
               </MappingFragment>
@@ -349,44 +432,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_ApplicationLog_ApplicationEventMaster" TypeName="STEInterfacesModel.FK_ApplicationLog_ApplicationEventMaster" StoreEntitySet="ApplicationLog">
-            <EndProperty Name="ApplicationEventMaster">
-              <ScalarProperty Name="Id" ColumnName="ApplicationEventId" />
-            </EndProperty>
-            <EndProperty Name="ApplicationLog">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ApplicationLog_ApplicationMaster" TypeName="STEInterfacesModel.FK_ApplicationLog_ApplicationMaster" StoreEntitySet="ApplicationLog">
-            <EndProperty Name="ApplicationMaster">
-              <ScalarProperty Name="Id" ColumnName="ApplicationId" />
-            </EndProperty>
-            <EndProperty Name="ApplicationLog">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ErrorInboundData_ErrorXml" TypeName="STEInterfacesModel.FK_ErrorInboundData_ErrorXml" StoreEntitySet="ErrorInboundData">
-            <EndProperty Name="ErrorXml">
-              <ScalarProperty Name="Id" ColumnName="ErrorXmlId" />
-            </EndProperty>
-            <EndProperty Name="ErrorInboundData">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ErrorSuggestion_ErrorInboundData" TypeName="STEInterfacesModel.FK_ErrorSuggestion_ErrorInboundData" StoreEntitySet="ErrorSuggestion">
-            <EndProperty Name="ErrorInboundData">
-              <ScalarProperty Name="Id" ColumnName="ErrorInboundDataId" />
-            </EndProperty>
-            <EndProperty Name="ErrorSuggestion">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="Location_SYD">
+            <EntityTypeMapping TypeName="STEInterfacesModel.Location_SYD">
+              <MappingFragment StoreEntitySet="Location_SYD">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="nearest_depot" ColumnName="nearest_depot" />
+                <ScalarProperty Name="servicing_city" ColumnName="servicing_city" />
+                <ScalarProperty Name="direct_zone" ColumnName="direct_zone" />
+                <ScalarProperty Name="onforwarding_zone" ColumnName="onforwarding_zone" />
+                <ScalarProperty Name="alt_servicing_city" ColumnName="alt_servicing_city" />
+                <ScalarProperty Name="alt_onforwarding_zone" ColumnName="alt_onforwarding_zone" />
+                <ScalarProperty Name="alt_route_states" ColumnName="alt_route_states" />
+                <ScalarProperty Name="lead_days_EXP" ColumnName="lead_days_EXP" />
+                <ScalarProperty Name="lead_days_PAC" ColumnName="lead_days_PAC" />
+                <ScalarProperty Name="lead_days_1KN" ColumnName="lead_days_1KN" />
+                <ScalarProperty Name="lead_days_1PN" ColumnName="lead_days_1PN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
@@ -396,8 +468,9 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

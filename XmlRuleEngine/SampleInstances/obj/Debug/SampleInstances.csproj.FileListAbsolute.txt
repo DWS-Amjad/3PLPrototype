@@ -33,3 +33,7 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DA
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.dll.config
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll.config
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\SampleInstances.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.SqlServer.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.SqlServer.xml

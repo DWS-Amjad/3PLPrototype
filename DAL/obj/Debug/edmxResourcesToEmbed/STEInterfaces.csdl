@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="STEInterfacesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+<Schema Namespace="STEInterfacesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="ApplicationEventMaster">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -19,6 +19,8 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+    <Property Name="ApplicationEventId" Type="Int32" Nullable="false" />
     <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="ApplicationEventMaster" Relationship="Self.FK_ApplicationLog_ApplicationEventMaster" FromRole="ApplicationLog" ToRole="ApplicationEventMaster" />
@@ -30,6 +32,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConfigFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="LastUpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -46,10 +49,11 @@
     <Property Name="DataType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DataKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DataValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DataPath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="SysErrorMsg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="CustomErrorMsg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DataPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SysErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="IsRectifiable" Type="Boolean" Nullable="false" />
+    <Property Name="ErrorXmlId" Type="Guid" Nullable="false" />
     <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="ErrorXml" Relationship="Self.FK_ErrorInboundData_ErrorXml" FromRole="ErrorInboundData" ToRole="ErrorXml" />
     <NavigationProperty Name="ErrorSuggestions" Relationship="Self.FK_ErrorSuggestion_ErrorInboundData" FromRole="ErrorInboundData" ToRole="ErrorSuggestion" />
@@ -59,6 +63,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ErrorInboundDataId" Type="Guid" Nullable="false" />
     <Property Name="Suggestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="ErrorInboundData" Relationship="Self.FK_ErrorSuggestion_ErrorInboundData" FromRole="ErrorSuggestion" ToRole="ErrorInboundData" />
@@ -75,29 +80,82 @@
     <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="ErrorInboundDatas" Relationship="Self.FK_ErrorInboundData_ErrorXml" FromRole="ErrorXml" ToRole="ErrorInboundData" />
   </EntityType>
+  <EntityType Name="Location_SYD">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="location" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="postcode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="nearest_depot" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="servicing_city" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="direct_zone" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="onforwarding_zone" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="alt_servicing_city" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="alt_onforwarding_zone" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="alt_route_states" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="lead_days_EXP" Type="Int16" />
+    <Property Name="lead_days_PAC" Type="Int16" />
+    <Property Name="lead_days_1KN" Type="Int16" />
+    <Property Name="lead_days_1PN" Type="Int16" />
+  </EntityType>
   <Association Name="FK_ApplicationLog_ApplicationEventMaster">
     <End Role="ApplicationEventMaster" Type="Self.ApplicationEventMaster" Multiplicity="1" />
     <End Role="ApplicationLog" Type="Self.ApplicationLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationEventMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationLog">
+        <PropertyRef Name="ApplicationEventId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
   <Association Name="FK_ApplicationLog_ApplicationMaster">
     <End Role="ApplicationMaster" Type="Self.ApplicationMaster" Multiplicity="1" />
     <End Role="ApplicationLog" Type="Self.ApplicationLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationLog">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
   <Association Name="FK_ErrorInboundData_ErrorXml">
     <End Role="ErrorXml" Type="Self.ErrorXml" Multiplicity="1" />
     <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ErrorXml">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ErrorInboundData">
+        <PropertyRef Name="ErrorXmlId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
   <Association Name="FK_ErrorSuggestion_ErrorInboundData">
     <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="1" />
     <End Role="ErrorSuggestion" Type="Self.ErrorSuggestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ErrorInboundData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ErrorSuggestion">
+        <PropertyRef Name="ErrorInboundDataId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="STEInterfacesEntities">
+  <EntityContainer Name="STEInterfacesEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ApplicationEventMasters" EntityType="Self.ApplicationEventMaster" />
     <EntitySet Name="ApplicationLogs" EntityType="Self.ApplicationLog" />
     <EntitySet Name="ApplicationMasters" EntityType="Self.ApplicationMaster" />
     <EntitySet Name="ErrorInboundDatas" EntityType="Self.ErrorInboundData" />
     <EntitySet Name="ErrorSuggestions" EntityType="Self.ErrorSuggestion" />
     <EntitySet Name="ErrorXmls" EntityType="Self.ErrorXml" />
+    <EntitySet Name="Location_SYD" EntityType="Self.Location_SYD" />
     <AssociationSet Name="FK_ApplicationLog_ApplicationEventMaster" Association="Self.FK_ApplicationLog_ApplicationEventMaster">
       <End Role="ApplicationEventMaster" EntitySet="ApplicationEventMasters" />
       <End Role="ApplicationLog" EntitySet="ApplicationLogs" />

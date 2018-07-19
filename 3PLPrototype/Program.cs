@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Mail;
-using ValidationRuleEngine.Implementations;
-using ValidationRuleEngine.Interfaces;
+using DAL.Repository;
+using DAL.Models;
+using System.Collections.Generic;
+using static ValidationRuleEngine.Constants;
 
 namespace _3PLPrototype
 {
@@ -27,11 +29,23 @@ namespace _3PLPrototype
             //var directory = System.IO.Path.GetDirectoryName(path);
             //directory = System.IO.Path.GetDirectoryName(path1);
             //SendEmail();
-            IEngine validatorEngine = new ValidatorEngine();
-            validatorEngine.Configure();
-            validatorEngine.Start();
-            validatorEngine.Stop();
-            Console.ReadKey();
+            //STEInterfacesEntities entities = new STEInterfacesEntities();
+            //LocationRepository locRepository = new LocationRepository(entities);
+
+            //IGenericRepository<Location_SYD> locationRepository = new GenericRepository<Location_SYD>();
+            //IEnumerable<Location_SYD> locations = locationRepository.SelectAll();
+            //LocationCustomRepository locCustomRepo = new LocationCustomRepository();
+
+
+            //Location_SYD obj = locCustomRepo.SelectByLocationAndPostCodeAndState("CALLIGNEE SOUTH", "3844", "VIC");
+            //Console.WriteLine(obj.location);
+            //List<Location_SYD> list = locRepository.GetLocation("4817", "WILLOWS (TOWNSVILLE)", "QLD");
+
+            //IEngine validatorEngine = new ValidatorEngine();
+            //validatorEngine.Configure();
+            //validatorEngine.Start();
+            //validatorEngine.Stop();
+            //Console.ReadKey();
 
             //var configFilePath = ConfigurationManager.AppSettings["ConfigXmlPath"];
             //if (String.IsNullOrEmpty(configFilePath))
@@ -39,11 +53,6 @@ namespace _3PLPrototype
             //    throw new Exception(@"XML Configuration file path is not set in ""ConfigXmlPath"" configuration");
             //}
             //var configXml = XDocument.Load(configFilePath);
-
-
-
-
-
 
             //Console.WriteLine("Configuring CustomValidatorEngineObsolete....");
             //ruleEngine.Configure();
@@ -61,7 +70,15 @@ namespace _3PLPrototype
 
             //Console.WriteLine("CustomValidatorEngineObsolete stopped.");
             //Console.ReadLine();
+
+            
+            Console.ReadKey();
         }
+
+
+        
+
+
         static public bool SendEmail()
         {
             bool retVal = true;

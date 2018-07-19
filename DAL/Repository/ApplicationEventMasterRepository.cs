@@ -57,7 +57,7 @@ namespace DAL.Repository
         {
             try
             {
-                db.AddToApplicationEventMasters(obj);
+                db.ApplicationEventMasters.Add(obj);
             }
             catch (Exception)
             {
@@ -109,9 +109,9 @@ namespace DAL.Repository
         }
     }
 
-
-    
     
 
-    
+
+
+
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="STEInterfacesModelStoreContainer" CdmEntityContainer="STEInterfacesEntities">
     <EntitySetMapping Name="ApplicationEventMasters">
       <EntityTypeMapping TypeName="STEInterfacesModel.ApplicationEventMaster">
@@ -19,6 +19,8 @@
         <MappingFragment StoreEntitySet="ApplicationLog">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="ApplicationEventId" ColumnName="ApplicationEventId" />
           <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
         </MappingFragment>
@@ -27,9 +29,9 @@
     <EntitySetMapping Name="ApplicationMasters">
       <EntityTypeMapping TypeName="STEInterfacesModel.ApplicationMaster">
         <MappingFragment StoreEntitySet="ApplicationMaster">
-          <ScalarProperty Name="ConfigFilePath" ColumnName="ConfigFilePath" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ConfigFilePath" ColumnName="ConfigFilePath" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
@@ -50,6 +52,7 @@
           <ScalarProperty Name="SysErrorMsg" ColumnName="SysErrorMsg" />
           <ScalarProperty Name="CustomErrorMsg" ColumnName="CustomErrorMsg" />
           <ScalarProperty Name="IsRectifiable" ColumnName="IsRectifiable" />
+          <ScalarProperty Name="ErrorXmlId" ColumnName="ErrorXmlId" />
           <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -58,6 +61,7 @@
       <EntityTypeMapping TypeName="STEInterfacesModel.ErrorSuggestion">
         <MappingFragment StoreEntitySet="ErrorSuggestion">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ErrorInboundDataId" ColumnName="ErrorInboundDataId" />
           <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
           <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
         </MappingFragment>
@@ -75,37 +79,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="FK_ApplicationLog_ApplicationEventMaster" TypeName="STEInterfacesModel.FK_ApplicationLog_ApplicationEventMaster" StoreEntitySet="ApplicationLog">
-      <EndProperty Name="ApplicationEventMaster">
-        <ScalarProperty Name="Id" ColumnName="ApplicationEventId" />
-      </EndProperty>
-      <EndProperty Name="ApplicationLog">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK_ApplicationLog_ApplicationMaster" TypeName="STEInterfacesModel.FK_ApplicationLog_ApplicationMaster" StoreEntitySet="ApplicationLog">
-      <EndProperty Name="ApplicationMaster">
-        <ScalarProperty Name="Id" ColumnName="ApplicationId" />
-      </EndProperty>
-      <EndProperty Name="ApplicationLog">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK_ErrorInboundData_ErrorXml" TypeName="STEInterfacesModel.FK_ErrorInboundData_ErrorXml" StoreEntitySet="ErrorInboundData">
-      <EndProperty Name="ErrorXml">
-        <ScalarProperty Name="Id" ColumnName="ErrorXmlId" />
-      </EndProperty>
-      <EndProperty Name="ErrorInboundData">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK_ErrorSuggestion_ErrorInboundData" TypeName="STEInterfacesModel.FK_ErrorSuggestion_ErrorInboundData" StoreEntitySet="ErrorSuggestion">
-      <EndProperty Name="ErrorInboundData">
-        <ScalarProperty Name="Id" ColumnName="ErrorInboundDataId" />
-      </EndProperty>
-      <EndProperty Name="ErrorSuggestion">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="Location_SYD">
+      <EntityTypeMapping TypeName="STEInterfacesModel.Location_SYD">
+        <MappingFragment StoreEntitySet="Location_SYD">
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="postcode" ColumnName="postcode" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="nearest_depot" ColumnName="nearest_depot" />
+          <ScalarProperty Name="servicing_city" ColumnName="servicing_city" />
+          <ScalarProperty Name="direct_zone" ColumnName="direct_zone" />
+          <ScalarProperty Name="onforwarding_zone" ColumnName="onforwarding_zone" />
+          <ScalarProperty Name="alt_servicing_city" ColumnName="alt_servicing_city" />
+          <ScalarProperty Name="alt_onforwarding_zone" ColumnName="alt_onforwarding_zone" />
+          <ScalarProperty Name="alt_route_states" ColumnName="alt_route_states" />
+          <ScalarProperty Name="lead_days_EXP" ColumnName="lead_days_EXP" />
+          <ScalarProperty Name="lead_days_PAC" ColumnName="lead_days_PAC" />
+          <ScalarProperty Name="lead_days_1KN" ColumnName="lead_days_1KN" />
+          <ScalarProperty Name="lead_days_1PN" ColumnName="lead_days_1PN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

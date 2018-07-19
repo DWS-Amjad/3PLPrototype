@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 using ValidationRuleEngine.Interfaces;
 
@@ -22,7 +19,7 @@ namespace SampleInstances
 
         public bool Validate(object obj)
         {
-            Console.WriteLine("Stay Tune Folks: AccelosLookupValidator To be implemented");
+            Console.WriteLine("Stay Tuned Folks: AccelosLookupValidator To be implemented soon");
             return(true);
         }
     }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Net.Mail;
 using System.Xml.Serialization;
-using ValidationRuleEngine;
 using ValidationRuleEngine.Interfaces;
 
 namespace SampleInstances
@@ -56,24 +54,25 @@ namespace SampleInstances
             bool retVal = true;
             try
             {
-                String userName = this.From;//fromAddressUserName;
-                String password = this.From_password;// setting.fromPassword;
-                MailMessage msg = new MailMessage(this.From/*setting.fromAddress*/, this.To/*setting.toAddress*/);
-                msg.Subject = this.Subject/*setting.Subject*/;
+                Console.WriteLine("Stay Tuned Folks: EmailAlertAction To be implemented soon");
+                /*String userName = this.From;
+                String password = this.From_password;
+                MailMessage msg = new MailMessage(this.From, this.To);
+                msg.Subject = this.Subject;
                 msg.IsBodyHtml = true;
                 msg.Body = this.executeOn.Equals(Constants.ExecuteOn.success) 
                     ? this.SuccessMessage
-                    : this.FailureMessage/*setting.body*/;
+                    : this.FailureMessage;
 
                 SmtpClient SmtpClient = new SmtpClient();
                 SmtpClient.UseDefaultCredentials = false;
                 SmtpClient.Credentials = new System.Net.NetworkCredential(userName, password);
-                SmtpClient.Host = this.smtp_host/*setting.SMTP_Host*/;
-                SmtpClient.Port = this.smtp_port/*setting.SMTP_Port*/;
+                SmtpClient.Host = this.smtp_host;
+                SmtpClient.Port = this.smtp_port;
                 
                 SmtpClient.EnableSsl = true;
                 
-                SmtpClient.Send(msg);
+                SmtpClient.Send(msg);*/
             }
             catch (Exception)
             {

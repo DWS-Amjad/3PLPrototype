@@ -3,7 +3,6 @@ using DAL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -42,23 +41,22 @@ namespace SampleInstances
         #endregion
 
         #region RepositoryObjectDeclaration
-            private STEInterfacesEntities entities = new STEInterfacesEntities();
-            private ApplicationLogRepository repoAppLog;
-            private ApplicationEventMasterRepository repoEventMaster;
-            private ApplicationMasterRepository repoApplicationMaster;
-            private ErrorInboundDataRepository repoErrInbound;
-            private ErrorXmlRepository repoErrorXml;
-            private ErrorSuggestionRepository repoErrSuggestion;
+            private IGenericRepository<ApplicationLog> repoAppLog;
+            private IGenericRepository<ApplicationEventMaster> repoEventMaster;
+            private IGenericRepository<ApplicationMaster> repoApplicationMaster;
+            private IGenericRepository<ErrorInboundData> repoErrInbound;
+            private IGenericRepository<ErrorXml> repoErrorXml;
+            private IGenericRepository<ErrorSuggestion> repoErrSuggestion;
         #endregion
 
         void Initialize()
         {
-            repoAppLog = new ApplicationLogRepository(entities);
-            repoEventMaster = new ApplicationEventMasterRepository(entities);
-            repoApplicationMaster = new ApplicationMasterRepository(entities);
-            repoErrInbound = new ErrorInboundDataRepository(entities);
-            repoErrorXml = new ErrorXmlRepository(entities);
-            repoErrSuggestion = new ErrorSuggestionRepository(entities);
+            repoAppLog = new GenericRepository<ApplicationLog>();
+            repoEventMaster = new GenericRepository<ApplicationEventMaster>();
+            repoApplicationMaster = new GenericRepository<ApplicationMaster>();
+            repoErrInbound = new GenericRepository<ErrorInboundData>();
+            repoErrorXml = new GenericRepository<ErrorXml>();
+            repoErrSuggestion = new GenericRepository<ErrorSuggestion>();
         }
 
         public XsdValidator()
@@ -86,9 +84,9 @@ namespace SampleInstances
                 objApplicationLog.Message = "LoremIpsumMessage";
                 objApplicationLog.TimeStamp = DateTime.Now;
                 objApplicationLog.UserId = "amjad.leghari";
-                objApplicationLog.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
-                objApplicationLog.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Standard_Xml_Validation_Started);
-                repoAppLog.Create(objApplicationLog);
+                objApplicationLog.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
+                objApplicationLog.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Standard_Xml_Validation_Started);
+                repoAppLog.Insert(objApplicationLog);
                 repoAppLog.Save();
             #endregion
 
@@ -116,9 +114,9 @@ namespace SampleInstances
                 obj1.Message = "LoremIpsumMessage";
                 obj1.TimeStamp = DateTime.Now;
                 obj1.UserId = "amjad.leghari";
-                obj1.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
-                obj1.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Standard_Xml_Validation_Succeeded);
-                repoAppLog.Create(objApplicationLog);
+                obj1.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
+                obj1.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Standard_Xml_Validation_Succeeded);
+                repoAppLog.Insert(objApplicationLog);
                 repoAppLog.Save();
                 #endregion
             }
@@ -144,9 +142,9 @@ namespace SampleInstances
                         objAppLog.Message = "LoremIpsumMessage";
                         objAppLog.TimeStamp = DateTime.Now;
                         objAppLog.UserId = "amjad.leghari";
-                        objAppLog.ApplicationMaster = repoApplicationMaster.SelectById(Constants.ApplicationId);
-                        objAppLog.ApplicationEventMaster = repoEventMaster.SelectById(Constants.EventType.Standard_Xml_Validation_Failed);
-                        repoAppLog.Create(objAppLog);
+                        objAppLog.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
+                        objAppLog.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Standard_Xml_Validation_Failed);
+                        repoAppLog.Insert(objAppLog);
                         repoAppLog.Save();
                     #endregion
                 }
@@ -180,7 +178,7 @@ namespace SampleInstances
                         currentErrorXml.XmlContent = inProcessXML;
                         currentErrorXml.Client_Code = "dummyClientCode";
                         currentErrorXml.DocumentUniqueId = "dummyId";
-                        repoErrorXml.Create(currentErrorXml);
+                        repoErrorXml.Insert(currentErrorXml);
                         repoErrorXml.Save();
                     }
                 #endregion
@@ -197,9 +195,9 @@ namespace SampleInstances
                     objErrInbound.DataPath = xpath.Reverse().Aggregate(string.Empty, (x, y) => x + "/" + y);
                     objErrInbound.DataType = "not available";
                     objErrInbound.ErrorType = "not available";
-                    objErrInbound.ErrorXml = repoErrorXml.SelectById(currentErrorXml.Id);
+                    objErrInbound.ErrorXml = repoErrorXml.SelectByID(currentErrorXml.Id);
 
-                    repoErrInbound.Create(objErrInbound);
+                    repoErrInbound.Insert(objErrInbound);
                     repoErrInbound.Save();
                 #endregion
             }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAL</RootNamespace>
     <AssemblyName>DAL</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -33,10 +33,15 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -45,24 +50,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\STEInterfacesEntities.cs" />
+    <Compile Include="Models\ApplicationEventMaster.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApplicationLog.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApplicationMaster.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ErrorInboundData.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ErrorSuggestion.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ErrorXml.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Location_SYD.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\LocationCustomRepository.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
+    <Compile Include="Models\STEInterfaces.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STEInterfaces.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STEInterfaces.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STEInterfaces.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>STEInterfaces.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Repository\ApplicationEventMasterRepository.cs" />
-    <Compile Include="Repository\ApplicationLogRepository.cs" />
-    <Compile Include="Repository\ApplicationMasterRepository.cs" />
-    <Compile Include="Repository\ErrorInboundDataRepository.cs" />
-    <Compile Include="Repository\ErrorSuggestionRepository.cs" />
-    <Compile Include="Repository\ErrorXmlRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <EntityDeploy Include="Models\STEInterfaces.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>STEInterfaces.Designer.cs</LastGenOutput>
@@ -70,10 +103,22 @@
     <None Include="Models\STEInterfaces.edmx.diagram">
       <DependentUpon>STEInterfaces.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\STEInterfaces.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>STEInterfaces.edmx</DependentUpon>
+      <LastGenOutput>STEInterfaces.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\STEInterfaces.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>STEInterfaces.edmx</DependentUpon>
+      <LastGenOutput>STEInterfaces.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

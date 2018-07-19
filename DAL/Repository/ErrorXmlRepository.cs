@@ -57,7 +57,7 @@ namespace DAL.Repository
         {
             try
             {
-                db.AddToErrorXmls(obj);
+                db.ErrorXmls.Add(obj);
             }
             catch (Exception)
             {

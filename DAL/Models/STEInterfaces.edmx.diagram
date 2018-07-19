@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7def0ca8483f4ff3925be54f3e6311c1" Name="Diagram1">
-        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationEventMaster" Width="2.125" PointX="0.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationLog" Width="2" PointX="3.375" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationMaster" Width="2.125" PointX="6.625" PointY="6" IsExpanded="true" />
+      <Diagram DiagramId="b86f9347824f48fdbfd5672eb240b36f" Name="Diagram1">
+        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationEventMaster" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationLog" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationMaster" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="STEInterfacesModel.ErrorInboundData" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="STEInterfacesModel.ErrorSuggestion" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ErrorXml" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ErrorXml" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.Location_SYD" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="STEInterfacesModel.FK_ApplicationLog_ApplicationEventMaster" ManuallyRouted="false" />
         <AssociationConnector Association="STEInterfacesModel.FK_ApplicationLog_ApplicationMaster" ManuallyRouted="false" />
         <AssociationConnector Association="STEInterfacesModel.FK_ErrorInboundData_ErrorXml" ManuallyRouted="false" />

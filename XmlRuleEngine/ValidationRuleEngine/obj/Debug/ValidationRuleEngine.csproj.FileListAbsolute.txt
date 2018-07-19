@@ -27,3 +27,7 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\obj\Deb
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\obj\Debug\ValidationRuleEngine.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\ValidationRuleEngine.dll.config
 D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\AutoMapper.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\EntityFramework.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\EntityFramework.SqlServer.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\EntityFramework.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\ValidationRuleEngine\bin\Debug\EntityFramework.SqlServer.xml

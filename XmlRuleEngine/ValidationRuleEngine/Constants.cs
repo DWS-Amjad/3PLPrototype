@@ -12,6 +12,14 @@
             public static readonly int Standard_Xml_Validation_Failed = 9;
         }
 
+        public static class LocationMatch
+        {
+            public static readonly int WithoutModification = 0;
+            public static readonly int StripParenthesis = 1;
+            public static readonly int MatchStringAfterSpace = 2;
+            public static readonly int MatchFirst5Chars = 3;
+        }
+
         public static readonly int ApplicationId = 1;
 
         public static class ExecuteOn
