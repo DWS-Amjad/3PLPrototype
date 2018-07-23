@@ -40,45 +40,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ErrorInboundDatas">
-      <EntityTypeMapping TypeName="STEInterfacesModel.ErrorInboundData">
-        <MappingFragment StoreEntitySet="ErrorInboundData">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
-          <ScalarProperty Name="DataType" ColumnName="DataType" />
-          <ScalarProperty Name="DataKey" ColumnName="DataKey" />
-          <ScalarProperty Name="DataValue" ColumnName="DataValue" />
-          <ScalarProperty Name="DataPath" ColumnName="DataPath" />
-          <ScalarProperty Name="SysErrorMsg" ColumnName="SysErrorMsg" />
-          <ScalarProperty Name="CustomErrorMsg" ColumnName="CustomErrorMsg" />
-          <ScalarProperty Name="IsRectifiable" ColumnName="IsRectifiable" />
-          <ScalarProperty Name="ErrorXmlId" ColumnName="ErrorXmlId" />
-          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ErrorSuggestions">
-      <EntityTypeMapping TypeName="STEInterfacesModel.ErrorSuggestion">
-        <MappingFragment StoreEntitySet="ErrorSuggestion">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ErrorInboundDataId" ColumnName="ErrorInboundDataId" />
-          <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
-          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ErrorXmls">
-      <EntityTypeMapping TypeName="STEInterfacesModel.ErrorXml">
-        <MappingFragment StoreEntitySet="ErrorXml">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Client_Code" ColumnName="Client_Code" />
-          <ScalarProperty Name="Warehouse_Code" ColumnName="Warehouse_Code" />
-          <ScalarProperty Name="XmlContent" ColumnName="XmlContent" />
-          <ScalarProperty Name="DocumentUniqueId" ColumnName="DocumentUniqueId" />
-          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Location_SYD">
       <EntityTypeMapping TypeName="STEInterfacesModel.Location_SYD">
         <MappingFragment StoreEntitySet="Location_SYD">
@@ -97,6 +58,60 @@
           <ScalarProperty Name="lead_days_PAC" ColumnName="lead_days_PAC" />
           <ScalarProperty Name="lead_days_1KN" ColumnName="lead_days_1KN" />
           <ScalarProperty Name="lead_days_1PN" ColumnName="lead_days_1PN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorInboundDatas">
+      <EntityTypeMapping TypeName="STEInterfacesModel.ErrorInboundData">
+        <MappingFragment StoreEntitySet="ErrorInboundData">
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="ErrorXmlId" ColumnName="ErrorXmlId" />
+          <ScalarProperty Name="IsRectifiable" ColumnName="IsRectifiable" />
+          <ScalarProperty Name="CustomErrorMsg" ColumnName="CustomErrorMsg" />
+          <ScalarProperty Name="SysErrorMsg" ColumnName="SysErrorMsg" />
+          <ScalarProperty Name="DataPath" ColumnName="DataPath" />
+          <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+          <ScalarProperty Name="DataKey" ColumnName="DataKey" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorXmls">
+      <EntityTypeMapping TypeName="STEInterfacesModel.ErrorXml">
+        <MappingFragment StoreEntitySet="ErrorXml">
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="DocumentUniqueId" ColumnName="DocumentUniqueId" />
+          <ScalarProperty Name="XmlContent" ColumnName="XmlContent" />
+          <ScalarProperty Name="Warehouse_Code" ColumnName="Warehouse_Code" />
+          <ScalarProperty Name="Client_Code" ColumnName="Client_Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Error_Suggestion_InboundData_Mapper">
+      <EntityTypeMapping TypeName="STEInterfacesModel.Error_Suggestion_InboundData_Mapper">
+        <MappingFragment StoreEntitySet="Error_Suggestion_InboundData_Mapper">
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="ErrorInboundDataId" ColumnName="ErrorInboundDataId" />
+          <ScalarProperty Name="ErrorSuggestionId" ColumnName="ErrorSuggestionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorSuggestions">
+      <EntityTypeMapping TypeName="STEInterfacesModel.ErrorSuggestion">
+        <MappingFragment StoreEntitySet="ErrorSuggestion">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

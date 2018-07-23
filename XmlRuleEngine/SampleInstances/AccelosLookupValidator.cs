@@ -1,24 +1,16 @@
 ﻿using System;
+using System.Xml.Linq;
 using System.Xml.Serialization;
-using ValidationRuleEngine.Interfaces;
 
 namespace SampleInstances
 {
     [Serializable]
     [XmlRoot(ElementName = "validation")]
-    public class AccelosLookupValidator : IValidation
+    public class AccelosLookupValidator : ValidationRuleEngine.Implementations.Validation
     {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-
-        [XmlAttribute("validator_type")]
-        public string validator_type { get; set; }
-
-        [XmlAttribute("enabled")]
-        public bool enabled { get; set; }
-
-        public bool Validate(object obj)
+        public override bool Validate(object obj, XDocument currXDocument, string DocumentType, string orderNumber, string orderDate)
         {
+            base.Validate(obj, currXDocument, DocumentType, orderNumber, orderDate);
             Console.WriteLine("Stay Tuned Folks: AccelosLookupValidator To be implemented soon");
             return(true);
         }

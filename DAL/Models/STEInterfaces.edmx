@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="STEInterfacesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="STEInterfacesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApplicationEventMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -41,6 +41,15 @@
           <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Error_Suggestion_InboundData_Mapper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ErrorSuggestionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ErrorInboundDataId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="ErrorInboundData">
           <Key>
             <PropertyRef Name="Id" />
@@ -62,9 +71,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ErrorInboundDataId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Suggestion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ErrorXml">
           <Key>
@@ -75,6 +87,8 @@
           <Property Name="Warehouse_Code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="XmlContent" Type="xml" Nullable="false" />
           <Property Name="DocumentUniqueId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="255" />
+          <Property Name="OrderDate" Type="datetime" />
           <Property Name="TimeStamp" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Location_SYD">
@@ -121,6 +135,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData">
+          <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="1" />
+          <End Role="Error_Suggestion_InboundData_Mapper" Type="Self.Error_Suggestion_InboundData_Mapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ErrorInboundData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Error_Suggestion_InboundData_Mapper">
+              <PropertyRef Name="ErrorInboundDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion">
+          <End Role="ErrorSuggestion" Type="Self.ErrorSuggestion" Multiplicity="1" />
+          <End Role="Error_Suggestion_InboundData_Mapper" Type="Self.Error_Suggestion_InboundData_Mapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ErrorSuggestion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Error_Suggestion_InboundData_Mapper">
+              <PropertyRef Name="ErrorSuggestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ErrorInboundData_ErrorXml">
           <End Role="ErrorXml" Type="Self.ErrorXml" Multiplicity="1" />
           <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="*" />
@@ -133,22 +171,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ErrorSuggestion_ErrorInboundData">
-          <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="1" />
-          <End Role="ErrorSuggestion" Type="Self.ErrorSuggestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ErrorInboundData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ErrorSuggestion">
-              <PropertyRef Name="ErrorInboundDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="STEInterfacesModelStoreContainer">
           <EntitySet Name="ApplicationEventMaster" EntityType="Self.ApplicationEventMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApplicationLog" EntityType="Self.ApplicationLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApplicationMaster" EntityType="Self.ApplicationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Error_Suggestion_InboundData_Mapper" EntityType="Self.Error_Suggestion_InboundData_Mapper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorInboundData" EntityType="Self.ErrorInboundData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorSuggestion" EntityType="Self.ErrorSuggestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorXml" EntityType="Self.ErrorXml" Schema="dbo" store:Type="Tables" />
@@ -161,17 +188,20 @@
             <End Role="ApplicationMaster" EntitySet="ApplicationMaster" />
             <End Role="ApplicationLog" EntitySet="ApplicationLog" />
           </AssociationSet>
+          <AssociationSet Name="FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData" Association="Self.FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData">
+            <End Role="ErrorInboundData" EntitySet="ErrorInboundData" />
+            <End Role="Error_Suggestion_InboundData_Mapper" EntitySet="Error_Suggestion_InboundData_Mapper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion" Association="Self.FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion">
+            <End Role="ErrorSuggestion" EntitySet="ErrorSuggestion" />
+            <End Role="Error_Suggestion_InboundData_Mapper" EntitySet="Error_Suggestion_InboundData_Mapper" />
+          </AssociationSet>
           <AssociationSet Name="FK_ErrorInboundData_ErrorXml" Association="Self.FK_ErrorInboundData_ErrorXml">
             <End Role="ErrorXml" EntitySet="ErrorXml" />
             <End Role="ErrorInboundData" EntitySet="ErrorInboundData" />
           </AssociationSet>
-          <AssociationSet Name="FK_ErrorSuggestion_ErrorInboundData" Association="Self.FK_ErrorSuggestion_ErrorInboundData">
-            <End Role="ErrorInboundData" EntitySet="ErrorInboundData" />
-            <End Role="ErrorSuggestion" EntitySet="ErrorSuggestion" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="STEInterfacesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -214,46 +244,6 @@
           <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ApplicationLogs" Relationship="Self.FK_ApplicationLog_ApplicationMaster" FromRole="ApplicationMaster" ToRole="ApplicationLog" />
-        </EntityType>
-        <EntityType Name="ErrorInboundData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="ErrorType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SysErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CustomErrorMsg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsRectifiable" Type="Boolean" Nullable="false" />
-          <Property Name="ErrorXmlId" Type="Guid" Nullable="false" />
-          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ErrorXml" Relationship="Self.FK_ErrorInboundData_ErrorXml" FromRole="ErrorInboundData" ToRole="ErrorXml" />
-          <NavigationProperty Name="ErrorSuggestions" Relationship="Self.FK_ErrorSuggestion_ErrorInboundData" FromRole="ErrorInboundData" ToRole="ErrorSuggestion" />
-        </EntityType>
-        <EntityType Name="ErrorSuggestion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="ErrorInboundDataId" Type="Guid" Nullable="false" />
-          <Property Name="Suggestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ErrorInboundData" Relationship="Self.FK_ErrorSuggestion_ErrorInboundData" FromRole="ErrorSuggestion" ToRole="ErrorInboundData" />
-        </EntityType>
-        <EntityType Name="ErrorXml">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Client_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Warehouse_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="XmlContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DocumentUniqueId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ErrorInboundDatas" Relationship="Self.FK_ErrorInboundData_ErrorXml" FromRole="ErrorXml" ToRole="ErrorInboundData" />
         </EntityType>
         <EntityType Name="Location_SYD">
           <Key>
@@ -299,37 +289,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ErrorInboundData_ErrorXml">
-          <End Role="ErrorXml" Type="Self.ErrorXml" Multiplicity="1" />
-          <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ErrorXml">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ErrorInboundData">
-              <PropertyRef Name="ErrorXmlId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ErrorSuggestion_ErrorInboundData">
-          <End Role="ErrorInboundData" Type="Self.ErrorInboundData" Multiplicity="1" />
-          <End Role="ErrorSuggestion" Type="Self.ErrorSuggestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ErrorInboundData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ErrorSuggestion">
-              <PropertyRef Name="ErrorInboundDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="STEInterfacesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ApplicationEventMasters" EntityType="Self.ApplicationEventMaster" />
           <EntitySet Name="ApplicationLogs" EntityType="Self.ApplicationLog" />
           <EntitySet Name="ApplicationMasters" EntityType="Self.ApplicationMaster" />
-          <EntitySet Name="ErrorInboundDatas" EntityType="Self.ErrorInboundData" />
-          <EntitySet Name="ErrorSuggestions" EntityType="Self.ErrorSuggestion" />
-          <EntitySet Name="ErrorXmls" EntityType="Self.ErrorXml" />
           <EntitySet Name="Location_SYD" EntityType="Self.Location_SYD" />
           <AssociationSet Name="FK_ApplicationLog_ApplicationEventMaster" Association="Self.FK_ApplicationLog_ApplicationEventMaster">
             <End Role="ApplicationEventMaster" EntitySet="ApplicationEventMasters" />
@@ -339,15 +302,115 @@
             <End Role="ApplicationMaster" EntitySet="ApplicationMasters" />
             <End Role="ApplicationLog" EntitySet="ApplicationLogs" />
           </AssociationSet>
-          <AssociationSet Name="FK_ErrorInboundData_ErrorXml" Association="Self.FK_ErrorInboundData_ErrorXml">
+          <EntitySet Name="ErrorInboundDatas" EntityType="STEInterfacesModel.ErrorInboundData" />
+          <EntitySet Name="ErrorXmls" EntityType="STEInterfacesModel.ErrorXml" />
+          <AssociationSet Name="FK_ErrorInboundData_ErrorXml" Association="STEInterfacesModel.FK_ErrorInboundData_ErrorXml">
             <End Role="ErrorXml" EntitySet="ErrorXmls" />
             <End Role="ErrorInboundData" EntitySet="ErrorInboundDatas" />
           </AssociationSet>
-          <AssociationSet Name="FK_ErrorSuggestion_ErrorInboundData" Association="Self.FK_ErrorSuggestion_ErrorInboundData">
+          <EntitySet Name="Error_Suggestion_InboundData_Mapper" EntityType="STEInterfacesModel.Error_Suggestion_InboundData_Mapper" />
+          <AssociationSet Name="FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData" Association="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData">
             <End Role="ErrorInboundData" EntitySet="ErrorInboundDatas" />
+            <End Role="Error_Suggestion_InboundData_Mapper" EntitySet="Error_Suggestion_InboundData_Mapper" />
+          </AssociationSet>
+          <EntitySet Name="ErrorSuggestions" EntityType="STEInterfacesModel.ErrorSuggestion" />
+          <AssociationSet Name="FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion" Association="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion">
             <End Role="ErrorSuggestion" EntitySet="ErrorSuggestions" />
+            <End Role="Error_Suggestion_InboundData_Mapper" EntitySet="Error_Suggestion_InboundData_Mapper" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ErrorInboundData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ErrorType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataPath" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SysErrorMsg" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustomErrorMsg" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsRectifiable" Type="Boolean" Nullable="false" />
+          <Property Name="ErrorXmlId" Type="Guid" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ErrorXml" Relationship="STEInterfacesModel.FK_ErrorInboundData_ErrorXml" FromRole="ErrorInboundData" ToRole="ErrorXml" />
+          <NavigationProperty Name="Error_Suggestion_InboundData_Mapper" Relationship="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData" FromRole="ErrorInboundData" ToRole="Error_Suggestion_InboundData_Mapper" />
+        </EntityType>
+        <EntityType Name="ErrorXml">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Client_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Warehouse_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="XmlContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentUniqueId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ErrorInboundDatas" Relationship="STEInterfacesModel.FK_ErrorInboundData_ErrorXml" FromRole="ErrorXml" ToRole="ErrorInboundData" />
+        </EntityType>
+        <Association Name="FK_ErrorInboundData_ErrorXml">
+          <End Type="STEInterfacesModel.ErrorXml" Role="ErrorXml" Multiplicity="1" />
+          <End Type="STEInterfacesModel.ErrorInboundData" Role="ErrorInboundData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ErrorXml">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ErrorInboundData">
+              <PropertyRef Name="ErrorXmlId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Error_Suggestion_InboundData_Mapper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ErrorSuggestionId" Type="Guid" Nullable="false" />
+          <Property Name="ErrorInboundDataId" Type="Guid" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ErrorInboundData" Relationship="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData" FromRole="Error_Suggestion_InboundData_Mapper" ToRole="ErrorInboundData" />
+          <NavigationProperty Name="ErrorSuggestion" Relationship="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion" FromRole="Error_Suggestion_InboundData_Mapper" ToRole="ErrorSuggestion" />
+        </EntityType>
+        <Association Name="FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData">
+          <End Type="STEInterfacesModel.ErrorInboundData" Role="ErrorInboundData" Multiplicity="1" />
+          <End Type="STEInterfacesModel.Error_Suggestion_InboundData_Mapper" Role="Error_Suggestion_InboundData_Mapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ErrorInboundData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Error_Suggestion_InboundData_Mapper">
+              <PropertyRef Name="ErrorInboundDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ErrorSuggestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Suggestion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Error_Suggestion_InboundData_Mapper" Relationship="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion" FromRole="ErrorSuggestion" ToRole="Error_Suggestion_InboundData_Mapper" />
+        </EntityType>
+        <Association Name="FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion">
+          <End Type="STEInterfacesModel.ErrorSuggestion" Role="ErrorSuggestion" Multiplicity="1" />
+          <End Type="STEInterfacesModel.Error_Suggestion_InboundData_Mapper" Role="Error_Suggestion_InboundData_Mapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ErrorSuggestion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Error_Suggestion_InboundData_Mapper">
+              <PropertyRef Name="ErrorSuggestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -393,45 +456,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ErrorInboundDatas">
-            <EntityTypeMapping TypeName="STEInterfacesModel.ErrorInboundData">
-              <MappingFragment StoreEntitySet="ErrorInboundData">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
-                <ScalarProperty Name="DataType" ColumnName="DataType" />
-                <ScalarProperty Name="DataKey" ColumnName="DataKey" />
-                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
-                <ScalarProperty Name="DataPath" ColumnName="DataPath" />
-                <ScalarProperty Name="SysErrorMsg" ColumnName="SysErrorMsg" />
-                <ScalarProperty Name="CustomErrorMsg" ColumnName="CustomErrorMsg" />
-                <ScalarProperty Name="IsRectifiable" ColumnName="IsRectifiable" />
-                <ScalarProperty Name="ErrorXmlId" ColumnName="ErrorXmlId" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ErrorSuggestions">
-            <EntityTypeMapping TypeName="STEInterfacesModel.ErrorSuggestion">
-              <MappingFragment StoreEntitySet="ErrorSuggestion">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ErrorInboundDataId" ColumnName="ErrorInboundDataId" />
-                <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ErrorXmls">
-            <EntityTypeMapping TypeName="STEInterfacesModel.ErrorXml">
-              <MappingFragment StoreEntitySet="ErrorXml">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Client_Code" ColumnName="Client_Code" />
-                <ScalarProperty Name="Warehouse_Code" ColumnName="Warehouse_Code" />
-                <ScalarProperty Name="XmlContent" ColumnName="XmlContent" />
-                <ScalarProperty Name="DocumentUniqueId" ColumnName="DocumentUniqueId" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Location_SYD">
             <EntityTypeMapping TypeName="STEInterfacesModel.Location_SYD">
               <MappingFragment StoreEntitySet="Location_SYD">
@@ -450,6 +474,60 @@
                 <ScalarProperty Name="lead_days_PAC" ColumnName="lead_days_PAC" />
                 <ScalarProperty Name="lead_days_1KN" ColumnName="lead_days_1KN" />
                 <ScalarProperty Name="lead_days_1PN" ColumnName="lead_days_1PN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorInboundDatas">
+            <EntityTypeMapping TypeName="STEInterfacesModel.ErrorInboundData">
+              <MappingFragment StoreEntitySet="ErrorInboundData">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="ErrorXmlId" ColumnName="ErrorXmlId" />
+                <ScalarProperty Name="IsRectifiable" ColumnName="IsRectifiable" />
+                <ScalarProperty Name="CustomErrorMsg" ColumnName="CustomErrorMsg" />
+                <ScalarProperty Name="SysErrorMsg" ColumnName="SysErrorMsg" />
+                <ScalarProperty Name="DataPath" ColumnName="DataPath" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+                <ScalarProperty Name="DataKey" ColumnName="DataKey" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorXmls">
+            <EntityTypeMapping TypeName="STEInterfacesModel.ErrorXml">
+              <MappingFragment StoreEntitySet="ErrorXml">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="DocumentUniqueId" ColumnName="DocumentUniqueId" />
+                <ScalarProperty Name="XmlContent" ColumnName="XmlContent" />
+                <ScalarProperty Name="Warehouse_Code" ColumnName="Warehouse_Code" />
+                <ScalarProperty Name="Client_Code" ColumnName="Client_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Error_Suggestion_InboundData_Mapper">
+            <EntityTypeMapping TypeName="STEInterfacesModel.Error_Suggestion_InboundData_Mapper">
+              <MappingFragment StoreEntitySet="Error_Suggestion_InboundData_Mapper">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="ErrorInboundDataId" ColumnName="ErrorInboundDataId" />
+                <ScalarProperty Name="ErrorSuggestionId" ColumnName="ErrorSuggestionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorSuggestions">
+            <EntityTypeMapping TypeName="STEInterfacesModel.ErrorSuggestion">
+              <MappingFragment StoreEntitySet="ErrorSuggestion">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

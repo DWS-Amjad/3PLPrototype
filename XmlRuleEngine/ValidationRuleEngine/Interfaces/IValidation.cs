@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace ValidationRuleEngine.Interfaces
 {
@@ -9,8 +10,9 @@ namespace ValidationRuleEngine.Interfaces
         string validator_type { get; set; }
 
         bool enabled { get; set; }
+        
+        bool Validate(Object obj, XDocument currXDocument, string documentType, string orderNumber, string orderDate);
 
-        bool Validate(Object obj);
-        //bool Validate(IValidationContext context);
+        void LoadOrderVariables(XDocument currXDocument, string DocumentType, string order_number_path, string order_date_path);
     }
 }

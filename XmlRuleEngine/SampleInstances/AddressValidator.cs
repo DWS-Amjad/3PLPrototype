@@ -1,10 +1,13 @@
-﻿using DAL.Models;
+﻿using DAL;
+using DAL.Models;
 using DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
+using ValidationRuleEngine;
 using ValidationRuleEngine.Interfaces;
 using static ValidationRuleEngine.Constants;
 
@@ -12,17 +15,8 @@ namespace SampleInstances
 {
     [Serializable]
     [XmlRoot(ElementName = "validation")]
-    public class AddressValidator : IValidation
+    public class AddressValidator : ValidationRuleEngine.Implementations.Validation
     {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-
-        [XmlAttribute("validator_type")]
-        public string validator_type { get; set; }
-
-        [XmlAttribute("enabled")]
-        public bool enabled { get; set; }
-
         #region Custom Properties
             [XmlElement("post_code")]
             public string postCode { get; set; }
@@ -42,6 +36,10 @@ namespace SampleInstances
 
         #endregion
 
+        #region RepositoryObjectDeclaration
+            private UnitOfWork unitOfWork = new UnitOfWork();
+        #endregion
+
         public AddressValidator()
         {
 
@@ -54,12 +52,12 @@ namespace SampleInstances
             this.varState = state.Trim();
         }
 
-        public void LoadVariables(XPathNavigator xpatheNavigator)
+        public void LoadVariables(XPathNavigator xpathNavigator)
         {
             //run the XPath query
-            XPathNodeIterator xPathLocation = xpatheNavigator.Select(Location);
-            XPathNodeIterator xPathPostCode = xpatheNavigator.Select(postCode);
-            XPathNodeIterator xPathState = xpatheNavigator.Select(State);
+            XPathNodeIterator xPathLocation = xpathNavigator.Select(Location);
+            XPathNodeIterator xPathPostCode = xpathNavigator.Select(postCode);
+            XPathNodeIterator xPathState = xpathNavigator.Select(State);
 
             //use the XPathNodeIterator to display the results
             if (xPathLocation.Count > 0)
@@ -103,10 +101,10 @@ namespace SampleInstances
                 Console.WriteLine("No State found in Sales Order.");
             }
         }
-                
-
-        public bool Validate(object obj)
+        
+        public override bool Validate(object obj, XDocument currXDocument, string DocumentType, string orderNumber, string orderDate)
         {
+            base.Validate(obj, currXDocument, DocumentType, orderNumber, orderDate);
             Console.WriteLine("Stay Tuned Folks: AddressValidator To be implemented soon");
             IValidationContext context = (IValidationContext)obj;
             XDocument CurrentXmlDocument = new XDocument();
@@ -114,9 +112,9 @@ namespace SampleInstances
             if (!String.IsNullOrEmpty(Location))
             {
                 XPathDocument xPathDoc = new XPathDocument(context.ParentElement.CreateReader());
-                var xpatheNavigator = xPathDoc.CreateNavigator();
+                var xpathNavigator = xPathDoc.CreateNavigator();
 
-                LoadVariables(xpatheNavigator);
+                LoadVariables(xpathNavigator);
             }
 
             return ValidateAddressFields();
@@ -146,6 +144,46 @@ namespace SampleInstances
                 // Then return 0;
                 if (String.IsNullOrEmpty(varLocation))
                 {
+                    // Make entry in ErrorXML, ErrorInboundData & ErrorSuggestion
+                    #region ErrorXml
+                        ErrorXml objErrorXml = new ErrorXml();
+                        objErrorXml.Id = Guid.NewGuid();
+                        objErrorXml.TimeStamp = DateTime.Now;
+                        objErrorXml.Warehouse_Code = "dummyWHCode";
+                        objErrorXml.XmlContent = String.IsNullOrEmpty(this.inProcessXML) ? "test xml" : this.inProcessXML;
+                        objErrorXml.Client_Code = "dummyClientCode";
+                        objErrorXml.DocumentUniqueId = "dummy doc unique field";
+                        objErrorXml.OrderDate = DateTime.ParseExact(String.IsNullOrEmpty(varOrderDate) ? "20180503" : varOrderDate, "yyyyMMdd", CultureInfo.InvariantCulture);
+                        objErrorXml.DocumentType = varDocumentType;
+                        unitOfWork.ErrorXmlRepository.Insert(objErrorXml);
+                        unitOfWork.Save();
+                    #endregion
+
+                    #region ErrorInboundData
+                        ErrorInboundData errInboundData = new ErrorInboundData();
+                        errInboundData.Id = Guid.NewGuid();
+                        errInboundData.CustomErrorMsg = "";
+                        errInboundData.DataPath = "dummy value";
+                        errInboundData.DataKey = "suburb";
+                        errInboundData.DataValue = "";
+                        errInboundData.DataType = "suburb";
+                        errInboundData.ErrorType = "";
+                        errInboundData.ErrorXmlId = objErrorXml.Id;
+                        errInboundData.SysErrorMsg = "Suburb value is either null/empty or invalid";
+                        errInboundData.TimeStamp = DateTime.Now;
+                        unitOfWork.ErrorInboundRepository.Insert(errInboundData);
+                        unitOfWork.Save();
+                    #endregion
+
+                    #region ErrorSuggestion
+                        Error_Suggestion_InboundData_Mapper esidmapObj = new Error_Suggestion_InboundData_Mapper();
+                        esidmapObj.Id = Guid.NewGuid();
+                        esidmapObj.ErrorSuggestionId = Constants.Suggestions.InvalidSuburb;
+                        esidmapObj.ErrorInboundDataId = errInboundData.Id;
+                        esidmapObj.DateTime = DateTime.Now;
+                        unitOfWork.ErrorSuggestion_InboundDataRepository.Insert(esidmapObj);
+                        unitOfWork.Save();
+                    #endregion
                     return false;
                 }
                 else
@@ -224,6 +262,46 @@ namespace SampleInstances
                     {
                         if (Locations.Count > 1)
                         {
+                            #region ErrorXml
+                                ErrorXml objErrorXml = new ErrorXml();
+                                objErrorXml.Id = Guid.NewGuid();
+                                objErrorXml.TimeStamp = DateTime.Now;
+                                objErrorXml.Warehouse_Code = "dummyWHCode";
+                                objErrorXml.XmlContent = String.IsNullOrEmpty(this.inProcessXML) ? "test xml" : this.inProcessXML;
+                                objErrorXml.Client_Code = "dummyClientCode";
+                                objErrorXml.DocumentUniqueId = "dummy doc unique field";
+                                objErrorXml.OrderDate = DateTime.ParseExact(String.IsNullOrEmpty(varOrderDate) ? "20180503" : varOrderDate, "yyyyMMdd", CultureInfo.InvariantCulture);
+                                objErrorXml.DocumentType = varDocumentType;
+                                unitOfWork.ErrorXmlRepository.Insert(objErrorXml);
+                                unitOfWork.Save();
+                            #endregion
+
+                            #region ErrorInboundData
+                                ErrorInboundData errInboundData = new ErrorInboundData();
+                                errInboundData.Id = Guid.NewGuid();
+                                errInboundData.CustomErrorMsg = "";
+                                errInboundData.DataPath = "dummy value";
+                                errInboundData.DataKey = "suburb";
+                                errInboundData.DataValue = "";
+                                errInboundData.DataType = "suburb";
+                                errInboundData.ErrorType = "";
+                                errInboundData.ErrorXmlId = objErrorXml.Id;
+                                errInboundData.SysErrorMsg = "Suburb value is either null/empty or invalid";
+                                errInboundData.TimeStamp = DateTime.Now;
+                                unitOfWork.ErrorInboundRepository.Insert(errInboundData);
+                                unitOfWork.Save();
+                            #endregion
+
+                            #region ErrorSuggestion
+                                Error_Suggestion_InboundData_Mapper esidmapObj = new Error_Suggestion_InboundData_Mapper();
+                                esidmapObj.Id = Guid.NewGuid();
+                                esidmapObj.ErrorSuggestionId = Constants.Suggestions.InvalidSuburbPostCodeState;
+                                esidmapObj.ErrorInboundDataId = errInboundData.Id;
+                                esidmapObj.DateTime = DateTime.Now;
+                                unitOfWork.ErrorSuggestion_InboundDataRepository.Insert(esidmapObj);
+                                unitOfWork.Save();
+                            #endregion
+
                             return false;
                         }
                         else
@@ -264,9 +342,50 @@ namespace SampleInstances
                     var tempLocations = locationCustomRepository.SelectByLocationPostCodeAndState(LocationTemp, varPostCode, stateTemp, LocationMatch.StripParenthesis);
                     if (tempLocations.Count > 1 || tempLocations.Count == 0)
                     {
+                        #region ErrorXml
+                            ErrorXml objErrorXml = new ErrorXml();
+                            objErrorXml.Id = Guid.NewGuid();
+                            objErrorXml.TimeStamp = DateTime.Now;
+                            objErrorXml.Warehouse_Code = "dummyWHCode";
+                            objErrorXml.XmlContent = String.IsNullOrEmpty(this.inProcessXML) ? "test xml" : this.inProcessXML;
+                            objErrorXml.Client_Code = "dummyClientCode";
+                            objErrorXml.DocumentUniqueId = "dummy doc unique field";
+                            objErrorXml.OrderDate = DateTime.ParseExact(String.IsNullOrEmpty(varOrderDate) ? "20180503" : varOrderDate, "yyyyMMdd", CultureInfo.InvariantCulture);
+                            objErrorXml.DocumentType = varDocumentType;
+                            unitOfWork.ErrorXmlRepository.Insert(objErrorXml);
+                            unitOfWork.Save();
+                        #endregion
+
+                        #region ErrorInboundData
+                            ErrorInboundData errInboundData = new ErrorInboundData();
+                            errInboundData.Id = Guid.NewGuid();
+                            errInboundData.CustomErrorMsg = "";
+                            errInboundData.DataPath = "dummy value";
+                            errInboundData.DataKey = "(Suburb / Postcode / State) invalid";
+                            errInboundData.DataValue = "";
+                            errInboundData.DataType = "(Suburb / Postcode / State) invalid";
+                            errInboundData.ErrorType = "";
+                            errInboundData.ErrorXmlId = objErrorXml.Id;
+                            errInboundData.SysErrorMsg = "One of the field(Suburb / Postcode / State) value is either null/empty or invalid";
+                            errInboundData.TimeStamp = DateTime.Now;
+                            unitOfWork.ErrorInboundRepository.Insert(errInboundData);
+                            unitOfWork.Save();
+                        #endregion
+
+                        #region ErrorSuggestion
+                            Error_Suggestion_InboundData_Mapper esidmapObj = new Error_Suggestion_InboundData_Mapper();
+                            esidmapObj.Id = Guid.NewGuid();
+                            esidmapObj.ErrorSuggestionId = Constants.Suggestions.InvalidSuburbPostCodeState;
+                            esidmapObj.ErrorInboundDataId = errInboundData.Id;
+                            esidmapObj.DateTime = DateTime.Now;
+                            unitOfWork.ErrorSuggestion_InboundDataRepository.Insert(esidmapObj);
+                            unitOfWork.Save();
+                        #endregion
+
                         return false;
                     }
-                    else                    {
+                    else
+                    {
                         varLocation = tempLocations[0].location;
                         varState = tempLocations[0].state;
                         continue;

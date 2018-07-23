@@ -15,7 +15,7 @@ namespace DAL.Repository
 
         void Delete(object id);
 
-        void Save();
+        //void Save();
 
         bool Exists(object id);
     }

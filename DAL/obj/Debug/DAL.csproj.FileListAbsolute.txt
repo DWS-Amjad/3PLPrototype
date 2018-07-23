@@ -1,11 +1,11 @@
-D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
-D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\DAL.dll.config
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\DAL.dll
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\DAL.pdb
-D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.dll
-D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\EntityFramework.dll
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\EntityFramework.SqlServer.dll
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\EntityFramework.xml
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

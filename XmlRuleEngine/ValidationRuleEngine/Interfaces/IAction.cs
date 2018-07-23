@@ -9,5 +9,7 @@ namespace ValidationRuleEngine.Interfaces
         string executeOn { get; set; }
 
         bool Execute(Object obj);
+
+        bool enabled { get; set; }
     }
 }

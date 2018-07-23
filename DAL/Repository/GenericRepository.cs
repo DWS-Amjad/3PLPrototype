@@ -140,19 +140,19 @@ namespace DAL.Repository
             }
         }
 
-        public void Save()
-        {
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
-                throw ex;
-            }
+        //public void Save()
+        //{
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
+        //        throw ex;
+        //    }
 
-        }
+        //}
 
         public bool Exists(object id)
         {

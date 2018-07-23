@@ -6,45 +6,40 @@ namespace SampleInstances
 {
     [Serializable]
     [XmlRoot(ElementName = "action")]
-    public class EmailAlertAction : IAction
+    public class EmailAlertAction : ValidationRuleEngine.Implementations.Action
     {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-
-        [XmlAttribute("executeOn")]
-        public string executeOn { get; set; }
-
         #region Custom Properties
+
         [XmlElement("to")]
-        public string To { get; set; }
+            public string To { get; set; }
         
-        [XmlElement("from")]
-        public string From { get; set; }
+            [XmlElement("from")]
+            public string From { get; set; }
 
-        [XmlElement("from_password")]
-        public string From_password { get; set; }
+            [XmlElement("from_password")]
+            public string From_password { get; set; }
 
-        [XmlElement("subject")]
-        public string Subject { get; set; }
+            [XmlElement("subject")]
+            public string Subject { get; set; }
 
-        [XmlElement("successMessage")]
-        public string SuccessMessage { get; set; }
+            [XmlElement("successMessage")]
+            public string SuccessMessage { get; set; }
 
-        [XmlElement("failureMessage")]
-        public string FailureMessage { get; set; }
+            [XmlElement("failureMessage")]
+            public string FailureMessage { get; set; }
 
-        [XmlElement("smtp_host")]
-        public string smtp_host { get; set; }
+            [XmlElement("smtp_host")]
+            public string smtp_host { get; set; }
 
-        [XmlElement("smtp_port")]
-        public int smtp_port { get; set; }
+            [XmlElement("smtp_port")]
+            public int smtp_port { get; set; }
 
         #endregion
 
-        public bool Execute(Object obj)
+        public override bool Execute(Object obj)
         {
             IValidationContext context = (IValidationContext)obj;
-            Console.WriteLine("Name of actionMethod : {0}", Name);
+            Console.WriteLine("Name of actionMethod : {0}", base.Name);
             SendEmail();
             return true;
         }
@@ -78,7 +73,6 @@ namespace SampleInstances
             {
                 retVal = false;
                 throw;
-                //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
             return retVal;
         }

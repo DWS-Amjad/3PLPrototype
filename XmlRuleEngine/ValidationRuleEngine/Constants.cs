@@ -1,4 +1,5 @@
-﻿namespace ValidationRuleEngine
+﻿using System;
+namespace ValidationRuleEngine
 {
     public static class Constants
     {
@@ -26,6 +27,19 @@
         {
             public static readonly string success = "success";
             public static readonly string failure = "failure";
+        }
+
+        public static class Suggestions
+        {
+            public static readonly Guid InvalidSuburb = Guid.Parse("5a61d5c0-398e-e811-8aa2-3cf862661632");
+            public static readonly Guid InvalidPostCode = Guid.Parse("493f0ace-398e-e811-8aa2-3cf862661632");
+            public static readonly Guid InvalidState = Guid.Parse("cd7803e4-398e-e811-8aa2-3cf862661632");
+            public static readonly Guid InvalidSuburbPostCodeState = Guid.Parse("5947d7ae-398e-e811-8aa2-3cf862661632");
+            public static readonly Guid XSD_Invalid_Integer = Guid.Parse("8bd1ae88-3a8e-e811-8aa2-3cf862661632");
+            public static readonly Guid XSD_Invalid_Float = Guid.Parse("2850b2d5-3a8e-e811-8aa2-3cf862661632");
+            public static readonly Guid XSD_Invalid_DateTime = Guid.Parse("1b43d9c0-3a8e-e811-8aa2-3cf862661632");
+            public static readonly Guid XSD_Invalid_Boolean = Guid.Parse("05f4369e-3a8e-e811-8aa2-3cf862661632");
+            public static readonly Guid XSD_Duplicate_Element = Guid.Parse("31a5811d-3b8e-e811-8aa2-3cf862661632");
         }
     }
 }

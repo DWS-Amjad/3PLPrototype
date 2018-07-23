@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using ValidationRuleEngine.Interfaces;
 
@@ -6,30 +7,21 @@ namespace SampleInstances
 {
     [Serializable]
     [XmlRoot(ElementName = "validation")]
-    public class LengthValidator : IValidation
+    public class LengthValidator : ValidationRuleEngine.Implementations.Validation
     {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-
-        [XmlAttribute("validator_type")]
-        public string validator_type { get; set; }
-
-        [XmlAttribute("enabled")]
-        public bool enabled { get; set; }
-
         #region Custom Properties
 
-        [XmlElement("length")]
-        public string Length { get; set; }
+            [XmlElement("length")]
+            public string Length { get; set; }
 
-        [XmlElement("message")]
-        public string Message { get; set; }
-        //string IValidation.Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+            [XmlElement("message")]
+            public string Message { get; set; }
+        
         #endregion
 
-        public bool Validate(Object obj)
+        public override bool Validate(Object obj, XDocument currXDocument, string DocumentType, string orderNumber, string orderDate)
         {
+            base.Validate(obj, currXDocument, DocumentType, orderNumber, orderDate);
             IValidationContext context = (IValidationContext)obj;
             if (context.CurrentElement.Value.Length.Equals(Int32.Parse(Length)))
             {

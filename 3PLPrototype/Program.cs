@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
-using DAL.Repository;
-using DAL.Models;
-using System.Collections.Generic;
-using static ValidationRuleEngine.Constants;
+using ValidationRuleEngine.Implementations;
+using ValidationRuleEngine.Interfaces;
 
 namespace _3PLPrototype
 {
@@ -41,10 +39,10 @@ namespace _3PLPrototype
             //Console.WriteLine(obj.location);
             //List<Location_SYD> list = locRepository.GetLocation("4817", "WILLOWS (TOWNSVILLE)", "QLD");
 
-            //IEngine validatorEngine = new ValidatorEngine();
-            //validatorEngine.Configure();
-            //validatorEngine.Start();
-            //validatorEngine.Stop();
+            IEngine validatorEngine = new ValidatorEngine();
+            validatorEngine.Configure();
+            validatorEngine.Start();
+            validatorEngine.Stop();
             //Console.ReadKey();
 
             //var configFilePath = ConfigurationManager.AppSettings["ConfigXmlPath"];
@@ -71,7 +69,7 @@ namespace _3PLPrototype
             //Console.WriteLine("CustomValidatorEngineObsolete stopped.");
             //Console.ReadLine();
 
-            
+
             Console.ReadKey();
         }
 

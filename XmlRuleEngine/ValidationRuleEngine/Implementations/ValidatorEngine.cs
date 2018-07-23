@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using DAL.Repository;
 using DAL.Models;
+using DAL;
 using ValidationRuleEngine.Interfaces;
 using System.Xml.Serialization;
 using System.IO;
@@ -13,7 +13,6 @@ namespace ValidationRuleEngine.Implementations
 {
     public class ValidatorEngine : IEngine
     {
-        
         private Config config = new Config();
         public XDocument ConfigXmlDocument
         {
@@ -34,34 +33,17 @@ namespace ValidationRuleEngine.Implementations
         }
 
         #region RepositoryObjectDeclaration
-            private IGenericRepository<ApplicationLog> repoAppLog;
-            private IGenericRepository<ApplicationEventMaster> repoEventMaster;
-            private IGenericRepository<ApplicationMaster> repoApplicationMaster;
-            private IGenericRepository<ErrorInboundData> repoErrInbound;
-            private IGenericRepository<ErrorXml> repoErrorXml;
-            private IGenericRepository<ErrorSuggestion> repoErrSuggestion;
+            UnitOfWork unitOfWork = new UnitOfWork();
         #endregion
 
         public ValidatorEngine()
         {
-            /*To Be Deleted Later*/
-            //STEInterfacesEntities entities = new STEInterfacesEntities();
-            //IGenericRepository<ApplicationMaster> appMasterRepo = new GenericRepository<ApplicationMaster>();
-            //IEnumerable<Location_SYD> locations = locationRepository.SelectAll();
-            //repoApplicationMaster = new ApplicationMasterRepository(entities);
-            repoApplicationMaster = new GenericRepository<ApplicationMaster>();
-            ApplicationMaster objApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
+            ApplicationMaster objApplicationMaster = unitOfWork.ApplicationMasterRepository.SelectByID(Constants.ApplicationId);
             Helper.XMLHelper<ConfigurationStore>.Instance.UnMarshalingFromXML(objApplicationMaster.ConfigFilePath, out configurationStore);
             /*--------------------*/
 
             this.ConfigXmlDocument = XDocument.Load(objApplicationMaster.ConfigFilePath);
             this.config = configurationStore.Items[0];
-            repoAppLog = new GenericRepository<ApplicationLog>();
-            repoEventMaster = new GenericRepository<ApplicationEventMaster>();
-            repoApplicationMaster = new GenericRepository<ApplicationMaster>();
-            repoErrInbound = new GenericRepository<ErrorInboundData>();
-            repoErrorXml = new GenericRepository<ErrorXml>();
-            repoErrSuggestion = new GenericRepository<ErrorSuggestion>();
         }
 
         private void configureValidator()
@@ -93,13 +75,7 @@ namespace ValidationRuleEngine.Implementations
                     var validationList = new List<IValidation>();
                     foreach (var validationElement in validationElements)
                     {
-                        //if(validationElement.Attribute(XName.Get("enabled")) != null)
-                        {
-                          //  if (Convert.ToBoolean(validationElement.Attribute(XName.Get("enabled")).Value))
-                            {
-                                validationList.Add(this.GetInstance<IValidation>(validationElement));
-                            }
-                        }
+                        validationList.Add(this.GetInstance<IValidation>(validationElement));
                     }
 
                     newRule.Validations = validationList;
@@ -157,10 +133,10 @@ namespace ValidationRuleEngine.Implementations
                 objApplicationLog.Message = "LoremIpsumMessage";
                 objApplicationLog.TimeStamp = DateTime.Now;
                 objApplicationLog.UserId = "amjad.leghari";
-                objApplicationLog.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
-                objApplicationLog.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Validation_Engine_Configured);
-                repoAppLog.Insert(objApplicationLog);
-                repoAppLog.Save();
+                objApplicationLog.ApplicationMaster = unitOfWork.ApplicationMasterRepository.SelectByID(Constants.ApplicationId);
+                objApplicationLog.ApplicationEventMaster = unitOfWork.ApplicationEventMasterRepository.SelectByID(Constants.EventType.Validation_Engine_Configured);
+                unitOfWork.ApplicationLogRepository.Insert(objApplicationLog);
+                unitOfWork.Save();
             #endregion
         }
 
@@ -176,10 +152,10 @@ namespace ValidationRuleEngine.Implementations
                 obj.Message = "LoremIpsumMessage";
                 obj.TimeStamp = DateTime.Now;
                 obj.UserId = "amjad.leghari";
-                obj.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
-                obj.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Validation_Engine_Started);
-                repoAppLog.Insert(obj);
-                repoAppLog.Save();
+                obj.ApplicationMaster = unitOfWork.ApplicationMasterRepository.SelectByID(Constants.ApplicationId);
+                obj.ApplicationEventMaster = unitOfWork.ApplicationEventMasterRepository.SelectByID(Constants.EventType.Validation_Engine_Started);
+                unitOfWork.ApplicationLogRepository.Insert(obj);
+                unitOfWork.Save();
             #endregion
 
             Console.WriteLine("<=== Validation Start routine ended.");
@@ -193,7 +169,7 @@ namespace ValidationRuleEngine.Implementations
                 {
                     if (!String.IsNullOrEmpty(rule.Xpath))
                     {
-                        XPathDocument xPathDoc = new XPathDocument(/*xmlDocument*/this.CurrentXmlDocument.Root.CreateReader(/*ReaderOptions.OmitDuplicateNamespaces*/));
+                        XPathDocument xPathDoc = new XPathDocument(this.CurrentXmlDocument.Root.CreateReader(/*ReaderOptions.OmitDuplicateNamespaces*/));
                         var xpatheNavigator = xPathDoc.CreateNavigator();
                         var matchingNodes = xpatheNavigator.Select(rule.Xpath);
                         if (matchingNodes == null || matchingNodes.Count == 0)
@@ -211,11 +187,9 @@ namespace ValidationRuleEngine.Implementations
                             Console.WriteLine("Executing validations for following xml Node.");
                             Console.WriteLine(currentXElement.ToString());
 
-                            //TODO: check the execution of failed validation and failed actions
-                            //TODO: check the thread safty for validations should be executed on saperate threads
-                            var context = this.GetContext(this.CurrentXmlDocument/*xmlDocument*/, currentXElement);
+                            var context = this.GetContext(this.CurrentXmlDocument, currentXElement);
                             if (rule.Validations.Where(val => val.enabled)
-                                .All(val => val.Validate(context).Equals(true)))
+                                .All(val => val.Validate(context, this.CurrentXmlDocument, config.document_type, config.order_number_path, config.order_date_path).Equals(true)))
                             {
                                 Console.WriteLine("All configured validation rules succeed. Now executing actions");
                                 rule.Actions.All(act => act.Execute(context).Equals(true));
@@ -226,7 +200,7 @@ namespace ValidationRuleEngine.Implementations
                     {
                         IValidationContext context = new ValidationContext(null, null, null);
                         
-                        if (rule.Validations.All(val => val.Validate(config.source_file_path).Equals(true)))
+                        if (rule.Validations.All(val => val.Validate(null, this.CurrentXmlDocument, config.document_type, config.order_number_path, config.order_date_path).Equals(true)))
                         {
                             Console.WriteLine("All configured validation rules succeed. Now executing actions");
                             rule.Actions.Where(act => act.executeOn.Equals(Constants.ExecuteOn.success))
@@ -247,16 +221,16 @@ namespace ValidationRuleEngine.Implementations
         {
             #region ApplicationLogEntries
                 ApplicationLog obj = new ApplicationLog();
-                
                 obj.Id = Guid.NewGuid();
                 obj.Message = "LoremIpsumMessage";
                 obj.TimeStamp = DateTime.Now;
                 obj.UserId = "amjad.leghari";
-                obj.ApplicationMaster = repoApplicationMaster.SelectByID(Constants.ApplicationId);
-                obj.ApplicationEventMaster = repoEventMaster.SelectByID(Constants.EventType.Validation_Engine_Stopped);
-                repoAppLog.Insert(obj);
-                repoAppLog.Save();
+                obj.ApplicationMaster = unitOfWork.ApplicationMasterRepository.SelectByID(Constants.ApplicationId);
+                obj.ApplicationEventMaster = unitOfWork.ApplicationEventMasterRepository.SelectByID(Constants.EventType.Validation_Engine_Stopped);
+                unitOfWork.ApplicationLogRepository.Insert(obj);
+                unitOfWork.Save();
             #endregion
+            this.unitOfWork.Dispose();
             this.Rules = null;
             this.ConfigXmlDocument = null;
             this.config = null;

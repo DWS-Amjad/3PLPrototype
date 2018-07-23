@@ -17,7 +17,7 @@ namespace DAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ErrorInboundData()
         {
-            this.ErrorSuggestions = new HashSet<ErrorSuggestion>();
+            this.Error_Suggestion_InboundData_Mapper = new HashSet<Error_Suggestion_InboundData_Mapper>();
         }
     
         public System.Guid Id { get; set; }
@@ -34,6 +34,6 @@ namespace DAL.Models
     
         public virtual ErrorXml ErrorXml { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ErrorSuggestion> ErrorSuggestions { get; set; }
+        public virtual ICollection<Error_Suggestion_InboundData_Mapper> Error_Suggestion_InboundData_Mapper { get; set; }
     }
 }

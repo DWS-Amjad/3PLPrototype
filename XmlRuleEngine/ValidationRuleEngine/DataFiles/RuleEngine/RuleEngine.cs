@@ -9,9 +9,8 @@
 //------------------------------------------------------------------------------
 
 using System.Xml.Serialization;
-using ValidationRuleEngine.Interfaces;
 
-namespace ValidationRuleEngine.DataFiles.RuleEngine
+namespace _3PLPrototype.DataFiles.RuleEngine
 {
 }
 
@@ -58,12 +57,45 @@ public partial class Config {
     private Rule[] rulesField;
     
     private string nameField;
-        
-    private string source_file_pathField;   
-        
+    
+    private string xsd_file_pathField;
+    
+    private string source_file_pathField;
+
+    private string document_typeField;
+    
     private bool enabledField;
-    
-    
+
+    private string order_date_pathField;
+
+    private string order_number_pathField;
+
+    [XmlAttributeAttribute()]
+    public string order_date_path
+    {
+        get
+        {
+            return this.order_date_pathField;
+        }
+        set
+        {
+            this.order_date_pathField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public string order_number_path
+    {
+        get
+        {
+            return this.order_number_pathField;
+        }
+        set
+        {
+            this.order_number_pathField = value;
+        }
+    }
+
     /// <remarks/>
     [XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
     [XmlArrayItemAttribute("rule", typeof(Rule), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
@@ -86,7 +118,18 @@ public partial class Config {
             this.nameField = value;
         }
     }
-        
+    
+    /// <remarks/>
+    [XmlAttributeAttribute()]
+    public string xsd_file_path {
+        get {
+            return this.xsd_file_pathField;
+        }
+        set {
+            this.xsd_file_pathField = value;
+        }
+    }
+    
     /// <remarks/>
     [XmlAttributeAttribute()]
     public string source_file_path {
@@ -97,7 +140,7 @@ public partial class Config {
             this.source_file_pathField = value;
         }
     }
-     
+
     /// <remarks/>
     [XmlAttributeAttribute()]
     public bool enabled {
@@ -108,6 +151,20 @@ public partial class Config {
             this.enabledField = value;
         }
     }
+
+    [XmlAttributeAttribute()]
+    public string document_type
+    {
+        get
+        {
+            return this.document_typeField;
+        }
+        set
+        {
+            this.document_typeField = value;
+        }
+    }
+
 }
 
 /// <remarks/>
@@ -127,6 +184,8 @@ public partial class Rule {
     private Action[] actionsField;
     
     private string nameField;
+
+    private bool enabledField;
     
     /// <remarks/>
     [XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -184,6 +243,19 @@ public partial class Rule {
             this.nameField = value;
         }
     }
+
+    [XmlAttributeAttribute()]
+    public bool enabled
+    {
+        get
+        {
+            return this.enabledField;
+        }
+        set
+        {
+            this.enabledField = value;
+        }
+    }
 }
 
 /// <remarks/>
@@ -201,6 +273,10 @@ public partial class Validation {
     private string nameField;
     
     private string typeField;
+
+    private string xsdNSField;
+
+    private string xsdFilePathField;
     
     /// <remarks/>
     [XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -244,7 +320,29 @@ public partial class Validation {
         set {
             this.typeField = value;
         }
-    }    
+    }
+
+    public string xsd_ns {
+        get
+        {
+            return this.xsdNSField;
+        }
+        set
+        {
+            this.xsdNSField = value;
+        }
+    }
+
+    public string xsd_file_path {
+        get
+        {
+            return this.xsdFilePathField;
+        }
+        set
+        {
+            this.xsdFilePathField = value;
+        }
+    }
 }
 
 /// <remarks/>

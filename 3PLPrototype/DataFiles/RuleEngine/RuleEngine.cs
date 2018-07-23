@@ -61,9 +61,41 @@ public partial class Config {
     private string xsd_file_pathField;
     
     private string source_file_pathField;
-        
-    private bool enabledField;
+
+    private string document_typeField;
     
+    private bool enabledField;
+
+    private string order_date_pathField;
+
+    private string order_number_pathField;
+
+    [XmlAttributeAttribute()]
+    public string order_date_path
+    {
+        get
+        {
+            return this.order_date_pathField;
+        }
+        set
+        {
+            this.order_date_pathField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public string order_number_path
+    {
+        get
+        {
+            return this.order_number_pathField;
+        }
+        set
+        {
+            this.order_number_pathField = value;
+        }
+    }
+
     /// <remarks/>
     [XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
     [XmlArrayItemAttribute("rule", typeof(Rule), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
@@ -108,8 +140,7 @@ public partial class Config {
             this.source_file_pathField = value;
         }
     }
-    
-    
+
     /// <remarks/>
     [XmlAttributeAttribute()]
     public bool enabled {
@@ -120,6 +151,20 @@ public partial class Config {
             this.enabledField = value;
         }
     }
+
+    [XmlAttributeAttribute()]
+    public string document_type
+    {
+        get
+        {
+            return this.document_typeField;
+        }
+        set
+        {
+            this.document_typeField = value;
+        }
+    }
+
 }
 
 /// <remarks/>
@@ -323,7 +368,10 @@ public partial class Action {
     private string typeField;
     
     private string executeOnField;
+
     
+
+
     /// <remarks/>
     [XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
     public string to {

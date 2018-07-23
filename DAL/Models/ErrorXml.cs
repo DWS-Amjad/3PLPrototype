@@ -25,6 +25,8 @@ namespace DAL.Models
         public string Warehouse_Code { get; set; }
         public string XmlContent { get; set; }
         public string DocumentUniqueId { get; set; }
+        public string DocumentType { get; set; }
+        public Nullable<System.DateTime> OrderDate { get; set; }
         public System.DateTime TimeStamp { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -28,9 +28,10 @@ namespace DAL.Models
         public virtual DbSet<ApplicationEventMaster> ApplicationEventMasters { get; set; }
         public virtual DbSet<ApplicationLog> ApplicationLogs { get; set; }
         public virtual DbSet<ApplicationMaster> ApplicationMasters { get; set; }
-        public virtual DbSet<ErrorInboundData> ErrorInboundDatas { get; set; }
-        public virtual DbSet<ErrorSuggestion> ErrorSuggestions { get; set; }
-        public virtual DbSet<ErrorXml> ErrorXmls { get; set; }
         public virtual DbSet<Location_SYD> Location_SYD { get; set; }
+        public virtual DbSet<ErrorInboundData> ErrorInboundDatas { get; set; }
+        public virtual DbSet<ErrorXml> ErrorXmls { get; set; }
+        public virtual DbSet<Error_Suggestion_InboundData_Mapper> Error_Suggestion_InboundData_Mapper { get; set; }
+        public virtual DbSet<ErrorSuggestion> ErrorSuggestions { get; set; }
     }
 }

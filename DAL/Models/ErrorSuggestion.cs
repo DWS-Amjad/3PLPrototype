@@ -14,11 +14,21 @@ namespace DAL.Models
     
     public partial class ErrorSuggestion
     {
-        public System.Guid Id { get; set; }
-        public System.Guid ErrorInboundDataId { get; set; }
-        public string Suggestion { get; set; }
-        public System.DateTime TimeStamp { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ErrorSuggestion()
+        {
+            this.Error_Suggestion_InboundData_Mapper = new HashSet<Error_Suggestion_InboundData_Mapper>();
+        }
     
-        public virtual ErrorInboundData ErrorInboundData { get; set; }
+        public System.Guid Id { get; set; }
+        public string Suggestion { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public string LastUpdatedBy { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
+        public bool IsActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Error_Suggestion_InboundData_Mapper> Error_Suggestion_InboundData_Mapper { get; set; }
     }
 }

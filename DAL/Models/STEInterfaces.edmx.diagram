@@ -5,18 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b86f9347824f48fdbfd5672eb240b36f" Name="Diagram1">
-        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationEventMaster" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationLog" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationMaster" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ErrorInboundData" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ErrorSuggestion" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ErrorXml" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.Location_SYD" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationEventMaster" Width="1.875" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationLog" Width="1.875" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationMaster" Width="1.5" PointX="5.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.Location_SYD" Width="1.875" PointX="7.375" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="STEInterfacesModel.FK_ApplicationLog_ApplicationEventMaster" ManuallyRouted="false" />
         <AssociationConnector Association="STEInterfacesModel.FK_ApplicationLog_ApplicationMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="STEInterfacesModel.FK_ErrorInboundData_ErrorXml" ManuallyRouted="false" />
-        <AssociationConnector Association="STEInterfacesModel.FK_ErrorSuggestion_ErrorInboundData" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="STEInterfacesModel.ErrorInboundData" Width="2.75" PointX="3.5" PointY="0.625" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ErrorXml" Width="2" PointX="0.875" PointY="0.625" />
+        <AssociationConnector Association="STEInterfacesModel.FK_ErrorInboundData_ErrorXml" />
+        <EntityTypeShape EntityType="STEInterfacesModel.Error_Suggestion_InboundData_Mapper" Width="3.375" PointX="6.625" PointY="0.625" />
+        <AssociationConnector Association="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorInboundData" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ErrorSuggestion" Width="3" PointX="10.375" PointY="0.625" />
+        <AssociationConnector Association="STEInterfacesModel.FK_Error_Suggestion_InboundData_Mapper_ErrorSuggestion" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

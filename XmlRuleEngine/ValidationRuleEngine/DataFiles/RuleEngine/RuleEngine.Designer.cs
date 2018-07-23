@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ValidationRuleEngine.DataFiles.RuleEngine {
+namespace _3PLPrototype.DataFiles.RuleEngine {
     
     
     /// <summary>

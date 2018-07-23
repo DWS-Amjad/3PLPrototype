@@ -68,6 +68,9 @@
     <Compile Include="Models\ErrorXml.cs">
       <DependentUpon>STEInterfaces.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Error_Suggestion_InboundData_Mapper.cs">
+      <DependentUpon>STEInterfaces.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Location_SYD.cs">
       <DependentUpon>STEInterfaces.tt</DependentUpon>
     </Compile>
@@ -90,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>STEInterfaces.edmx</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

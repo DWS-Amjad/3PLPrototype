@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using ValidationRuleEngine.Interfaces;
-
 namespace ValidationRuleEngine.Implementations
 {
-    internal class Rule : IRule
+    public class Rule : IRule
     {
         public Rule(string name, string xpath, bool enabled)
         {

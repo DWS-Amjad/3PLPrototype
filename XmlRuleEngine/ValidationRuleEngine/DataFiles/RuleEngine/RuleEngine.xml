@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ConfigurationStore>
-  <Config name="sales_order" source_file_path="../../DataFiles/SalesOrder/Sample_SO[8303].xml" 
-          enabled="true">
+  <Config name="sales_order" source_file_path="../../DataFiles/SalesOrder/Sample_SO[8303].xml"
+          document_type="sales_order" order_number_path="//SalesOrders/OrderHeader/orderNumber"
+            order_date_path="//SalesOrders/OrderHeader/orderDate" enabled="true">
     <rules>
       <rule name="Rule1" enabled="false">
         <path>/salesorder/sales_order_header/order_number</path>

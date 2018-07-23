@@ -75,13 +75,15 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Helper\XMLSerializer.cs" />
+    <Compile Include="Implementations\Action.cs" />
     <Compile Include="Implementations\ValidatorEngine.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IValidationContext.cs" />
+    <Compile Include="Implementations\Validation.cs" />
+    <Compile Include="Interfaces\IValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IAction.cs" />
     <Compile Include="Interfaces\IRule.cs" />
-    <Compile Include="Interfaces\IValidation.cs" />
     <Compile Include="Implementations\Rule.cs" />
     <Compile Include="Implementations\ValidationContext.cs" />
   </ItemGroup>
