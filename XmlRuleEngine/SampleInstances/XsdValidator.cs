@@ -10,7 +10,7 @@ using System.Xml.Schema;
 using System.Xml.Serialization;
 using ValidationRuleEngine;
 
-namespace SampleInstances
+namespace Customizations
 {
     [Serializable]
     [XmlRoot(ElementName = "validation")]

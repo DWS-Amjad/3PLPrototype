@@ -7,13 +7,13 @@
       <rule name="Rule1" enabled="false">
         <path>/salesorder/sales_order_header/order_number</path>
         <validations>
-          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances">
+          <validation name="Suburblength" type="Customizations.LengthValidator, Customizations">
             <length>10</length>
             <message>Length of suburban field lenth is greater than 10 characters.</message>
           </validation>
         </validations>
         <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failue">
+          <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="success|failue">
             <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
             <from>noreply@startrack.com.au</from>
             <subject>$value of the $field is exceeding limit</subject>
@@ -25,13 +25,13 @@
       <rule name="Rule2" enabled="true">
         <path>/salesorder/sales_order_header/order_number</path>
         <validations>
-          <validation name="XsdValidator" type="SampleInstances.XsdValidator, SampleInstances">
+          <validation name="XsdValidator" type="Customizations.XsdValidator, Customizations">
             <xsd_ns></xsd_ns>
             <xsd_file_path>../../DataFiles/SalesOrder/SalesOrder.xsd</xsd_file_path>
           </validation>
         </validations>
         <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failure">
+          <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="success|failure">
             <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
             <from>noreply@startrack.com.au</from>
             <subject>$value of the $field is exceeding limit</subject>
@@ -49,13 +49,13 @@
       <rule name="Rule1">
         <xpath>/salesorder/sales_order_header/order_number</xpath>
         <validations>
-          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances">
+          <validation name="Suburblength" type="Customizations.LengthValidator, Customizations">
             <length>10</length>
             <message>Length of suburban field lenth is greater than 10 characters.</message>
           </validation>
         </validations>
         <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success|failue">
+          <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="success|failue">
             <to>ITsupport@startrack.com.au;STwarehouseSupport@startrack.com.au</to>
             <from>noreply@startrack.com.au</from>
             <subject>$value of the $field is exceeding limit</subject>

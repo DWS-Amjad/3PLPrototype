@@ -11,7 +11,7 @@ using ValidationRuleEngine;
 using ValidationRuleEngine.Interfaces;
 using static ValidationRuleEngine.Constants;
 
-namespace SampleInstances
+namespace Customizations
 {
     [Serializable]
     [XmlRoot(ElementName = "validation")]

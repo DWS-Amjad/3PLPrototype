@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3PLPrototype", "3PLPrototyp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{35D3BD13-0C1D-493B-BC4E-4F52D5274329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationRuleEngine", "XmlRuleEngine\ValidationRuleEngine\ValidationRuleEngine.csproj", "{58626204-FDE9-4DDF-BCC8-E9510F3D79D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationRulesEngine", "XmlRuleEngine\ValidationRuleEngine\ValidationRulesEngine.csproj", "{58626204-FDE9-4DDF-BCC8-E9510F3D79D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleInstances", "XmlRuleEngine\SampleInstances\SampleInstances.csproj", "{C98FF588-9E48-4EC7-9003-4E3CE69646EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customizations", "XmlRuleEngine\SampleInstances\Customizations.csproj", "{C98FF588-9E48-4EC7-9003-4E3CE69646EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomValidatorUnitTest", "CustomValidatorUnitTest\CustomValidatorUnitTest.csproj", "{96CD3549-6708-4734-A3CA-03BA13CB907E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizationsUnitTest", "CustomValidatorUnitTest\CustomizationsUnitTest.csproj", "{96CD3549-6708-4734-A3CA-03BA13CB907E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

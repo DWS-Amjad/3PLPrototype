@@ -1,0 +1,17 @@
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.SqlServer.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\DAL.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\ValidationRuleEngine.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\EntityFramework.SqlServer.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\Customizations.csprojResolveAssemblyReference.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\Customizations.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\Customizations.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\Customizations.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\bin\Debug\Customizations.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\Customizations.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\XmlRuleEngine\SampleInstances\obj\Debug\Customizations.pdb

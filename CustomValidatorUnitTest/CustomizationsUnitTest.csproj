@@ -69,13 +69,13 @@
       <Project>{35d3bd13-0c1d-493b-bc4e-4f52d5274329}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XmlRuleEngine\SampleInstances\SampleInstances.csproj">
+    <ProjectReference Include="..\XmlRuleEngine\SampleInstances\Customizations.csproj">
       <Project>{c98ff588-9e48-4ec7-9003-4e3ce69646ee}</Project>
-      <Name>SampleInstances</Name>
+      <Name>Customizations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XmlRuleEngine\ValidationRuleEngine\ValidationRuleEngine.csproj">
+    <ProjectReference Include="..\XmlRuleEngine\ValidationRuleEngine\ValidationRulesEngine.csproj">
       <Project>{58626204-fde9-4ddf-bcc8-e9510f3d79d1}</Project>
-      <Name>ValidationRuleEngine</Name>
+      <Name>ValidationRulesEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

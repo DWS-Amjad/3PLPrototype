@@ -7,8 +7,8 @@
     <ProjectGuid>{C98FF588-9E48-4EC7-9003-4E3CE69646EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleInstances</RootNamespace>
-    <AssemblyName>SampleInstances</AssemblyName>
+    <RootNamespace>Customizations</RootNamespace>
+    <AssemblyName>Customizations</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -58,9 +58,9 @@
       <Project>{35D3BD13-0C1D-493B-BC4E-4F52D5274329}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ValidationRuleEngine\ValidationRuleEngine.csproj">
+    <ProjectReference Include="..\ValidationRuleEngine\ValidationRulesEngine.csproj">
       <Project>{58626204-fde9-4ddf-bcc8-e9510f3d79d1}</Project>
-      <Name>ValidationRuleEngine</Name>
+      <Name>ValidationRulesEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using ValidationRuleEngine.Interfaces;
 
-namespace SampleInstances
+namespace Customizations
 {
     [Serializable]
     [XmlRoot(ElementName = "validation")]

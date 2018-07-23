@@ -7,20 +7,20 @@
       <rule name="Rule1" enabled="true">
         <path>/SalesOrders/OrderHeader/orderNumber</path>
         <validations>
-          <validation name="Suburblength" type="SampleInstances.LengthValidator, SampleInstances" validator_type="xpath" enabled="true">
+          <validation name="Suburblength" type="Customizations.LengthValidator, Customizations" validator_type="xpath" enabled="true">
             <length>10</length>
             <message>Length of suburban field lenth is greater than 10 characters.</message>
           </validation>
-          <validation name="AccelosLookup" type="SampleInstances.AccelosLookupValidator, SampleInstances" validator_type="xpath" enabled="true">
+          <validation name="AccelosLookup" type="Customizations.AccelosLookupValidator, Customizations" validator_type="xpath" enabled="true">
           </validation>
-          <validation name="AddressValidator" type="SampleInstances.AddressValidator, SampleInstances" validator_type="xpath" enabled="true">
+          <validation name="AddressValidator" type="Customizations.AddressValidator, Customizations" validator_type="xpath" enabled="true">
             <post_code>//OrderHeader/deliverToPostcode</post_code>
             <location>//OrderHeader/deliverToLocation</location>
             <state>//OrderHeader/deliverToState</state>
           </validation>
         </validations>
         <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="success" enabled="false">
+          <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="success" enabled="false">
             <to>amjadleghari@hotmail.com</to>
             <from>Amjad.Leghari@startrack.com.au</from>
             <from_password>Welcome34452</from_password>
@@ -34,13 +34,13 @@
       </rule>
       <rule name="Rule2" enabled="true">
         <validations>
-          <validation name="XsdValidator" type="SampleInstances.XsdValidator, SampleInstances" validator_type="xsd" enabled="true">
+          <validation name="XsdValidator" type="Customizations.XsdValidator, Customizations" validator_type="xsd" enabled="true">
             <xsd_ns></xsd_ns>
             <xsd_file_path>../../DataFiles/SalesOrder/SalesOrder.xsd</xsd_file_path>
           </validation>
         </validations>
         <actions>
-          <action name="emailAlert" type="SampleInstances.EmailAlertAction, SampleInstances" executeOn="failure" enabled="false">
+          <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
             <to>amjadleghari@hotmail.com</to>
             <from>Amjad.Leghari@startrack.com.au</from>
             <from_password>Welcome34452</from_password>
