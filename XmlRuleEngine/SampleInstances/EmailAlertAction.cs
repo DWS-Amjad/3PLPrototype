@@ -10,7 +10,7 @@ namespace Customizations
     {
         #region Custom Properties
 
-        [XmlElement("to")]
+            [XmlElement("to")]
             public string To { get; set; }
         
             [XmlElement("from")]

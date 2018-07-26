@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="DAL.Repository.GenericRepository&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="1" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAEAAACAQAABAAAAAAAAAAAEAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Repository\GenericRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DAL.Repository.LocationCustomRepository">
+    <Position X="4" Y="3.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABQAABAAAAAAAAAAgAAAAAAAASAAAAAAgA=</HashCode>
+      <FileName>Repository\LocationCustomRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.UnitOfWork" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="6.75" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAKCAIGSACCgAAAABAgIAQAQgEAgAAEIAACgAAAAAAI=</HashCode>
+      <FileName>UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DAL.Models.STEInterfacesEntities">
+    <Position X="8.25" Y="0.5" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAgAAAIAAACAEAAEAAAAACBAEAAAAAAAAA=</HashCode>
+      <FileName>Models\STEInterfaces.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.ApplicationEventMaster">
+    <Position X="11.75" Y="4" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEAAAAAACAIAAAAAAAkAAIAAAAAE=</HashCode>
+      <FileName>Models\ApplicationEventMaster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.ApplicationLog">
+    <Position X="15.5" Y="4" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgCAAAAAAAAIAQAAAAgAAAAABAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ApplicationLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.ApplicationMaster">
+    <Position X="8.25" Y="4" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEAAAAAQCAgAAAAAAAkAAIAAAAAE=</HashCode>
+      <FileName>Models\ApplicationMaster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.Error_Suggestion_InboundData_Mapper">
+    <Position X="8.25" Y="11.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAAAAAAAAAAAAAAAAAAAAAAAASAAABAAAAQAAA=</HashCode>
+      <FileName>Models\Error_Suggestion_InboundData_Mapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.ErrorInboundData">
+    <Position X="12" Y="7.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>EAACAACAACIAAEAAAAACAMEAAgACAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorInboundData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.ErrorSuggestion">
+    <Position X="18.25" Y="8.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEAAAAEACAAAAAAAAAgAAIAAAgAE=</HashCode>
+      <FileName>Models\ErrorSuggestion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.ErrorXml">
+    <Position X="8.25" Y="7.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>CAQCAACABAAAAAAAAAAAAQEAAAAAAAAhAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorXml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Models.Location_SYD">
+    <Position X="20" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AABAAAQMBAAAQAQAAAAAAAACAIAAAAAEACABQAAAAAg=</HashCode>
+      <FileName>Models\Location_SYD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DAL.Repository.IGenericRepository&lt;T&gt;">
+    <Position X="1" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAYAAEAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Repository\IGenericRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

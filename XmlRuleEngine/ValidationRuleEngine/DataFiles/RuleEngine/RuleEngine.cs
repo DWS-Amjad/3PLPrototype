@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace _3PLPrototype.DataFiles.RuleEngine
@@ -58,41 +60,23 @@ public partial class Config {
     
     private string nameField;
     
-    private string xsd_file_pathField;
-    
     private string source_file_pathField;
-
-    private string document_typeField;
     
     private bool enabledField;
 
-    private string order_date_pathField;
+    private List<Attribute> attributeArray;
 
-    private string order_number_pathField;
-
-    [XmlAttributeAttribute()]
-    public string order_date_path
+    [XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    [XmlArrayItemAttribute("attribute", typeof(Attribute), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+    public List<Attribute> attributes
     {
         get
         {
-            return this.order_date_pathField;
+            return this.attributeArray;
         }
         set
         {
-            this.order_date_pathField = value;
-        }
-    }
-
-    [XmlAttributeAttribute()]
-    public string order_number_path
-    {
-        get
-        {
-            return this.order_number_pathField;
-        }
-        set
-        {
-            this.order_number_pathField = value;
+            this.attributeArray = value;
         }
     }
 
@@ -118,18 +102,7 @@ public partial class Config {
             this.nameField = value;
         }
     }
-    
-    /// <remarks/>
-    [XmlAttributeAttribute()]
-    public string xsd_file_path {
-        get {
-            return this.xsd_file_pathField;
-        }
-        set {
-            this.xsd_file_pathField = value;
-        }
-    }
-    
+        
     /// <remarks/>
     [XmlAttributeAttribute()]
     public string source_file_path {
@@ -151,17 +124,80 @@ public partial class Config {
             this.enabledField = value;
         }
     }
+    
+}
+
+
+public partial class Attribute
+{
+    private string nameField;
+    private string valueField;
+    private string pathField;
+    private bool isRectifiableField;
+    private bool enabledField;
 
     [XmlAttributeAttribute()]
-    public string document_type
+    public string name
     {
         get
         {
-            return this.document_typeField;
+            return this.nameField;
         }
         set
         {
-            this.document_typeField = value;
+            this.nameField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public string value
+    {
+        get
+        {
+            return this.valueField;
+        }
+        set
+        {
+            this.valueField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public string path
+    {
+        get
+        {
+            return this.pathField;
+        }
+        set
+        {
+            this.pathField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public Boolean is_rectifiable
+    {
+        get
+        {
+            return this.isRectifiableField;
+        }
+        set
+        {
+            this.isRectifiableField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public Boolean enabled
+    {
+        get
+        {
+            return this.enabledField;
+        }
+        set
+        {
+            this.enabledField = value;
         }
     }
 
@@ -263,43 +299,19 @@ public partial class Rule {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[XmlTypeAttribute(AnonymousType=true)]
+[XmlTypeAttribute(AnonymousType = true)]
 public partial class Validation {
-    
-    private string lengthField;
-    
-    private string messageField;
-    
+
     private string nameField;
-    
+
     private string typeField;
 
-    private string xsdNSField;
+    [XmlAttribute("validator_type")]
+    public string validator_type { get; set; }
 
-    private string xsdFilePathField;
-    
-    /// <remarks/>
-    [XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-    public string length {
-        get {
-            return this.lengthField;
-        }
-        set {
-            this.lengthField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-    public string message {
-        get {
-            return this.messageField;
-        }
-        set {
-            this.messageField = value;
-        }
-    }
-    
+    [XmlAttribute("enabled")]
+    public bool enabled { get; set; }
+
     /// <remarks/>
     [XmlAttributeAttribute()]
     public string name {
@@ -310,7 +322,7 @@ public partial class Validation {
             this.nameField = value;
         }
     }
-    
+
     /// <remarks/>
     [XmlAttributeAttribute()]
     public string type {
@@ -321,28 +333,23 @@ public partial class Validation {
             this.typeField = value;
         }
     }
+    [XmlArrayAttribute("attributes")]
+    [XmlArrayItemAttribute("attribute")]
+    public List<Attribute> LocalAttributes;
 
-    public string xsd_ns {
-        get
-        {
-            return this.xsdNSField;
-        }
-        set
-        {
-            this.xsdNSField = value;
-        }
-    }
-
-    public string xsd_file_path {
-        get
-        {
-            return this.xsdFilePathField;
-        }
-        set
-        {
-            this.xsdFilePathField = value;
-        }
-    }
+    //[XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    //[XmlArrayItemAttribute("attribute", typeof(Attribute), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+    //public List<Attribute> LocalAttributes
+    //{
+    //    get
+    //    {
+    //        return this.localAttributes;
+    //    }
+    //    set
+    //    {
+    //        this.localAttributes = value;
+    //    }
+    //}
 }
 
 /// <remarks/>

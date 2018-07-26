@@ -6,7 +6,7 @@ namespace ValidationRuleEngine.Interfaces
     {
         string Name { get; }
 
-        string Xpath { get; }
+        //string Xpath { get; }
 
         bool Enabled { get; }
 

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ValidationRuleEngine.Implementations.Action" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAKAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\Action.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ValidationRuleEngine.Implementations.Rule" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAIAAAAIAAAAAAAAQAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\Rule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ValidationRuleEngine.Implementations.Validation" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACCAAAIAgCAAAQgIAAAABAAABAAAQgIgAA=</HashCode>
+      <FileName>Implementations\Validation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ValidationRuleEngine.Implementations.ValidationContext" BaseTypeListCollapsed="true">
+    <Position X="9" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAQAAAAAAAAAAE=</HashCode>
+      <FileName>Implementations\ValidationContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ValidationRuleEngine.Implementations.ValidatorEngine" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CgACCAAAAAAAAAAAAAAAEACABAAAAACAACABAAQQAAA=</HashCode>
+      <FileName>Implementations\ValidatorEngine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ValidationRuleEngine.Interfaces.IAction">
+    <Position X="0.5" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAKAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ValidationRuleEngine.Interfaces.IEngine">
+    <Position X="6.25" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAABAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IEngine.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ValidationRuleEngine.Interfaces.IRule">
+    <Position X="2.25" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAIAAAAIAAAAAAAAQAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IRule.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ValidationRuleEngine.Interfaces.IValidation">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAACAAAQAAAAAAAAAAAAAAQAAgAA=</HashCode>
+      <FileName>Interfaces\IValidation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ValidationRuleEngine.Interfaces.IValidationContext">
+    <Position X="8" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAQAAAAAAAAAAE=</HashCode>
+      <FileName>Interfaces\IValidationContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

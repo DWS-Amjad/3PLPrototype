@@ -2,8 +2,12 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Xml;
+    using System.Xml.Linq;
     using System.Xml.Serialization;
+    using ValidationRuleEngine.Implementations;
+    using ValidationRuleEngine.Interfaces;
 
     public class XMLHelper<T> where T : new()
     {
@@ -12,6 +16,52 @@
         private XMLHelper()
         {
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="xElement"></param>
+        /// <returns></returns>
+        public TResult GetInstance<TResult>(XElement xElement)
+        {
+            XmlSerializer serializer;
+            try
+            {
+                serializer = new XmlSerializer(Type.GetType(xElement
+                                    .Attribute(XName.Get("type")).Value));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid Type");
+                throw ex;
+            }
+            using (TextReader reader = new StringReader(xElement.ToString()))
+            {
+                return (TResult)serializer.Deserialize(reader);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xmlDocument"></param>
+        /// <param name="currentElement"></param>
+        /// <returns></returns>
+        public IValidationContext GetContext(XDocument xmlDocument, XElement currentElement)
+        {
+            if (xmlDocument == null && currentElement == null)
+            {
+                return new ValidationContext(null, null, null);
+            }
+
+            XElement Element = xmlDocument.Root.Descendants(currentElement.Name)
+                .SingleOrDefault(x => x.Value.Equals(currentElement.Value, StringComparison.InvariantCulture));
+            XElement parentElement = Element != null ? Element.Parent : null;
+
+            return new ValidationContext(xmlDocument, parentElement, currentElement);
+        }
+
 
         private XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
 

@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ConfigurationStore>
   <Config name="sales_order" source_file_path="../../DataFiles/SalesOrder/Sample_SO[8303].xml"
-          document_type="sales_order" order_number_path="//SalesOrders/OrderHeader/orderNumber"
-            order_date_path="//SalesOrders/OrderHeader/orderDate" enabled="true" >
+          enabled="true" >
+    <!-- global attributes -->	
+	<!-- Attributes are refering to additional information of an object -->
+	<!-- Properties are describing the characteristics of an object -->
+	<attributes>
+      <attribute name="warehouse_code" path="//SalesOrders/OrderHeader/warehouseCode" is_rectifiable="false" enabled="true" />
+      <attribute name="client_code" path="//SalesOrders/OrderHeader/clientCode" is_rectifiable="false" enabled="true"/>
+      <attribute name="company_code" path="//SalesOrders/OrderHeader/companyCode" is_rectifiable="false" enabled="true"/>
+      <attribute name="document_type" value="sales_order" enabled="true"/>
+	  <attribute name="order_number" path="//SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+      <attribute name="order_date" path="//SalesOrders/OrderHeader/orderDate" is_rectifiable="false" enabled="true"/>
+    </attributes>
+	<!-- -->
     <rules>
       <rule name="Rule1" enabled="true">
-        <path>/SalesOrders/OrderHeader/orderNumber</path>
+        <!--<path></path>-->
         <validations>
-          <validation name="Suburblength" type="Customizations.LengthValidator, Customizations" validator_type="xpath" enabled="true">
+          <validation name="XsdValidator" type="Customizations.XsdValidation, Customizations" validator_type="xsd" enabled="true">
+            <!-- validation's custom attributes -->
+			<attributes>
+				<attribute name="xsd_ns" value="" path="" enabled="true"/>
+				<attribute name="xsd_file_path" value="../../DataFiles/SalesOrder/SalesOrder.xsd" enabled="true"/>
+			</attributes>
+          </validation>
+		  <validation name="Suburblength" type="Customizations.LengthValidation, Customizations" validator_type="xpath" enabled="false">
+            <!-- validation's custom attributes -->
+			<attributes>
+              <attribute name="order_number" path="/SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+            </attributes>
             <length>10</length>
-            <message>Length of suburban field lenth is greater than 10 characters.</message>
+            <message>Length of suburban attribute length is greater than 10 characters.</message>
           </validation>
-          <validation name="AccelosLookup" type="Customizations.AccelosLookupValidator, Customizations" validator_type="xpath" enabled="true">
-          </validation>
-          <validation name="AddressValidator" type="Customizations.AddressValidator, Customizations" validator_type="xpath" enabled="true">
-            <post_code>//OrderHeader/deliverToPostcode</post_code>
-            <location>//OrderHeader/deliverToLocation</location>
-            <state>//OrderHeader/deliverToState</state>
-          </validation>
-        </validations>
-        <actions>
-          <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="success" enabled="false">
-            <to>amjadleghari@hotmail.com</to>
-            <from>Amjad.Leghari@startrack.com.au</from>
-            <from_password>Welcome34452</from_password>
-            <subject>$value of the $field is exceeding limit</subject>
-            <successMessage>Email alert sent successfully</successMessage>
-            <failureMessage>Email sending failed for the $field</failureMessage>
-            <smtp_host>smtp.office365.com</smtp_host>
-            <smtp_port>587</smtp_port>
-          </action>
-        </actions>
-      </rule>
-      <rule name="Rule2" enabled="true">
-        <validations>
-          <validation name="XsdValidator" type="Customizations.XsdValidator, Customizations" validator_type="xsd" enabled="true">
-            <xsd_ns></xsd_ns>
-            <xsd_file_path>../../DataFiles/SalesOrder/SalesOrder.xsd</xsd_file_path>
+          <!--<validation name="AccelosLookup" type="Customizations.AccelosLookupValidation, Customizations" validator_type="xpath" enabled="true">
+          </validation>-->
+          <validation name="AddressValidator" type="Customizations.AddressValidation, Customizations" validator_type="xpath" enabled="true">
+            <!-- validation's local attributes -->
+			<attributes>
+              <attribute name="post_code" path="//OrderHeader/deliverToPostcode" is_rectifiable="false" enabled="true"/>
+              <attribute name="location" path="//OrderHeader/deliverToLocation" is_rectifiable="false" enabled="true"/>
+              <attribute name="state" path="//OrderHeader/deliverToState" is_rectifiable="false" enabled="true"/>
+            </attributes>
           </validation>
         </validations>
         <actions>
@@ -44,12 +49,16 @@
             <to>amjadleghari@hotmail.com</to>
             <from>Amjad.Leghari@startrack.com.au</from>
             <from_password>Welcome34452</from_password>
-            <subject>$value of the $field is exceeding limit</subject>
+            <subject>$value of the $attribute is exceeding limit</subject>
             <successMessage>Email alert sent successfully</successMessage>
-            <failureMessage>Email sending failed for the $field</failureMessage>
+            <failureMessage>Email sending failed for the $attribute</failureMessage>
             <smtp_host>smtp.office365.com</smtp_host>
             <smtp_port>587</smtp_port>
           </action>
+		  <!--Write logic for mapping to  -->
+		  <!--<action name="AccelosMapper" type="" executeOn="success" enabled="false">
+			
+		  </action>-->
         </actions>
       </rule>
     </rules>

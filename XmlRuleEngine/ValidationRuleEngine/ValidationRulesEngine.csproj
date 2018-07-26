@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ValidationRuleEngine.cd" />
     <None Include="DataFiles\Examples\books.xsc">
       <DependentUpon>books.xsd</DependentUpon>
     </None>

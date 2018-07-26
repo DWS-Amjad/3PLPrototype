@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
 using System.Xml.Serialization;
 
 namespace _3PLPrototype.DataFiles.RuleEngine
@@ -66,33 +67,49 @@ public partial class Config {
     
     private bool enabledField;
 
-    private string order_date_pathField;
+    private Field[] fieldArray;
 
-    private string order_number_pathField;
+    //private string order_date_pathField;
 
-    [XmlAttributeAttribute()]
-    public string order_date_path
+    //    private string order_number_pathField;
+
+    //[XmlAttributeAttribute()]
+    //public string order_date_path
+    //{
+    //    get
+    //    {
+    //        return this.order_date_pathField;
+    //    }
+    //    set
+    //    {
+    //        this.order_date_pathField = value;
+    //    }
+    //}
+
+    //[XmlAttributeAttribute()]
+    //public string order_number_path
+    //{
+    //    get
+    //    {
+    //        return this.order_number_pathField;
+    //    }
+    //    set
+    //    {
+    //        this.order_number_pathField = value;
+    //    }
+    //}
+
+    [XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    [XmlArrayItemAttribute("field", typeof(Field), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+    public Field[] fields
     {
         get
         {
-            return this.order_date_pathField;
+            return this.fieldArray;
         }
         set
         {
-            this.order_date_pathField = value;
-        }
-    }
-
-    [XmlAttributeAttribute()]
-    public string order_number_path
-    {
-        get
-        {
-            return this.order_number_pathField;
-        }
-        set
-        {
-            this.order_number_pathField = value;
+            this.fieldArray = value;
         }
     }
 
@@ -162,6 +179,67 @@ public partial class Config {
         set
         {
             this.document_typeField = value;
+        }
+    }
+
+}
+
+[XmlTypeAttribute(AnonymousType = true)]
+public partial class Field {
+    private string nameField;
+    private string pathField;
+    private bool isRectifiableField;
+    private bool enabledField;
+
+    [XmlAttributeAttribute()]
+    public string name
+    {
+        get
+        {
+            return this.nameField;
+        }
+        set
+        {
+            this.nameField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public string path
+    {
+        get
+        {
+            return this.pathField;
+        }
+        set
+        {
+            this.pathField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public Boolean is_rectifiable
+    {
+        get
+        {
+            return this.isRectifiableField;
+        }
+        set
+        {
+            this.isRectifiableField = value;
+        }
+    }
+
+    [XmlAttributeAttribute()]
+    public Boolean enabled
+    {
+        get
+        {
+            return this.enabledField;
+        }
+        set
+        {
+            this.enabledField = value;
         }
     }
 

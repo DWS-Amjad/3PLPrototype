@@ -41,5 +41,35 @@ namespace ValidationRuleEngine
             public static readonly Guid XSD_Invalid_Boolean = Guid.Parse("05f4369e-3a8e-e811-8aa2-3cf862661632");
             public static readonly Guid XSD_Duplicate_Element = Guid.Parse("31a5811d-3b8e-e811-8aa2-3cf862661632");
         }
+
+
+        public static class MandatoryField_NameTags
+        {
+            public static readonly string WarehouseCode = "warehouse_code";
+            public static readonly string ClientCode = "client_code";
+            public static readonly string CompanyCode = "company_code";
+            public static readonly string OrderNumber = "order_number";
+            public static readonly string OrderDate = "order_date";
+            public static readonly string DocumentType = "document_type";
+        }
+
+        public static class LengthValidation_CustomFields
+        {
+            public static readonly string OrderNumber = "order_number";
+        }
+
+        public static class AddressValidator_CustomFields
+        {
+            public static readonly string postCode = "post_code";
+            public static readonly string location = "location";
+            public static readonly string state = "state";
+        }
+
+        public static class XsdValidator_CustomFields
+        {
+            public static readonly string xsd_ns = "xsd_ns";
+            public static readonly string xsd_file_path = "xsd_file_path";
+        }
+
     }
 }

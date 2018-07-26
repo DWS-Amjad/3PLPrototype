@@ -99,6 +99,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DAL.cd" />
     <None Include="packages.config" />
     <EntityDeploy Include="Models\STEInterfaces.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

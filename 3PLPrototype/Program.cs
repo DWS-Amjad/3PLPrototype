@@ -43,7 +43,7 @@ namespace _3PLPrototype
             validatorEngine.Configure();
             validatorEngine.Start();
             validatorEngine.Stop();
-            //Console.ReadKey();
+            Console.ReadKey();
 
             //var configFilePath = ConfigurationManager.AppSettings["ConfigXmlPath"];
             //if (String.IsNullOrEmpty(configFilePath))

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace ValidationRuleEngine.Interfaces
@@ -11,8 +12,15 @@ namespace ValidationRuleEngine.Interfaces
 
         bool enabled { get; set; }
         
-        bool Validate(Object obj, XDocument currXDocument, string documentType, string orderNumber, string orderDate);
+        bool Validate(/*Object obj, XDocument currXDocument, List<Attribute> fieldArray*/);
 
-        void LoadOrderVariables(XDocument currXDocument, string DocumentType, string order_number_path, string order_date_path);
+        /// <summary>
+        /// This method takes 2 attributes. 
+        /// Firstly creates a local copy of globalAttributes and then populates its values.
+        /// Secondly it populates localAttributeValues
+        /// </summary>
+        /// <param name="globalAttributes"></param>
+        /// <param name="currXDocument"></param>
+        void LoadGlobalAttributeValues(List<Attribute> globalAttributes, XDocument currXDocument);
     }
 }
