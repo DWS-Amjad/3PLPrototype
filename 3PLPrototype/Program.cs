@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using ValidationRuleEngine.Implementations;
 using ValidationRuleEngine.Interfaces;
+using System.Xml.Linq;
 
 namespace _3PLPrototype
 {
@@ -38,11 +39,10 @@ namespace _3PLPrototype
             //Location_SYD obj = locCustomRepo.SelectByLocationAndPostCodeAndState("CALLIGNEE SOUTH", "3844", "VIC");
             //Console.WriteLine(obj.location);
             //List<Location_SYD> list = locRepository.GetLocation("4817", "WILLOWS (TOWNSVILLE)", "QLD");
-
-            IEngine validatorEngine = new ValidatorEngine();
-            validatorEngine.Configure();
-            validatorEngine.Start();
-            validatorEngine.Stop();
+            string source_file_path = "../../DataFiles/SalesOrder/Sample_SO[8303].xml";
+            XDocument doc = XDocument.Load(source_file_path);
+            IEngine validatorEngine = new ValidatorEngine(doc);
+            validatorEngine.Validation();
             Console.ReadKey();
 
             //var configFilePath = ConfigurationManager.AppSettings["ConfigXmlPath"];
@@ -60,7 +60,7 @@ namespace _3PLPrototype
             //var sampleXml = XDocument.Load("SampleXml1.xml");
 
             //Console.WriteLine("Starting CustomValidatorEngineObsolete....");
-            //ruleEngine.Start(sampleXml);
+            //ruleEngine.StartValidation(sampleXml);
             //Console.WriteLine("CustomValidatorEngineObsolete start finished.");
 
             //Console.WriteLine("Stopping CustomValidatorEngineObsolete....");

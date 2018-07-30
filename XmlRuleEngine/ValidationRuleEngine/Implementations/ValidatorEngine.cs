@@ -39,17 +39,24 @@ namespace ValidationRuleEngine.Implementations
             UnitOfWork unitOfWork = new UnitOfWork();
         #endregion
 
-        public ValidatorEngine()
+        public ValidatorEngine(XDocument xDoc)
         {
-            ApplicationMaster objApplicationMaster = unitOfWork.ApplicationMasterRepository
+            try
+            {
+                ApplicationMaster objApplicationMaster = unitOfWork.ApplicationMasterRepository
                 .SelectByID(Constants.ApplicationId);
-            Helper.XMLHelper<ConfigurationStore>.Instance
-                .UnMarshalingFromXML(objApplicationMaster.ConfigFilePath, out configurationStore);
-            /*--------------------*/
+                Helper.XMLHelper<ConfigurationStore>.Instance
+                    .UnMarshalingFromXML(objApplicationMaster.ConfigFilePath, out configurationStore);
+                /*--------------------*/
 
-            this.ConfigXmlDocument = XDocument.Load(objApplicationMaster.ConfigFilePath);
-            this.config = configurationStore.Items[0];
-            this.CurrentXmlDocument = XDocument.Load(this.config.source_file_path);
+                this.ConfigXmlDocument = XDocument.Load(objApplicationMaster.ConfigFilePath);
+                this.config = configurationStore.Items[0];
+                this.CurrentXmlDocument = xDoc;//XDocument.Load(this.config.source_file_path);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -120,7 +127,7 @@ namespace ValidationRuleEngine.Implementations
         /// <summary>
         /// 
         /// </summary>
-        void IEngine.Configure()
+        public void Configure()
         {   
             configureValidator();
 
@@ -143,99 +150,94 @@ namespace ValidationRuleEngine.Implementations
         /// <summary>
         /// 
         /// </summary>
-        void IEngine.Start()
+        public Boolean StartValidation()
         {
-            Console.WriteLine("Validation Start Routine ===>");
+            Boolean retVal = false;
+            try
+            {
+                Console.WriteLine("Validation StartValidation Routine ===>");
 
-            StartValidator();
-            
-            #region ApplicationLogEntries
-                ApplicationEventMaster Event = unitOfWork.ApplicationEventMasterRepository
-                .SelectByID(Constants.EventType.Validation_Engine_Started);
+                retVal = StartValidator();
 
-                ApplicationMaster application = unitOfWork.ApplicationMasterRepository
-                .SelectByID(Constants.ApplicationId);
+                #region ApplicationLogEntries
+                    ApplicationEventMaster Event = unitOfWork.ApplicationEventMasterRepository
+                        .SelectByID(Constants.EventType.Validation_Engine_Started);
 
-                ApplicationLog obj = unitOfWork.CreateApplicationLogObject(Event, application,
-                    "LoremIpsumMessage", "amjad.leghari");
-                
-                unitOfWork.ApplicationLogRepository.Insert(obj);
-                unitOfWork.Save();
-            #endregion
+                    ApplicationMaster application = unitOfWork.ApplicationMasterRepository
+                        .SelectByID(Constants.ApplicationId);
 
-            Console.WriteLine("<=== Validation Start routine ended.");
+                    ApplicationLog obj = unitOfWork.CreateApplicationLogObject(Event, application,
+                        "LoremIpsumMessage", "amjad.leghari");
+
+                    unitOfWork.ApplicationLogRepository.Insert(obj);
+                    unitOfWork.Save();
+                #endregion
+
+                Console.WriteLine("<=== Validation StartValidation routine ended.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return (retVal);
         }
-
+        public Boolean Validation()
+        {
+            Boolean retVal = false;
+            this.Configure();
+            retVal = this.StartValidation();
+            this.Stop();
+            return retVal;
+        }
         /// <summary>
         /// 
         /// </summary>
-        private void StartValidator()
+        private Boolean StartValidator()
         {
-            foreach (var rule in Rules)
+            bool retVal = false;
+            try
             {
-                if(rule.Enabled)
+                bool onFailureHalt = false;
+                foreach (var rule in Rules)
                 {
-                    //if (!String.IsNullOrEmpty(rule.Xpath))
-                    //{
-                        //XPathDocument xPathDoc = new XPathDocument(this.CurrentXmlDocument.Root.CreateReader(/*ReaderOptions.OmitDuplicateNamespaces*/));
-                        //var xpatheNavigator = xPathDoc.CreateNavigator();
-                        //var matchingNodes = xpatheNavigator.Select(""/* rule.Xpath */);
-                        //if (matchingNodes == null || matchingNodes.Count == 0)
-                        //{
-                        //    Console.WriteLine("No matching element found for rule {0}", rule.Name);
-                        //    continue;
-                        //}
-
-                        //Console.WriteLine("{0} matching nodes found for XPath {1}.", matchingNodes.Count, ""/*rule.Xpath*/);
-                        
-                        //while (matchingNodes.MoveNext())
+                    if (rule.Enabled)
+                    {
+                        onFailureHalt = false;
+                        foreach (var validation in rule.Validations)
                         {
-                            //var currentXElement = XElement.Parse(matchingNodes.Current.OuterXml);
-
-                            //Console.WriteLine("Executing validations for following xml Node.");
-                            //Console.WriteLine(currentXElement.ToString());
-
-                            //var context = this.GetContext(this.CurrentXmlDocument, currentXElement);
-
-                            if (rule.Validations.Where(val => val.enabled)
-                                .All(val => val.Validate(/*context*/).Equals(true)))
+                            if (validation.enabled && !onFailureHalt)
                             {
-                                Console.WriteLine("All configured validation rules succeed. Now executing (executeOn==success) actions");
-                                rule.Actions.Where(act => act.enabled && act.executeOn.Equals(Constants.ExecuteOn.success))
+                                if (validation.Validate())
+                                {
+                                    onFailureHalt = false;
+                                    Console.WriteLine("All configured validation rules succeed. Now executing (executeOn==success) actions");
+                                    rule.Actions.Where(act => act.enabled && act.executeOn.Equals(Constants.ExecuteOn.success))
+                                        .All(act => act.Execute(null/*context*/).Equals(true));
+                                }
+                                else
+                                {
+                                    retVal = false;
+                                    onFailureHalt = validation.onFailureHalt;
+                                    rule.Actions.Where(act => act.enabled && act.executeOn.Equals(Constants.ExecuteOn.failure))
                                     .All(act => act.Execute(null/*context*/).Equals(true));
+                                }
                             }
-                            else
-                            {
-                                rule.Actions.Where(act => act.enabled && act.executeOn.Equals(Constants.ExecuteOn.failure))
-                                    .All(act => act.Execute(null/*context*/).Equals(true));
-                            }
-                        }
-                    //}
-                    //else
-                    //{
-                    //    IValidationContext context = new ValidationContext(null, null, null);
-                        
-                    //    if (rule.Validations.All(val => val.Validate(null, this.CurrentXmlDocument,
-                    //        /*config.document_type, */config.attributes).Equals(true)))
-                    //    {
-                    //        Console.WriteLine("All configured validation rules succeed. Now executing actions");
-                    //        rule.Actions.Where(act => act.executeOn.Equals(Constants.ExecuteOn.success))
-                    //            .All(act => act.Execute(context).Equals(true));
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine("All configured validation rules failed. Now executing actions");
-                    //        rule.Actions.Where(act => act.executeOn.Equals(Constants.ExecuteOn.failure))
-                    //            .All(act => act.Execute(context).Equals(true));
-                    //    }
-                    //}
+                        }   
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retVal;
         }
         
-        void IEngine.Stop()
+        public void Stop()
         {
-            #region ApplicationLogEntries
+            try
+            {
+                #region ApplicationLogEntries
                 ApplicationEventMaster Event = unitOfWork.ApplicationEventMasterRepository
                     .SelectByID(Constants.EventType.Validation_Engine_Stopped);
 
@@ -247,11 +249,16 @@ namespace ValidationRuleEngine.Implementations
 
                 unitOfWork.ApplicationLogRepository.Insert(obj);
                 unitOfWork.Save();
-            #endregion
-            this.unitOfWork.Dispose();
-            this.Rules = null;
-            this.ConfigXmlDocument = null;
-            this.config = null;
+                #endregion
+                this.unitOfWork.Dispose();
+                this.Rules = null;
+                this.ConfigXmlDocument = null;
+                this.config = null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

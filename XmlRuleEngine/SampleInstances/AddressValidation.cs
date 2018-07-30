@@ -16,7 +16,6 @@ namespace Customizations
     public class AddressValidation : ValidationRuleEngine.Implementations.Validation
     {
         #region Local Variables
-
         
         //private string varLocation;
         //private string varState;
@@ -65,44 +64,10 @@ namespace Customizations
 
         public AddressValidation()
         {
-            
         }
-        
-        //public void LoadCustomVariables(XPathNavigator xpathNavigator)
-        //{
-        //    XPathNodeIterator xPathIterator;
-        //    foreach (var item in this.LocalAttributes)
-        //    {
-        //        xPathIterator = xpathNavigator.Select(item.path);
-        //        if (xPathIterator.Count > 0)
-        //        {
-        //            while (xPathIterator.MoveNext())
-        //            {
-        //                this.LocalAttributes.Where(field => field.name == item.name).First<Attribute>().value = xPathIterator.Current.Value.Trim();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine(String.Format("\"{0}\" path found in XML Document.", item.path));
-        //        }
-        //    }
-        //}
         
         public override bool Validate()
         {
-            //base.Validate(obj, currXDocument, mandatoryFields);
-            //Console.WriteLine("Stay Tuned Folks: AddressValidation To be implemented soon");
-            //IValidationContext context = (IValidationContext)obj;
-            //XDocument CurrentXmlDocument = new XDocument();
-            
-            //if (!String.IsNullOrEmpty(this.LocalAttributes.Where(field => field.name == Constants.AddressValidator_CustomFields.location).First<Attribute>().value))
-            //{
-            //    XPathDocument xPathDoc = new XPathDocument(context.ParentElement.CreateReader());
-            //    var xpathNavigator = xPathDoc.CreateNavigator();
-
-            //    LoadCustomVariables(xpathNavigator);
-            //}
-
             return ValidateAddressFields();
         }
 
@@ -147,13 +112,18 @@ namespace Customizations
                     #endregion
 
                     #region ErrorInboundData
-                    
-                        ErrorInboundData errInboundData = unitOfWork.CreateErrorInboundData("Suburb",
-                                    this.LocalAttributes.Where(item => item.name == Constants.AddressValidator_CustomFields.location).First<Attribute>().path,
+                    bool IsRectifiable = false;
+                    IsRectifiable = this.LocalAttributes.Where(attr => attr.name.Equals(Constants.AddressValidator_CustomFields.location)).First().is_rectifiable;
+                    ErrorInboundData errInboundData = unitOfWork.CreateErrorInboundData("Suburb",
+                                    this.LocalAttributes
+                                    .Where(item => item.name == Constants.AddressValidator_CustomFields.location)
+                                    .First<Attribute>().path,
                                     "String",
-                                    this.LocalAttributes.Where(item => item.name == Constants.AddressValidator_CustomFields.location).First<Attribute>().value,
+                                    this.LocalAttributes
+                                    .Where(item => item.name == Constants.AddressValidator_CustomFields.location)
+                                    .First<Attribute>().value, this.validator_type,
                                     "Suburb invalid", "Suburb value is either null/empty or invalid",
-                                    "", objErrorXml, false);
+                                    objErrorXml, IsRectifiable);
 
                         unitOfWork.ErrorInboundRepository.Insert(errInboundData);
                         unitOfWork.Save();
@@ -274,12 +244,15 @@ namespace Customizations
                             #endregion
 
                             #region ErrorInboundData
+                            bool IsRectifiable = false;
+                            IsRectifiable = this.LocalAttributes.Where(attr => attr.name.Equals(Constants.AddressValidator_CustomFields.location)).First().is_rectifiable;
+
                             ErrorInboundData errInboundData = unitOfWork.CreateErrorInboundData("Suburb",
                                     this.LocalAttributes.Where(item => item.name == Constants.AddressValidator_CustomFields.location).First<Attribute>().path,
                                     "String",
                                     this.LocalAttributes.Where(item => item.name == Constants.AddressValidator_CustomFields.location).First<Attribute>().value,
-                                    "Suburb invalid", "Suburb value is either null/empty or invalid",
-                                    "", objErrorXml, false);
+                                    this.validator_type, "Suburb value is either null/empty or invalid",
+                                    "", objErrorXml, IsRectifiable);
                                 unitOfWork.ErrorInboundRepository.Insert(errInboundData);
                                 unitOfWork.Save();
                             #endregion
@@ -355,12 +328,15 @@ namespace Customizations
                         #endregion
 
                         #region ErrorInboundData
-                            ErrorInboundData errInboundData = unitOfWork.CreateErrorInboundData("(Suburb / Postcode / State)",
+                        bool IsRectifiable = false;
+                        IsRectifiable = this.LocalAttributes.Where(attr => attr.name.Equals(Constants.AddressValidator_CustomFields.location)).First().is_rectifiable;
+
+                        ErrorInboundData errInboundData = unitOfWork.CreateErrorInboundData("(Suburb / Postcode / State)",
                                 "",
                                 "(Suburb / Postcode / State) invalid",
-                                "", "(Suburb / Postcode / State) invalid",
+                                "", this.validator_type,
                                 "One of the field(Suburb / Postcode / State) value is either null/empty or invalid",
-                                "", objErrorXml, false) ;
+                                "", objErrorXml, IsRectifiable) ;
 
                             unitOfWork.ErrorInboundRepository.Insert(errInboundData);
                             unitOfWork.Save();

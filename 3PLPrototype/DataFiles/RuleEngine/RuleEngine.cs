@@ -61,43 +61,12 @@ public partial class Config {
     
     private string xsd_file_pathField;
     
-    private string source_file_pathField;
-
     private string document_typeField;
     
     private bool enabledField;
 
     private Field[] fieldArray;
-
-    //private string order_date_pathField;
-
-    //    private string order_number_pathField;
-
-    //[XmlAttributeAttribute()]
-    //public string order_date_path
-    //{
-    //    get
-    //    {
-    //        return this.order_date_pathField;
-    //    }
-    //    set
-    //    {
-    //        this.order_date_pathField = value;
-    //    }
-    //}
-
-    //[XmlAttributeAttribute()]
-    //public string order_number_path
-    //{
-    //    get
-    //    {
-    //        return this.order_number_pathField;
-    //    }
-    //    set
-    //    {
-    //        this.order_number_pathField = value;
-    //    }
-    //}
+    
 
     [XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
     [XmlArrayItemAttribute("field", typeof(Field), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
@@ -147,16 +116,6 @@ public partial class Config {
         }
     }
     
-    /// <remarks/>
-    [XmlAttributeAttribute()]
-    public string source_file_path {
-        get {
-            return this.source_file_pathField;
-        }
-        set {
-            this.source_file_pathField = value;
-        }
-    }
 
     /// <remarks/>
     [XmlAttributeAttribute()]

@@ -1,10 +1,12 @@
-﻿namespace ValidationRuleEngine.Interfaces
+﻿using System;
+using System.Xml.Linq;
+namespace ValidationRuleEngine.Interfaces
 {
     public interface IEngine
     {
         void Configure();
 
-        void Start();
+        Boolean Validation();
      
         void Stop();
     }

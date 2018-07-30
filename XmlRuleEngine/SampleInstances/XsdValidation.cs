@@ -163,17 +163,17 @@ namespace Customizations
                     {
                         this.errorDetected = true;
                         #region ApplicationLogEntries DB Entry
-                        ApplicationEventMaster Event = unitOfWork.ApplicationEventMasterRepository
-                            .SelectByID(Constants.EventType.Standard_Xml_Validation_Failed);
+                            ApplicationEventMaster Event = unitOfWork.ApplicationEventMasterRepository
+                                .SelectByID(Constants.EventType.Standard_Xml_Validation_Failed);
 
-                        ApplicationMaster Application = unitOfWork.ApplicationMasterRepository
-                            .SelectByID(Constants.ApplicationId);
+                            ApplicationMaster Application = unitOfWork.ApplicationMasterRepository
+                                .SelectByID(Constants.ApplicationId);
 
-                        ApplicationLog objAppLog = unitOfWork.CreateApplicationLogObject(Event, Application,
-                            "LoremIpsumMessage", "amjad.leghari");
+                            ApplicationLog objAppLog = unitOfWork.CreateApplicationLogObject(Event, Application,
+                                "LoremIpsumMessage", "amjad.leghari");
 
-                        unitOfWork.ApplicationLogRepository.Insert(objAppLog);
-                        unitOfWork.Save();
+                            unitOfWork.ApplicationLogRepository.Insert(objAppLog);
+                            unitOfWork.Save();
                         #endregion
                     }
 
@@ -213,61 +213,87 @@ namespace Customizations
                     Console.WriteLine(xPath);
 
                     #region ErrorXml DB Entry
-                    if (currentErrorXml == null)
-                    {
-                        currentErrorXml = unitOfWork.CreateErrorXml(
-                            clientCode,
-                            warehouseCode,
-                            String.IsNullOrEmpty(orderNumber)
-                                ? "dummy order number"
-                                : orderNumber,
-                            this.varDocumentType,
-                            orderDate,
-                            DateTime.Now, this.inProcessXML);
+                        if (currentErrorXml == null)
+                        {
+                            currentErrorXml = unitOfWork.CreateErrorXml(
+                                clientCode,
+                                warehouseCode,
+                                String.IsNullOrEmpty(orderNumber)
+                                    ? "dummy order number"
+                                    : orderNumber,
+                                this.varDocumentType,
+                                orderDate,
+                                DateTime.Now, this.inProcessXML);
 
-                        unitOfWork.ErrorXmlRepository.Insert(currentErrorXml);
-                        unitOfWork.Save();
-                    }
+                            unitOfWork.ErrorXmlRepository.Insert(currentErrorXml);
+                            unitOfWork.Save();
+                        }
                     #endregion
+                    //Attribute temp = this.LocalAttributes.Where(attr => attr.name.Equals(obj.Name)).First<Attribute>();
 
+                    bool IsRectifiable = /*(temp!=null) ? temp.is_rectifiable : */false;
+                    if(obj.SchemaInfo!=null)
+                    {
+                        if (obj.SchemaInfo.SchemaElement != null)
+                        {
+                            if (obj.SchemaInfo.SchemaElement.UnhandledAttributes != null)
+                            {
+                                //if (obj.SchemaInfo.SchemaElement.moreAttributes.Count > 0)
+                                if (obj.SchemaInfo.SchemaElement.UnhandledAttributes.Count() > 0)
+                                {
+                                    if (obj.SchemaInfo.SchemaElement.UnhandledAttributes
+                                        .Where(attr => attr.Name.Equals("")).Count() > 0)
+                                    {
+                                        IsRectifiable = Convert.ToBoolean(obj.SchemaInfo
+                                            .SchemaElement.UnhandledAttributes
+                                            .Where(attr => attr.Name.Equals("")).First<XmlAttribute>().Value);
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                    
                     #region ErrorInboundData DB Entry
-                    ErrorInboundData objErrInbound = unitOfWork.CreateErrorInboundData(obj.Name,
-                        elementStack.Reverse().Aggregate(string.Empty, (x, y) => x + "/" + y),
-                        dataType, obj.Value, "not available", e.Message, "not available",
-                        unitOfWork.ErrorXmlRepository.SelectByID(currentErrorXml.Id), false);
+                        ErrorInboundData objErrInbound = unitOfWork.CreateErrorInboundData(obj.Name,
+                            xPath, dataType, obj.Value, this.validator_type, e.Message, "not available",
+                            unitOfWork.ErrorXmlRepository.SelectByID(currentErrorXml.Id), IsRectifiable);
 
-                    unitOfWork.ErrorInboundRepository.Insert(objErrInbound);
-                    unitOfWork.Save();
+                        unitOfWork.ErrorInboundRepository.Insert(objErrInbound);
+                        unitOfWork.Save();
                     #endregion
 
                     #region ErrorSuggestion DB Entry
 
-                    Error_Suggestion_InboundData_Mapper esidmapObj = new Error_Suggestion_InboundData_Mapper();
-                    esidmapObj.Id = Guid.NewGuid();
-                    switch (objErrInbound.DataType.ToLower())
-                    {
-                        case "integer":
-                            esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_Integer;
-                            break;
-                        case "float":
-                            esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_Float;
-                            break;
-                        case "datetime":
-                            esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_DateTime;
-                            break;
-                        case "boolean":
-                            esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_Boolean;
-                            break;
-                        case "duplicate elements":
-                            esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Duplicate_Element;
-                            break;
-                        default: break;
-                    }
+                        Error_Suggestion_InboundData_Mapper esidmapObj = new Error_Suggestion_InboundData_Mapper();
+                        esidmapObj.Id = Guid.NewGuid();
+                        switch (objErrInbound.DataType.ToLower())
+                        {
+                            case "integer":
+                                                esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_Integer;
+                                                break;
+                            case "float":
+                                                esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_Float;
+                                                break;
+                            case "datetime":
+                                                esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_DateTime;
+                                                break;
+                            case "boolean":
+                                                esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_Boolean;
+                                                break;
+                            case "duplicate elements":
+                                                        esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Duplicate_Element;
+                                                        break;
+                            case "string":
+                                            esidmapObj.ErrorSuggestionId = Constants.Suggestions.XSD_Invalid_String;
+                                            break;
+                            default:        break;
+                        }
 
-                    esidmapObj.ErrorInboundDataId = objErrInbound.Id;
-                    esidmapObj.DateTime = DateTime.Now;
-                    unitOfWork.ErrorSuggestion_InboundDataRepository.Insert(esidmapObj);
-                    unitOfWork.Save();
+                        esidmapObj.ErrorInboundDataId = objErrInbound.Id;
+                        esidmapObj.DateTime = DateTime.Now;
+                        unitOfWork.ErrorSuggestion_InboundDataRepository.Insert(esidmapObj);
+                        unitOfWork.Save();
                     #endregion
                 }
             }

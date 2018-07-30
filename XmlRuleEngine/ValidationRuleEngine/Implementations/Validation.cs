@@ -22,12 +22,14 @@ namespace ValidationRuleEngine.Implementations
         [XmlAttribute("enabled")]
         public bool enabled { get; set; }
 
+        [XmlAttribute("on_failure_halt")]
+        public bool onFailureHalt { get; set; }
+
+
         #region Local Attributes
         [XmlArrayAttribute("attributes")]
-        [XmlArrayItemAttribute("attribute")]
-        public List<Attribute> LocalAttributes;
-
-
+            [XmlArrayItemAttribute("attribute")]
+            public List<Attribute> LocalAttributes;
         #endregion
 
         protected string inProcessXML;
@@ -105,8 +107,7 @@ namespace ValidationRuleEngine.Implementations
                 throw ex;
             }
         }
-
-
+        
         public virtual bool Validate()
         {  
             return true;

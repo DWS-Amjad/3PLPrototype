@@ -11,7 +11,13 @@ namespace ValidationRuleEngine.Interfaces
         string validator_type { get; set; }
 
         bool enabled { get; set; }
+
+        bool onFailureHalt { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         bool Validate(/*Object obj, XDocument currXDocument, List<Attribute> fieldArray*/);
 
         /// <summary>

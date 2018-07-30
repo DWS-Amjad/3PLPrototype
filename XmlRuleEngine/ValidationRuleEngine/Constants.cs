@@ -40,6 +40,7 @@ namespace ValidationRuleEngine
             public static readonly Guid XSD_Invalid_DateTime = Guid.Parse("1b43d9c0-3a8e-e811-8aa2-3cf862661632");
             public static readonly Guid XSD_Invalid_Boolean = Guid.Parse("05f4369e-3a8e-e811-8aa2-3cf862661632");
             public static readonly Guid XSD_Duplicate_Element = Guid.Parse("31a5811d-3b8e-e811-8aa2-3cf862661632");
+            public static readonly Guid XSD_Invalid_String = Guid.Parse("89D586B8-F251-4D3B-B4B5-B7DE934C27B6");
         }
 
 

@@ -1,0 +1,209 @@
+<SalesOrders>
+  <OrderHeader>
+    <hostID></hostID>
+    <companyCode>W3</companyCode>
+    <clientCode>OUP</clientCode>
+    <warehouseCode>01</warehouseCode>
+    <orderNumber>0080000504</orderNumber>
+    <origOrderNumber />
+    <accellosOrderNumber></accellosOrderNumber>
+    <purchaseOrderNumber />
+    <customerReference />
+    <clientASNNumber />
+    <asnID />
+    <clientEDIAddress />
+    <retailerEDIAddress />
+    <retailerNumber />
+    <promotionNumber />
+    <vendorNumber />
+    <invoiceRequired>false</invoiceRequired>
+    <asnRequired>false</asnRequired>
+    <packSlipRequired>false</packSlipRequired>
+    <priceTicketRequired>false</priceTicketRequired>
+    <salesOrderAcknowledgementRequired>false</salesOrderAcknowledgementRequired>
+    <pickConfirmationAcknowledgementRequired>false</pickConfirmationAcknowledgementRequired>
+    <asnAcknowledgementRequired>false</asnAcknowledgementRequired>
+    <orderConfirmed />
+    <despatchEmailNotificationRequired>false</despatchEmailNotificationRequired>
+    <orderType />
+    <orderClass />
+    <orderDate>20180503</orderDate>
+    <customerOrderDate>20180411</customerOrderDate>
+    <deliveryDate>20180411</deliveryDate>
+    <requestedArrivalDate>20180411</requestedArrivalDate>
+    <deliveryDateBefore></deliveryDateBefore>
+    <deliveryDateAfter></deliveryDateAfter>
+    <despatchDate></despatchDate>
+    <shipDate></shipDate>
+    <earliestShipDate></earliestShipDate>
+    <latestShipDate></latestShipDate>
+    <releaseDate></releaseDate>
+    <cancellationDate></cancellationDate>
+    <etaDate></etaDate>
+    <cutOffTime />
+    <shipToCode />
+    <shipToDepartment />
+    <shipToName1>SUPPLY FROM 0002</shipToName1>
+    <shipToName2 />
+    <shipToAddress1>50 SOMESTREET ST</shipToAddress1>
+    <shipToAddress2 />
+    <shipToAddress3 />
+    <shipToLocation>NORTHCOTE</shipToLocation>
+    <shipToPostcode>3070</shipToPostcode>
+    <shipToState>VIC</shipToState>
+    <shipToCountryCode>AU</shipToCountryCode>
+    <shipToCountryName />
+    <shipToPhoneNumber />
+    <shipToAccountNumber />
+    <shipToEmailAddress />
+    <shipToEmailSalutation />
+    <shipToDepot />
+    <deliverToCode />
+    <deliverToName1>SUPPLY FROM 0002</deliverToName1>
+    <deliverToName2 />
+    <deliverToAddress1>50 SOMESTREET ST</deliverToAddress1>
+    <deliverToAddress2 />
+    <deliverToAddress3 />
+    <deliverToLocation>NORTHCOTE</deliverToLocation>
+    <deliverToPostcode>3070</deliverToPostcode>
+    <deliverToState>VIC</deliverToState>
+    <deliverToCountryCode />
+    <deliverToCountryName />
+    <deliverToPhoneNumber />
+    <deliverToAccountNumber />
+    <deliverToEmailAddress />
+    <deliverToEmailSalutation />
+    <billToCode />
+    <billToName1 />
+    <billToName2 />
+    <billToAddress1 />
+    <billToAddress2 />
+    <billToAddress3 />
+    <billToLocation />
+    <billToPostcode />
+    <billToState />
+    <billToCountryCode />
+    <billToCountryName />
+    <billToPhoneNumber />
+    <billToAccountNumber />
+    <billToEmailAddress />
+    <billToEmailSalutation />
+    <departmentNumber />
+    <departmentName />
+    <specialInstructions1 />
+    <specialInstructions2 />
+    <specialInstructions3 />
+    <warehouseInstructions1 />
+    <warehouseInstructions2 />
+    <referenceField1 />
+    <referenceField2 />
+    <referenceField3 />
+    <referenceField4 />
+    <referenceField5 />
+    <labelText1 />
+    <labelText2 />
+    <labelText3 />
+    <sendersReference />
+    <labelCode />
+    <advertisedDate />
+    <abn />
+    <invoiceNumber />
+    <invoiceDate />
+    <invoiceDueDate />
+    <invoiceHeaderText />
+    <invoiceTerms />
+    <freightDescription />
+    <freightTotal />
+    <surchargeTotal />
+    <miscellaneousTotal1 />
+    <miscellaneousTotal2 />
+    <gstTotal />
+    <subTotal />
+    <invoiceTotal />
+    <currencyCode />
+    <totalWeight />
+    <totalVolume />
+    <totalQuantity />
+    <totalCartons />
+    <serviceCode />
+    <carrierAbbreviation />
+    <useAlternateDespatchID>false</useAlternateDespatchID>
+    <specialServiceFlag>false</specialServiceFlag>
+    <payerType />
+    <payerName1 />
+    <payerName2 />
+    <payerAccountNumber />
+    <userDefinedField1>0000000000099005</userDefinedField1>
+    <userDefinedField2>EXP</userDefinedField2>
+    <userDefinedField3 />
+    <userDefinedField4 />
+    <userDefinedField5 />
+    <userDefinedField6 />
+    <userDefinedField7 />
+    <userDefinedField8 />
+    <userDefinedField9 />
+    <userDefinedField10 />
+    <connoteNumber></connoteNumber>
+    <originCode />
+    <OrderDetail>
+      <lineNumber>000010</lineNumber>
+      <customerLineNumber />
+      <parentLineNumber />
+      <productCode>9780194366779</productCode>
+      <customerProductCode />
+      <upcCode />
+      <productDescription>New Headwa Elem Stud Bk (ELT - AV)</productDescription>
+      <size />
+      <style />
+      <color />
+      <category1 />
+      <category2 />
+      <category3 />
+      <category4 />
+      <ageCode />
+      <seasonCode />
+      <packingQuantity />
+      <quantityOrdered>5</quantityOrdered>
+      <quantityShipped></quantityShipped>
+      <quantityBackOrdered>0</quantityBackOrdered>
+      <originalQuantityOrdered>5</originalQuantityOrdered>
+      <originalQuantityBackOrdered>0</originalQuantityBackOrdered>
+      <unitOfMeasure />
+      <serialNumber />
+      <lotNumber />
+      <expiryDate />
+      <unitPriceExTax />
+      <unitPriceIncTax />
+      <taxAmount />
+      <gst />
+      <extendedExTax />
+      <extendedIncTax />
+      <miscellaneousCharge1 />
+      <miscellaneousCharge2 />
+      <discount />
+      <lineTotalExcTax />
+      <lineTotalIncTax />
+      <recommendedRetailPrice />
+      <weight />
+      <volume />
+      <userDefinedField1 />
+      <userDefinedField2 />
+      <userDefinedField3 />
+      <userDefinedField4 />
+      <userDefinedField5 />
+      <userDefinedField6 />
+      <userDefinedField7 />
+      <userDefinedField8 />
+      <userDefinedField9 />
+      <userDefinedField10 />
+      <nonStockItem>false</nonStockItem>
+      <holdCode />
+      <customerProductCode />
+      <kitFlag />      
+      <OrderLotSerial>
+        <lotSerialNumber>135</lotSerialNumber>
+        <quantityOrdered />        
+      </OrderLotSerial>
+    </OrderDetail>
+  </OrderHeader>
+</SalesOrders>

@@ -114,6 +114,9 @@
     <None Include="DataFiles\SalesOrder\SalesOrder.xss">
       <DependentUpon>SalesOrder.xsd</DependentUpon>
     </None>
+    <None Include="DataFiles\SalesOrder\Startrack_3pl.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ConfigurationStore>
-  <Config name="sales_order" source_file_path="../../DataFiles/SalesOrder/Sample_SO[8303].xml"
-          enabled="true" >
+  <Config name="sales_order" enabled="true" >
     <!-- global attributes -->	
 	<!-- Attributes are refering to additional information of an object -->
 	<!-- Properties are describing the characteristics of an object -->
@@ -18,26 +17,26 @@
       <rule name="Rule1" enabled="true">
         <!--<path></path>-->
         <validations>
-          <validation name="XsdValidator" type="Customizations.XsdValidation, Customizations" validator_type="xsd" enabled="true">
+          <validation name="XsdValidator" type="Customizations.XsdValidation, Customizations" validator_type="xsd" on_failure_halt="false" enabled="true">
             <!-- validation's custom attributes -->
-			<attributes>
-				<attribute name="xsd_ns" value="" path="" enabled="true"/>
-				<attribute name="xsd_file_path" value="../../DataFiles/SalesOrder/SalesOrder.xsd" enabled="true"/>
-			</attributes>
+			      <attributes>
+				      <attribute name="xsd_ns" value="" path="" enabled="true"/>
+				      <attribute name="xsd_file_path" value="../../DataFiles/SalesOrder/SalesOrder.xsd" enabled="true"/>
+			      </attributes>
           </validation>
-		  <validation name="Suburblength" type="Customizations.LengthValidation, Customizations" validator_type="xpath" enabled="false">
+		      <validation name="Suburblength" type="Customizations.LengthValidation, Customizations" validator_type="xpath" on_failure_halt="false" enabled="false">
             <!-- validation's custom attributes -->
-			<attributes>
-              <attribute name="order_number" path="/SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
-            </attributes>
+			        <attributes>
+                <attribute name="order_number" path="/SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+              </attributes>
             <length>10</length>
             <message>Length of suburban attribute length is greater than 10 characters.</message>
           </validation>
           <!--<validation name="AccelosLookup" type="Customizations.AccelosLookupValidation, Customizations" validator_type="xpath" enabled="true">
           </validation>-->
-          <validation name="AddressValidator" type="Customizations.AddressValidation, Customizations" validator_type="xpath" enabled="true">
+          <validation name="AddressValidator" type="Customizations.AddressValidation, Customizations" validator_type="xpath" on_failure_halt="false" enabled="true">
             <!-- validation's local attributes -->
-			<attributes>
+			      <attributes>
               <attribute name="post_code" path="//OrderHeader/deliverToPostcode" is_rectifiable="false" enabled="true"/>
               <attribute name="location" path="//OrderHeader/deliverToLocation" is_rectifiable="false" enabled="true"/>
               <attribute name="state" path="//OrderHeader/deliverToState" is_rectifiable="false" enabled="true"/>
@@ -55,10 +54,10 @@
             <smtp_host>smtp.office365.com</smtp_host>
             <smtp_port>587</smtp_port>
           </action>
-		  <!--Write logic for mapping to  -->
-		  <!--<action name="AccelosMapper" type="" executeOn="success" enabled="false">
+		      <!--Write logic for mapping to  -->
+		      <!--<action name="AccelosMapper" type="" executeOn="success" enabled="false">
 			
-		  </action>-->
+		      </action>-->
         </actions>
       </rule>
     </rules>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Liquid Studio 2018 (https://www.liquid-technologies.com) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="https://startrack.com.au/3pl" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:attribute name="isRectifiable" type="xs:boolean" default="false"/>
+</xs:schema>
