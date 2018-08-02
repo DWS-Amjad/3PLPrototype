@@ -1,0 +1,12 @@
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\obj\Debug\Helper.csproj.CoreCompileInputs.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\Helper.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\Helper.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\log4net.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\log4net.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\obj\Debug\Helper.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\obj\Debug\Helper.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\System.Net.Http.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\Newtonsoft.Json.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\Newtonsoft.Json.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\bin\Debug\Helper.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\Helper\obj\Debug\Helper.csprojResolveAssemblyReference.cache

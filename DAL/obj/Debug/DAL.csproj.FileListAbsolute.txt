@@ -9,3 +9,10 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.csproj.CoreCompileInputs
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.dll
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\Helper.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\log4net.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\Helper.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\log4net.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\Newtonsoft.Json.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\Newtonsoft.Json.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\DAL\bin\Debug\Helper.dll.config

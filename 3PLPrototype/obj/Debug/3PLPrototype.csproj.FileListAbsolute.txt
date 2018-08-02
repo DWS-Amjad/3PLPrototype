@@ -18,3 +18,10 @@ D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\obj\Debug\3PLPrototype.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Customizations.dll
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Customizations.pdb
 D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Customizations.dll.config
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\log4net.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\log4net.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Helper.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Helper.pdb
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Newtonsoft.Json.dll
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Newtonsoft.Json.xml
+D:\DWS\AusPost-StarTrack\3PLPrototype\3PLPrototype\bin\Debug\Helper.dll.config

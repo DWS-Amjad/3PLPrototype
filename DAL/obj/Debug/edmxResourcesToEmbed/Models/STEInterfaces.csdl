@@ -39,6 +39,7 @@
     <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ApplicationLogs" Relationship="Self.FK_ApplicationLog_ApplicationMaster" FromRole="ApplicationMaster" ToRole="ApplicationLog" />
+    <Property Name="ConfigFileSchemaPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Location_SYD">
     <Key>
@@ -186,7 +187,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Suggestion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Suggestion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />

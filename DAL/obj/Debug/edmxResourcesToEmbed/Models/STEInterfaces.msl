@@ -29,6 +29,7 @@
     <EntitySetMapping Name="ApplicationMasters">
       <EntityTypeMapping TypeName="STEInterfacesModel.ApplicationMaster">
         <MappingFragment StoreEntitySet="ApplicationMaster">
+          <ScalarProperty Name="ConfigFileSchemaPath" ColumnName="ConfigFileSchemaPath" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ConfigFilePath" ColumnName="ConfigFilePath" />

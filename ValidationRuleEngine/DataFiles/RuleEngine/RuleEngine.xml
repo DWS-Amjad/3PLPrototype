@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ConfigurationStore>
+  <Config name="sales_order" enabled="true" >
+    <!-- global attributes -->
+    <!-- Attributes are refering to additional information of an object -->
+    <!-- Properties are describing the characteristics of an object -->
+    <attributes>
+      <attribute name="warehouse_code" path="//SalesOrders/OrderHeader/warehouseCode" is_rectifiable="false" enabled="true" />
+      <attribute name="client_code" path="//SalesOrders/OrderHeader/clientCode" is_rectifiable="false" enabled="true"/>
+      <attribute name="company_code" path="//SalesOrders/OrderHeader/companyCode" is_rectifiable="false" enabled="true"/>
+      <attribute name="document_type" value="sales_order" enabled="true"/>
+      <attribute name="order_number" path="//SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+      <attribute name="order_date" path="//SalesOrders/OrderHeader/orderDate" is_rectifiable="false" enabled="true"/>
+    </attributes>
+    <!-- -->
+    <rules>
+      <rule name="Rule1" enabled="true">
+        <validations>
+          <validation name="XsdValidator" type="Customizations.XsdValidation, Customizations" validator_type="xsd" on_failure_halt="true" enabled="true">
+            <!-- validation's custom attributes -->
+            <attributes>
+              <attribute name="xsd_ns" value="" path="" enabled="true"/>
+              <attribute name="xsd_file_path" value="../../DataFiles/SalesOrder/SalesOrder.xsd" enabled="true"/>
+            </attributes>
+            <!--<actions>
+              <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+                <attributes>
+                  <attribute name="to" value="amjad.leghari@startrack.com.au;amjad.leghari@dws.com.au;" />
+                  <attribute name="from" value="steintegrator@startrackexpress.com.au" />
+                  <attribute name="subject" value="Test Email" />
+                  <attribute name="message" value="test" />
+                  <attribute name="displayName" value="StarTrack Express Integrator" />
+                </attributes>
+              </action>
+            </actions>-->
+          </validation>
+          <validation name="Suburblength" type="Customizations.LengthValidation, Customizations" validator_type="xpath" on_failure_halt="false" enabled="false">
+            <!-- validation's custom attributes -->
+            <attributes>
+              <attribute name="order_number" path="/SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+              <attribute name="length" value="10" />
+              <attribute name="message" value="Length of suburban attribute length is greater than 10 characters." />
+            </attributes>
+            <!--<actions>
+              <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+                <attributes>
+                  <attribute name="to" value="amjad.leghari@startrack.com.au;amjad.leghari@dws.com.au;" />
+                  <attribute name="from" value="steintegrator@startrackexpress.com.au" />
+                  <attribute name="subject" value="Test Email" />
+                  <attribute name="message" value="test" />
+                  <attribute name="displayName" value="StarTrack Express Integrator" />
+                </attributes>
+              </action>
+            </actions>-->
+          </validation>
+          <validation name="AccelosLookup" type="Customizations.AccelosLookupValidation, Customizations" validator_type="xpath" enabled="true">
+            <attributes>
+              <attribute name="order_number" path="/SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+              <attribute name="company_code" path="/SalesOrders/OrderHeader/companyCode" is_rectifiable="false" enabled="true"/>
+            </attributes>
+            <!--<actions>
+              <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+                <attributes>
+                  <attribute name="to" value="amjad.leghari@startrack.com.au;amjad.leghari@dws.com.au;" />
+                  <attribute name="from" value="steintegrator@startrackexpress.com.au" />
+                  <attribute name="subject" value="Test Email" />
+                  <attribute name="message" value="test" />
+                  <attribute name="displayName" value="StarTrack Express Integrator" />
+                </attributes>
+              </action>
+            </actions>-->
+          </validation>
+          <validation name="AddressValidator" type="Customizations.AddressValidation, Customizations" validator_type="xpath" on_failure_halt="false" enabled="true">
+            <!-- validation's local attributes -->
+            <attributes>
+              <attribute name="post_code" path="//OrderHeader/deliverToPostcode" is_rectifiable="false" enabled="true"/>
+              <attribute name="location" path="//OrderHeader/deliverToLocation" is_rectifiable="false" enabled="true"/>
+              <attribute name="state" path="//OrderHeader/deliverToState" is_rectifiable="false" enabled="true"/>
+            </attributes>
+            <!--<actions>
+              <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+                <attributes>
+                  <attribute name="to" value="amjad.leghari@startrack.com.au;amjad.leghari@dws.com.au;" />
+                  <attribute name="from" value="steintegrator@startrackexpress.com.au" />
+                  <attribute name="subject" value="Test Email" />
+                  <attribute name="message" value="test" />
+                  <attribute name="displayName" value="StarTrack Express Integrator" />
+                </attributes>
+              </action>
+            </actions>-->
+          </validation>
+        </validations>
+        <actions>
+          <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+            <attributes>
+              <attribute name="to" value="amjad.leghari@startrack.com.au;amjad.leghari@dws.com.au;" />
+              <attribute name="from" value="steintegrator@startrackexpress.com.au" />
+              <attribute name="subject" value="Test Email" />
+              <attribute name="message" value="test" />
+              <attribute name="displayName" value="StarTrack Express Integrator" />
+            </attributes>
+          </action>
+        </actions>
+      </rule>
+    </rules>
+  </Config>
+</ConfigurationStore>

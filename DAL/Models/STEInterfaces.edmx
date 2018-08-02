@@ -35,6 +35,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ConfigFilePath" Type="nvarchar" MaxLength="255" />
+          <Property Name="ConfigFileSchemaPath" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -71,7 +72,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Suggestion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Suggestion" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedBy" Type="nchar" MaxLength="50" Nullable="false" />
@@ -244,6 +245,7 @@
           <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ApplicationLogs" Relationship="Self.FK_ApplicationLog_ApplicationMaster" FromRole="ApplicationMaster" ToRole="ApplicationLog" />
+          <Property Name="ConfigFileSchemaPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Location_SYD">
           <Key>
@@ -391,7 +393,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Suggestion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Suggestion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -445,6 +447,7 @@
           <EntitySetMapping Name="ApplicationMasters">
             <EntityTypeMapping TypeName="STEInterfacesModel.ApplicationMaster">
               <MappingFragment StoreEntitySet="ApplicationMaster">
+                <ScalarProperty Name="ConfigFileSchemaPath" ColumnName="ConfigFileSchemaPath" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ConfigFilePath" ColumnName="ConfigFilePath" />

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Customizations;
 using System;
+using Newtonsoft.Json;
 
 namespace UnitTest
 {
@@ -25,7 +26,7 @@ namespace UnitTest
             }
             catch (Exception ex)
             {
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 
@@ -39,13 +40,14 @@ namespace UnitTest
             
             try
             {
+                //throw new Exception("Testing Logger");
                 AddressValidation val = new AddressValidation();
                 val.setupAddressValidator("OUP", "W3", "01", "0080000504", "20180503", "", "", "", "sales_order");
                 Assert.AreEqual(false, val.ValidateAddressFields());
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
             
         }
@@ -64,9 +66,9 @@ namespace UnitTest
                                
                 Assert.AreEqual(true, val.ValidateAddressFields());
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
             
         }
@@ -86,9 +88,9 @@ namespace UnitTest
                 val.setupAddressValidator("OUP", "W3", "01", "0080000504", "20180503", "AGNES BANKS", "2750", "NSW", "sales_order");
                 Assert.AreEqual(true, val.ValidateAddressFields());
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
             
         }
@@ -107,9 +109,9 @@ namespace UnitTest
                 val.setupAddressValidator("OUP", "W3", "01", "0080000504", "20180503", "AGNES BANKS (NSW)", "2750", "", "sales_order");
                 Assert.AreEqual(true, val.ValidateAddressFields());
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
             
         }
@@ -128,11 +130,10 @@ namespace UnitTest
                 val.setupAddressValidator("OUP", "W3", "01", "0080000504", "20180503", "AGNES BANKS (NSW)", "2750", "", "sales_order");
                 Assert.AreEqual(true, val.ValidateAddressFields());
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
-            
         }
 
         [TestMethod]
@@ -150,9 +151,9 @@ namespace UnitTest
                 val.setupAddressValidator("OUP", "W3", "01", "0080000504", "20180503", "ASCOT", "4359", "QLD", "sales_order");
                 Assert.AreEqual(true, val.ValidateAddressFields());
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 
@@ -171,9 +172,9 @@ namespace UnitTest
                 val.setupAddressValidator("OUP", "W3", "01", "0080000504", "20180503", "ASCOT", "3551", "", "sales_order");
                 Assert.AreEqual(true, val.ValidateAddressFields());
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 
@@ -193,9 +194,9 @@ namespace UnitTest
                 //because there are more than 1 value of ascot under state victoria
                 Assert.AreEqual(false, val.ValidateAddressFields());
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
             
         }
@@ -215,9 +216,9 @@ namespace UnitTest
                 //more than 1 value if we consider first 5 characters and match postcode and state
                 Assert.AreEqual(false, val.ValidateAddressFields());
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 

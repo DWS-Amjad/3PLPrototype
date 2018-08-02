@@ -7,11 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3PLPrototype", "3PLPrototyp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{35D3BD13-0C1D-493B-BC4E-4F52D5274329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationRulesEngine", "XmlRuleEngine\ValidationRuleEngine\ValidationRulesEngine.csproj", "{58626204-FDE9-4DDF-BCC8-E9510F3D79D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationRulesEngine", "ValidationRuleEngine\ValidationRulesEngine.csproj", "{58626204-FDE9-4DDF-BCC8-E9510F3D79D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customizations", "XmlRuleEngine\SampleInstances\Customizations.csproj", "{C98FF588-9E48-4EC7-9003-4E3CE69646EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customizations", "Customizations\Customizations.csproj", "{C98FF588-9E48-4EC7-9003-4E3CE69646EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizationsUnitTest", "CustomValidatorUnitTest\CustomizationsUnitTest.csproj", "{96CD3549-6708-4734-A3CA-03BA13CB907E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{F9A00449-00D0-4CC6-A48B-FF679A085C05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{96CD3549-6708-4734-A3CA-03BA13CB907E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96CD3549-6708-4734-A3CA-03BA13CB907E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96CD3549-6708-4734-A3CA-03BA13CB907E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A00449-00D0-4CC6-A48B-FF679A085C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A00449-00D0-4CC6-A48B-FF679A085C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A00449-00D0-4CC6-A48B-FF679A085C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A00449-00D0-4CC6-A48B-FF679A085C05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

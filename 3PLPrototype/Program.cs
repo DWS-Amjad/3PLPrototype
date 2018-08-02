@@ -3,15 +3,18 @@ using System.Net.Mail;
 using ValidationRuleEngine.Implementations;
 using ValidationRuleEngine.Interfaces;
 using System.Xml.Linq;
+using Newtonsoft.Json;
+using System.Configuration;
+using ValidationRuleEngine;
 
 namespace _3PLPrototype
 {
     class Program
     {
-
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public static void Main(string[] args)
         {
-
             //SalesOrders salesOrders = new SalesOrders();
             //XMLHelper<SalesOrders>.Instance.UnMarshalingFromXML("../../DataFiles/SalesOrder/Sample_SO[8303].xml", out salesOrders);
             //XMLHelper<SalesOrders>.Instance.MarshalingToXML(salesOrders, "../../DataFiles/SalesOrder/SalesOrderOutput.xml");
@@ -39,11 +42,70 @@ namespace _3PLPrototype
             //Location_SYD obj = locCustomRepo.SelectByLocationAndPostCodeAndState("CALLIGNEE SOUTH", "3844", "VIC");
             //Console.WriteLine(obj.location);
             //List<Location_SYD> list = locRepository.GetLocation("4817", "WILLOWS (TOWNSVILLE)", "QLD");
-            string source_file_path = "../../DataFiles/SalesOrder/Sample_SO[8303].xml";
-            XDocument doc = XDocument.Load(source_file_path);
-            IEngine validatorEngine = new ValidatorEngine(doc);
-            validatorEngine.Validation();
-            Console.ReadKey();
+
+            try
+            {
+                //Customizations.XsdValidation instance = (Customizations.XsdValidation)Activator.CreateInstance(type);
+                //Validation val = new Validation();
+                //throw new Exception("testing Logger");
+                string source_file_path = "../../DataFiles/SalesOrder/Sample_SO[8303].xml";
+                XDocument doc = XDocument.Load(source_file_path);
+                IEngine validatorEngine = new ValidatorEngine(doc);
+                validatorEngine.Validation();
+                Console.ReadKey();
+                //Console.WriteLine(Constants.EventType.Validation_Engine_Configured);
+                //Console.WriteLine(Constants.EventType.Validation_Engine_Started);
+                //Console.WriteLine(Constants.EventType.Validation_Engine_Stopped);
+
+                //Console.WriteLine(Constants.EventType.Standard_Xml_Validation_Started);
+                //Console.WriteLine(Constants.EventType.Standard_Xml_Validation_Succeeded);
+                //Console.WriteLine(Constants.EventType.Standard_Xml_Validation_Failed);
+
+                //Console.WriteLine(Constants.LocationMatch.WithoutModification);
+                //Console.WriteLine(Constants.LocationMatch.StripParenthesis);
+                //Console.WriteLine(Constants.LocationMatch.MatchStringAfterSpace);
+                //Console.WriteLine(Constants.LocationMatch.MatchFirst5Chars);
+
+                //Console.WriteLine(Constants.ApplicationId);
+
+                //Console.WriteLine(Constants.ExecuteOn.success); 
+                //Console.WriteLine(Constants.ExecuteOn.failure);
+
+                //Console.WriteLine(Constants.Suggestions.InvalidSuburb);
+                //Console.WriteLine(Constants.Suggestions.InvalidPostCode);
+                //Console.WriteLine(Constants.Suggestions.InvalidState);
+                //Console.WriteLine(Constants.Suggestions.InvalidSuburbPostCodeState);
+
+                //Console.WriteLine(Constants.Suggestions.XSD_Invalid_Integer);
+                //Console.WriteLine(Constants.Suggestions.XSD_Invalid_Float);
+                //Console.WriteLine(Constants.Suggestions.XSD_Invalid_DateTime);
+                //Console.WriteLine(Constants.Suggestions.XSD_Invalid_Boolean);
+                //Console.WriteLine(Constants.Suggestions.XSD_Duplicate_Element);
+                //Console.WriteLine(Constants.Suggestions.XSD_Invalid_String);
+
+                //Console.WriteLine(Constants.MandatoryField_NameTags.WarehouseCode);
+                //Console.WriteLine(Constants.MandatoryField_NameTags.ClientCode);
+                //Console.WriteLine(Constants.MandatoryField_NameTags.CompanyCode);
+                //Console.WriteLine(Constants.MandatoryField_NameTags.OrderNumber);
+                //Console.WriteLine(Constants.MandatoryField_NameTags.OrderDate);
+                //Console.WriteLine(Constants.MandatoryField_NameTags.DocumentType);
+
+                //Console.WriteLine(Constants.LengthValidation_CustomFields.OrderNumber);
+                //Console.WriteLine(Constants.AddressValidator_CustomFields.postCode);
+                //Console.WriteLine(Constants.AddressValidator_CustomFields.location);
+                //Console.WriteLine(Constants.AddressValidator_CustomFields.state);
+
+                //Console.WriteLine(Constants.XsdValidator_CustomFields.xsd_file_path);
+                //Console.WriteLine(Constants.XsdValidator_CustomFields.xsd_ns);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
+            }
+            
 
             //var configFilePath = ConfigurationManager.AppSettings["ConfigXmlPath"];
             //if (String.IsNullOrEmpty(configFilePath))
@@ -70,7 +132,7 @@ namespace _3PLPrototype
             //Console.ReadLine();
 
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
 

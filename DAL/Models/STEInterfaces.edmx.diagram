@@ -7,7 +7,7 @@
       <Diagram DiagramId="b86f9347824f48fdbfd5672eb240b36f" Name="Diagram1">
         <EntityTypeShape EntityType="STEInterfacesModel.ApplicationEventMaster" Width="1.875" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="STEInterfacesModel.ApplicationLog" Width="1.875" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationMaster" Width="1.5" PointX="5.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STEInterfacesModel.ApplicationMaster" Width="1.875" PointX="5.375" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="STEInterfacesModel.Location_SYD" Width="1.875" PointX="7.375" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="STEInterfacesModel.FK_ApplicationLog_ApplicationEventMaster" ManuallyRouted="false" />
         <AssociationConnector Association="STEInterfacesModel.FK_ApplicationLog_ApplicationMaster" ManuallyRouted="false" />

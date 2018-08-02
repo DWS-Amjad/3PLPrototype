@@ -7,6 +7,7 @@ namespace DAL
     public class UnitOfWork : IDisposable
     {
         #region private Members
+
             private STEInterfacesEntities context = new STEInterfacesEntities();
             private IGenericRepository<ApplicationLog> repoAppLog;
             private IGenericRepository<ApplicationEventMaster> repoEventMaster;
@@ -15,21 +16,45 @@ namespace DAL
             private IGenericRepository<ErrorXml> repoErrorXml;
             private IGenericRepository<ErrorSuggestion> repoErrSuggestion;
             private IGenericRepository<Error_Suggestion_InboundData_Mapper> repoErrSuggestionInboundData_Map;
+            private LocationCustomRepository repoLocation;
+
         #endregion
 
         #region public members
-            public IGenericRepository<ApplicationLog> ApplicationLogRepository
+
+        /// <summary>
+        /// 
+        /// </summary>
+            public LocationCustomRepository LocationRepository
             {
                 get
                 {
-                    if (this.repoAppLog == null)
+                    if (this.repoLocation == null)
                     {
-                        this.repoAppLog = new GenericRepository<ApplicationLog>(this.context);
+                        this.repoLocation = new LocationCustomRepository(this.context);
                     }
-                    return this.repoAppLog;
+                    return this.repoLocation;
                 }
             }
+
+        /// <summary>
+        /// 
+        /// </summary>
+            public IGenericRepository<ApplicationLog> ApplicationLogRepository
+                {
+                    get
+                    {
+                        if (this.repoAppLog == null)
+                        {
+                            this.repoAppLog = new GenericRepository<ApplicationLog>(this.context);
+                        }
+                        return this.repoAppLog;
+                    }
+                }
     
+        /// <summary>
+        /// 
+        /// </summary>
             public IGenericRepository<ApplicationEventMaster> ApplicationEventMasterRepository
             {
                 get
@@ -41,7 +66,10 @@ namespace DAL
                     return this.repoEventMaster;
                 }
             }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
             public IGenericRepository<ApplicationMaster> ApplicationMasterRepository
             {
                 get
@@ -54,6 +82,9 @@ namespace DAL
                 }
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
             public IGenericRepository<ErrorInboundData> ErrorInboundRepository
             {
                 get
@@ -66,6 +97,9 @@ namespace DAL
                 }
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
             public IGenericRepository<ErrorXml> ErrorXmlRepository
             {
                 get
@@ -78,6 +112,9 @@ namespace DAL
                 }
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
             public IGenericRepository<ErrorSuggestion> ErrorSuggestionRepository
             {
                 get
@@ -90,6 +127,9 @@ namespace DAL
                 }
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
             public IGenericRepository<Error_Suggestion_InboundData_Mapper> ErrorSuggestion_InboundDataRepository
             {
                 get
@@ -102,6 +142,14 @@ namespace DAL
                 }
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Event"></param>
+        /// <param name="Application"></param>
+        /// <param name="message"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
             public ApplicationLog CreateApplicationLogObject(ApplicationEventMaster Event, ApplicationMaster Application,
                     string message, string userId)
             {
@@ -115,6 +163,13 @@ namespace DAL
                 return obj;
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="LastUpdatedBy"></param>
+        /// <returns></returns>
             public ApplicationEventMaster CreateApplicationEventMaster(string eventName,
                 string createdBy, string LastUpdatedBy)
             {
@@ -128,6 +183,14 @@ namespace DAL
                 return obj;
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="configFilePath"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="LastUpdatedBy"></param>
+        /// <returns></returns>
             public ApplicationMaster CreateApplicationMaster(string Name, string configFilePath,
                 string createdBy, string LastUpdatedBy)
             {
@@ -142,6 +205,19 @@ namespace DAL
                 return obj;
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataKey"></param>
+        /// <param name="dataPath"></param>
+        /// <param name="dataType"></param>
+        /// <param name="dataValue"></param>
+        /// <param name="errorType"></param>
+        /// <param name="sysErrorMsg"></param>
+        /// <param name="customErrorMsg"></param>
+        /// <param name="errorXml"></param>
+        /// <param name="isRectifiable"></param>
+        /// <returns></returns>
             public ErrorInboundData CreateErrorInboundData(string dataKey, string dataPath,
                 string dataType, string dataValue, string errorType, string sysErrorMsg,
                 string customErrorMsg, ErrorXml errorXml, Boolean isRectifiable)
@@ -161,6 +237,17 @@ namespace DAL
                 return (obj);
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientCode"></param>
+        /// <param name="warehouseCode"></param>
+        /// <param name="docUniqueId"></param>
+        /// <param name="docType"></param>
+        /// <param name="orderDate"></param>
+        /// <param name="TimeStamp"></param>
+        /// <param name="XmlContent"></param>
+        /// <returns></returns>
             public ErrorXml CreateErrorXml(string clientCode, string warehouseCode,
                 string docUniqueId, string docType, DateTime orderDate, DateTime TimeStamp,
                 string XmlContent)
@@ -177,6 +264,13 @@ namespace DAL
                 return obj;
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Suggestion"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="lastUpdatedBy"></param>
+        /// <returns></returns>
             public ErrorSuggestion CreateErrorSuggestion(string Suggestion, string createdBy,
                 string lastUpdatedBy)
             {
@@ -191,6 +285,9 @@ namespace DAL
                 return obj;
             }
 
+        /// <summary>
+        /// 
+        /// </summary>
             public void Save()
             {
                 context.SaveChanges();
@@ -200,6 +297,10 @@ namespace DAL
 
         private bool disposed = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
@@ -212,6 +313,9 @@ namespace DAL
             this.disposed = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

@@ -30,6 +30,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ConfigFilePath" Type="nvarchar" MaxLength="255" />
+    <Property Name="ConfigFileSchemaPath" Type="nvarchar" MaxLength="255" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -66,7 +67,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Suggestion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Suggestion" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="LastUpdatedBy" Type="nchar" MaxLength="50" Nullable="false" />

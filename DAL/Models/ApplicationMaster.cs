@@ -28,6 +28,7 @@ namespace DAL.Models
         public string LastUpdatedBy { get; set; }
         public System.DateTime LastUpdatedDate { get; set; }
         public bool IsActive { get; set; }
+        public string ConfigFileSchemaPath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ApplicationLog> ApplicationLogs { get; set; }

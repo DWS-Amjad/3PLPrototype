@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,6 +13,9 @@ namespace DAL.Repository
         private STEInterfacesEntities db = null;
         private DbSet<T> table = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public GenericRepository()
         {
             try
@@ -21,10 +25,14 @@ namespace DAL.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
         public GenericRepository(STEInterfacesEntities db)
         {
             try
@@ -34,59 +42,35 @@ namespace DAL.Repository
             }
             catch (Exception ex)
             {
-                //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<T> SelectAll()
         {
             return table.ToList();
         }
         
-        //public IEnumerable<Event> SelectAllActiveEvents()
-        //{
-        //    return (from el in db.Events
-        //            where el.IsActive == true
-        //            select el
-        //            ).ToList();
-        //}
         
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T SelectByID(object id)
         {
             return table.Find(id);
         }
-
-        //public IEnumerable<EventLog> SelectByEventTypeID(int id)
-        //{
-        //    return (from el in db.EventLogs
-        //            join e in db.Events on el.EventTypeID equals e.PID
-        //            where el.EventTypeID == id
-        //            select el).ToList();
-        //}
-
-        //public IEnumerable<Participant> SelectByIDAndFlag(object id, bool flag)
-        //{
-        //    var eventLogs = (from el in db.EventLogs
-        //                     join e in db.Events on el.EventTypeID equals e.PID
-        //                     where el.EventTypeID == 1
-        //                     select el).ToList();
-        //    var eventLogsParticipantIds = eventLogs.Select(e => e.Participant_PID).ToArray();
-
-        //    if (flag)
-        //    {
-        //        return table
-        //            .Where(p => eventLogsParticipantIds.Contains(p.PID))
-        //            .ToList();
-        //    }
-        //    else
-        //    {
-        //        return table
-        //            .Where(p => !eventLogsParticipantIds.Contains(p.PID))
-        //            .ToList();
-        //    }
-        //}
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public void Insert(T obj)
         {
             try
@@ -95,11 +79,16 @@ namespace DAL.Repository
             }
             catch (Exception ex)
             {
-                //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public bool Update(int id, T obj)
         {
             try
@@ -107,7 +96,7 @@ namespace DAL.Repository
                 table.Attach(obj);
                 db.Entry(obj).State = EntityState.Modified;
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException dbEx)
             {
                 if (!Exists(id))
                 {
@@ -115,17 +104,20 @@ namespace DAL.Repository
                 }
                 else
                 {
-                    throw;
+                    Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(dbEx));
                 }
             }
             catch (Exception ex)
             {
-                //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(object id)
         {
             try
@@ -135,8 +127,7 @@ namespace DAL.Repository
             }
             catch (Exception ex)
             {
-                //Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
-                throw ex;
+                Logger.Instance.GetLogInstance().Error(JsonConvert.SerializeObject(ex));
             }
         }
 
@@ -154,6 +145,11 @@ namespace DAL.Repository
 
         //}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool Exists(object id)
         {
             return (table.Find(id) != null);

@@ -17,21 +17,45 @@
       <rule name="Rule1" enabled="true">
         <!--<path></path>-->
         <validations>
-          <validation name="XsdValidator" type="Customizations.XsdValidation, Customizations" validator_type="xsd" on_failure_halt="false" enabled="true">
+            <validation name="XsdValidator" type="Customizations.XsdValidation, Customizations" validator_type="xsd" on_failure_halt="true" enabled="true">
             <!-- validation's custom attributes -->
-			      <attributes>
-				      <attribute name="xsd_ns" value="" path="" enabled="true"/>
-				      <attribute name="xsd_file_path" value="../../DataFiles/SalesOrder/SalesOrder.xsd" enabled="true"/>
-			      </attributes>
-          </validation>
-		      <validation name="Suburblength" type="Customizations.LengthValidation, Customizations" validator_type="xpath" on_failure_halt="false" enabled="false">
-            <!-- validation's custom attributes -->
-			        <attributes>
-                <attribute name="order_number" path="/SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+              <attributes>
+            	  <attribute name="xsd_ns" value="" path="" enabled="true"/>
+            	  <attribute name="xsd_file_path" value="../../DataFiles/SalesOrder/SalesOrder.xsd" enabled="true"/>
               </attributes>
-            <length>10</length>
-            <message>Length of suburban attribute length is greater than 10 characters.</message>
-          </validation>
+              <actions>
+                <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+                  <to>amjadleghari@hotmail.com</to>
+                  <from>Amjad.Leghari@startrack.com.au</from>
+                  <from_password>Welcome34452</from_password>
+                  <subject>$value of the $attribute is exceeding limit</subject>
+                  <successMessage>Email alert sent successfully</successMessage>
+                  <failureMessage>Email sending failed for the $attribute</failureMessage>
+                  <smtp_host>smtp.office365.com</smtp_host>
+                  <smtp_port>587</smtp_port>
+                </action>
+              </actions>
+            </validation>
+		        <validation name="Suburblength" type="Customizations.LengthValidation, Customizations" validator_type="xpath" on_failure_halt="false" enabled="false">
+              <!-- validation's custom attributes -->
+			        <attributes>
+                  <attribute name="order_number" path="/SalesOrders/OrderHeader/orderNumber" is_rectifiable="false" enabled="true"/>
+              </attributes>
+              <length>10</length>
+              <message>Length of suburban attribute length is greater than 10 characters.</message>
+              <actions>
+                  <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+                      <to>amjadleghari@hotmail.com</to>
+                      <from>Amjad.Leghari@startrack.com.au</from>
+                      <from_password>Welcome34452</from_password>
+                      <subject>$value of the $attribute is exceeding limit</subject>
+                      <successMessage>Email alert sent successfully</successMessage>
+                      <failureMessage>Email sending failed for the $attribute</failureMessage>
+                      <smtp_host>smtp.office365.com</smtp_host>
+                      <smtp_port>587</smtp_port>
+                  </action>
+              </actions>
+            </validation>
           <!--<validation name="AccelosLookup" type="Customizations.AccelosLookupValidation, Customizations" validator_type="xpath" enabled="true">
           </validation>-->
           <validation name="AddressValidator" type="Customizations.AddressValidation, Customizations" validator_type="xpath" on_failure_halt="false" enabled="true">
@@ -41,6 +65,18 @@
               <attribute name="location" path="//OrderHeader/deliverToLocation" is_rectifiable="false" enabled="true"/>
               <attribute name="state" path="//OrderHeader/deliverToState" is_rectifiable="false" enabled="true"/>
             </attributes>
+            <actions>
+              <action name="emailAlert" type="Customizations.EmailAlertAction, Customizations" executeOn="failure" enabled="false">
+                <to>amjadleghari@hotmail.com</to>
+                <from>Amjad.Leghari@startrack.com.au</from>
+                <from_password>Welcome34452</from_password>
+                <subject>$value of the $attribute is exceeding limit</subject>
+                <successMessage>Email alert sent successfully</successMessage>
+                <failureMessage>Email sending failed for the $attribute</failureMessage>
+                <smtp_host>smtp.office365.com</smtp_host>
+                <smtp_port>587</smtp_port>
+              </action>
+            </actions>
           </validation>
         </validations>
         <actions>

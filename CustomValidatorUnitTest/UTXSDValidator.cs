@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ValidationRuleEngine.Interfaces;
 using ValidationRuleEngine.Implementations;
-using System;
 using System.Xml.Linq;
 
 namespace CustomValidatorUnitTest
